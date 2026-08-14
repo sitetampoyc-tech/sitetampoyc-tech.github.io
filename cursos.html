@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cursos - Edu BOT</title>
+
+
+<style>
+
+/* =========================
+   GENERAL
+========================= */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:linear-gradient(
+        135deg,
+        #e0f2fe,
+        #fce7f3,
+        #fef3c7
+    );
+
+    color:#333;
+}
+
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+header{
+
+    background:linear-gradient(
+        135deg,
+        #6a11cb,
+        #2575fc,
+        #00c6ff
+    );
+
+    color:white;
+
+    text-align:center;
+
+    padding:35px 20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+header h1{
+
+    margin:0;
+
+    font-size:45px;
+
+}
+
+header p{
+
+    font-size:19px;
+
+}
+
+
+/* =========================
+   MENÚ
+========================= */
+
+nav{
+
+    background:#172554;
+
+    text-align:center;
+
+    padding:15px;
+
+}
+
+nav a{
+
+    display:inline-block;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    margin:5px;
+
+    padding:10px 18px;
+
+    border-radius:20px;
+
+    transition:0.3s;
+
+}
+
+nav a:hover{
+
+    background:#00c6ff;
+
+    color:#172554;
+
+    transform:translateY(-3px);
+
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.cursos{
+
+    padding:60px 20px;
+
+    text-align:center;
+
+}
+
+.cursos h2{
+
+    font-size:42px;
+
+    color:#6a11cb;
+
+    margin-bottom:10px;
+
+}
+
+.descripcion{
+
+    font-size:19px;
+
+    color:#555;
+
+    margin-bottom:40px;
+
+}
+
+
+/* =========================
+   TARJETAS
+========================= */
+
+.tarjetas{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:stretch;
+
+    flex-wrap:wrap;
+
+    gap:25px;
+
+}
+
+
+.tarjeta{
+
+    width:280px;
+
+    min-height:370px;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+
+    transition:0.4s;
+
+}
+
+
+.tarjeta:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,0.25);
+
+}
+
+
+/* =========================
+   ICONOS
+========================= */
+
+.icono{
+
+    font-size:60px;
+
+    margin-bottom:10px;
+
+}
+
+
+/* =========================
+   TÍTULOS DE TARJETAS
+========================= */
+
+.tarjeta h3{
+
+    font-size:25px;
+
+    margin:10px 0;
+
+}
+
+
+/* =========================
+   TEXTO
+========================= */
+
+.tarjeta p{
+
+    color:#555;
+
+    line-height:1.6;
+
+    font-size:16px;
+
+}
+
+
+/* =========================
+   BOTONES
+========================= */
+
+.tarjeta a{
+
+    display:inline-block;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:13px 28px;
+
+    border-radius:25px;
+
+    font-weight:bold;
+
+    margin-top:15px;
+
+    transition:0.3s;
+
+}
+
+
+.tarjeta a:hover{
+
+    transform:scale(1.08);
+
+    box-shadow:0 7px 15px rgba(0,0,0,0.25);
+
+}
+
+
+/* =========================
+   COLORES
+========================= */
+
+
+/* MATEMÁTICA */
+
+.matematica{
+
+    border-top:8px solid #ff9800;
+
+}
+
+.matematica h3{
+
+    color:#ff9800;
+
+}
+
+.matematica a{
+
+    background:#ff9800;
+
+}
+
+
+/* SOCIALES */
+
+.sociales{
+
+    border-top:8px solid #4caf50;
+
+}
+
+.sociales h3{
+
+    color:#4caf50;
+
+}
+
+.sociales a{
+
+    background:#4caf50;
+
+}
+
+
+/* CIENCIA */
+
+.ciencia{
+
+    border-top:8px solid #e91e63;
+
+}
+
+.ciencia h3{
+
+    color:#e91e63;
+
+}
+
+.ciencia a{
+
+    background:#e91e63;
+
+}
+
+
+/* COMUNICACIÓN */
+
+.comunicacion{
+
+    border-top:8px solid #2196f3;
+
+}
+
+.comunicacion h3{
+
+    color:#2196f3;
+
+}
+
+.comunicacion a{
+
+    background:#2196f3;
+
+}
+
+
+/* INGLÉS */
+
+.ingles{
+
+    border-top:8px solid #9c27b0;
+
+}
+
+.ingles h3{
+
+    color:#9c27b0;
+
+}
+
+.ingles a{
+
+    background:#9c27b0;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    background:#172554;
+
+    color:white;
+
+    text-align:center;
+
+    padding:30px;
+
+    margin-top:30px;
+
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media(max-width:600px){
+
+    header h1{
+
+        font-size:35px;
+
+    }
+
+    .cursos h2{
+
+        font-size:32px;
+
+    }
+
+    .tarjeta{
+
+        width:90%;
+
+    }
+
+    nav a{
+
+        font-size:14px;
+
+        padding:8px 12px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ENCABEZADO -->
+
+<header>
+
+<h1>📚 Edu BOT</h1>
+
+<p>✨ Aprende de manera fácil, divertida y colorida ✨</p>
+
+</header>
+
+
+<!-- MENÚ -->
+
+<nav>
+
+<a href="inicio.html">🏠 Inicio</a>
+
+<a href="cursos.html">📚 Cursos</a>
+
+<a href="areas.html">🧠 Áreas</a>
+
+<a href="contacto.html">📞 Contacto</a>
+
+</nav>
+
+
+<!-- CURSOS -->
+
+<section class="cursos">
+
+<h2>📚 Nuestros Cursos</h2>
+
+<p class="descripcion">
+
+Selecciona el curso que deseas aprender
+y descubre todo el contenido disponible.
+
+</p>
+
+
+<div class="tarjetas">
+
+
+<!-- MATEMÁTICA -->
+
+<div class="tarjeta matematica">
+
+<div class="icono">📐</div>
+
+<h3>Matemática</h3>
+
+<p>
+
+Aprende Aritmética, Álgebra, Geometría,
+Trigonometría y Estadística.
+
+Resuelve ejercicios paso a paso
+y mejora tu razonamiento lógico.
+
+</p>
+
+<a href="#">Ingresar 🚀</a>
+
+</div>
+
+
+<!-- CIENCIAS SOCIALES -->
+
+<div class="tarjeta sociales">
+
+<div class="icono">🌎</div>
+
+<h3>Ciencias Sociales</h3>
+
+<p>
+
+Estudia Historia, Geografía,
+Economía y Educación Cívica
+mediante mapas, líneas de tiempo
+y actividades dinámicas.
+
+</p>
+
+<a href="#">Ingresar 🚀</a>
+
+</div>
+
+
+<!-- CIENCIA Y TECNOLOGÍA -->
+
+<div class="tarjeta ciencia">
+
+<div class="icono">🧪</div>
+
+<h3>Ciencia y Tecnología</h3>
+
+<p>
+
+Aprende Biología, Física y Química
+con ejemplos, experimentos
+y explicaciones fáciles de entender.
+
+</p>
+
+<a href="#">Ingresar 🚀</a>
+
+</div>
+
+
+<!-- COMUNICACIÓN -->
+
+<div class="tarjeta comunicacion">
+
+<div class="icono">📖</div>
+
+<h3>Comunicación</h3>
+
+<p>
+
+Mejora tu comprensión lectora,
+ortografía, gramática, redacción
+y literatura mediante ejercicios.
+
+</p>
+
+<a href="#">Ingresar 🚀</a>
+
+</div>
+
+
+<!-- INGLÉS -->
+
+<div class="tarjeta ingles">
+
+<div class="icono">🇬🇧</div>
+
+<h3>Inglés</h3>
+
+<p>
+
+Aprende vocabulario, pronunciación,
+gramática, lectura y conversación
+con actividades prácticas.
+
+</p>
+
+<a href="#">Ingresar 🚀</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- PIE DE PÁGINA -->
+
+<footer>
+
+<h3>🎓 Edu BOT © 2026</h3>
+
+<p>
+
+✨ La educación al alcance de todos ✨
+
+</p>
+
+</footer>
+
+
+</body>
+
+</html>

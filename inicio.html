@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Inicio - Edu BOT</title>
+
+<style>
+
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,#eef7ff,#fff0f8,#f0fff7);
+    color:#333;
+}
+
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+header{
+    background:linear-gradient(135deg,#6a11cb,#2575fc,#00c6ff);
+    color:white;
+    text-align:center;
+    padding:35px 20px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+header h1{
+    font-size:48px;
+    margin:0;
+
+    text-shadow:2px 3px 6px rgba(0,0,0,0.3);
+}
+
+header p{
+    font-size:20px;
+    margin-top:10px;
+}
+
+
+/* =========================
+   MENÚ
+========================= */
+
+nav{
+    background:#172554;
+    text-align:center;
+    padding:15px;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+nav a{
+    display:inline-block;
+
+    color:white;
+    text-decoration:none;
+
+    margin:5px 8px;
+    padding:10px 18px;
+
+    border-radius:20px;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+nav a:hover{
+    background:#00c6ff;
+    color:#172554;
+
+    transform:translateY(-3px);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    text-align:center;
+    padding:80px 20px;
+
+    background:
+    radial-gradient(circle at top left,#dbeafe,transparent 40%),
+    radial-gradient(circle at bottom right,#fbcfe8,transparent 40%);
+}
+
+.hero h2{
+    color:#6a11cb;
+    font-size:48px;
+
+    margin-bottom:20px;
+
+    animation:aparecer 1s ease;
+}
+
+.hero p{
+    width:80%;
+    max-width:900px;
+
+    margin:auto;
+
+    font-size:20px;
+    line-height:1.7;
+
+    animation:aparecer 1.3s ease;
+}
+
+
+/* =========================
+   BOTÓN
+========================= */
+
+button{
+    margin-top:35px;
+
+    background:linear-gradient(135deg,#ff4d6d,#ff9f1c);
+
+    color:white;
+
+    border:none;
+
+    padding:16px 35px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 20px rgba(255,77,109,0.3);
+
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-5px) scale(1.05);
+
+    box-shadow:0 12px 25px rgba(255,77,109,0.4);
+}
+
+
+/* =========================
+   SECCIONES
+========================= */
+
+section{
+    padding:55px 20px;
+}
+
+h2{
+    text-align:center;
+
+    color:#172554;
+
+    font-size:32px;
+
+    margin-bottom:35px;
+}
+
+
+/* =========================
+   TARJETAS
+========================= */
+
+.tarjetas{
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:25px;
+}
+
+.tarjeta{
+    width:280px;
+
+    min-height:190px;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+
+    transition:0.4s;
+
+    border-top:7px solid #2575fc;
+}
+
+.tarjeta:hover{
+    transform:translateY(-10px) scale(1.03);
+
+    box-shadow:0 15px 30px rgba(0,0,0,0.2);
+}
+
+.tarjeta h3{
+    font-size:23px;
+
+    margin-top:5px;
+
+    color:#2575fc;
+}
+
+.tarjeta p{
+    line-height:1.6;
+
+    color:#555;
+}
+
+
+/* =========================
+   COLORES DE TARJETAS
+========================= */
+
+.tarjeta:nth-child(1){
+    border-top-color:#ff4d6d;
+}
+
+.tarjeta:nth-child(1) h3{
+    color:#ff4d6d;
+}
+
+
+.tarjeta:nth-child(2){
+    border-top-color:#ff9f1c;
+}
+
+.tarjeta:nth-child(2) h3{
+    color:#ff9f1c;
+}
+
+
+.tarjeta:nth-child(3){
+    border-top-color:#00b894;
+}
+
+.tarjeta:nth-child(3) h3{
+    color:#00b894;
+}
+
+
+.tarjeta:nth-child(4){
+    border-top-color:#6a11cb;
+}
+
+.tarjeta:nth-child(4) h3{
+    color:#6a11cb;
+}
+
+
+/* =========================
+   SEGUNDA SECCIÓN
+========================= */
+
+section:nth-of-type(2){
+    background:linear-gradient(135deg,#fff7ed,#fdf2f8);
+}
+
+
+/* =========================
+   FRASE MOTIVADORA
+========================= */
+
+.frase{
+    background:linear-gradient(135deg,#6a11cb,#2575fc,#00c6ff);
+
+    color:white;
+
+    text-align:center;
+
+    padding:65px 20px;
+
+    font-size:28px;
+
+    font-style:italic;
+
+    box-shadow:0 0 20px rgba(0,0,0,0.15);
+}
+
+.frase strong{
+    text-shadow:2px 3px 5px rgba(0,0,0,0.3);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#172554;
+
+    color:white;
+
+    text-align:center;
+
+    padding:30px;
+}
+
+footer h3{
+    font-size:25px;
+}
+
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes aparecer{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================
+   CELULARES
+========================= */
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:36px;
+    }
+
+    .hero h2{
+        font-size:34px;
+    }
+
+    .hero p{
+        width:95%;
+        font-size:17px;
+    }
+
+    nav a{
+        font-size:14px;
+        padding:8px 12px;
+    }
+
+    .tarjeta{
+        width:90%;
+    }
+
+    .frase{
+        font-size:22px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     ENCABEZADO
+========================= -->
+
+<header>
+
+<h1>📚 Edu BOT</h1>
+
+<p>✨ Aprender nunca fue tan fácil ✨</p>
+
+</header>
+
+
+<!-- =========================
+     MENÚ
+========================= -->
+
+<nav>
+
+<a href="inicio.html">🏠 Inicio</a>
+
+<a href="cursos.html">📚 Cursos</a>
+
+<a href="areas.html">🧠 Áreas</a>
+
+<a href="contacto.html">📞 Contacto</a>
+
+</nav>
+
+
+<!-- =========================
+     BIENVENIDA
+========================= -->
+
+<div class="hero">
+
+<h2>🌟 ¡Bienvenido a Edu BOT! 🌟</h2>
+
+<p>
+
+Edu BOT es una plataforma educativa creada para ayudar a estudiantes de
+<strong>1.º a 6.º de secundaria</strong>.
+
+Aquí podrás aprender de forma sencilla, practicar con ejercicios
+y reforzar tus conocimientos en diferentes áreas.
+
+</p>
+
+
+<button onclick="location.href='cursos.html'">
+
+🚀 Comenzar a aprender
+
+</button>
+
+</div>
+
+
+<!-- =========================
+     QUÉ ENCONTRARÁS
+========================= -->
+
+<section>
+
+<h2>📚 ¿Qué encontrarás?</h2>
+
+
+<div class="tarjetas">
+
+
+<div class="tarjeta">
+
+<h3>📖 Cursos</h3>
+
+<p>
+
+Aprende Matemática, Comunicación,
+Ciencia y Tecnología, Historia,
+Inglés y muchas áreas más.
+
+</p>
+
+</div>
+
+
+<div class="tarjeta">
+
+<h3>📝 Ejercicios</h3>
+
+<p>
+
+Resuelve actividades y practica
+para mejorar tus conocimientos.
+
+</p>
+
+</div>
+
+
+<div class="tarjeta">
+
+<h3>🎥 Videos</h3>
+
+<p>
+
+Observa videos educativos con
+explicaciones claras y fáciles
+de entender.
+
+</p>
+
+</div>
+
+
+<div class="tarjeta">
+
+<h3>🏆 Evaluaciones</h3>
+
+<p>
+
+Pon a prueba lo aprendido
+mediante cuestionarios y
+retos educativos.
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     POR QUÉ ELEGIR EDU BOT
+========================= -->
+
+<section>
+
+<h2>🌟 ¿Por qué elegir Edu BOT?</h2>
+
+
+<div class="tarjetas">
+
+
+<div class="tarjeta">
+
+<h3>✅ Fácil de usar</h3>
+
+<p>
+
+Una plataforma sencilla para que
+cualquier estudiante pueda
+aprender sin dificultades.
+
+</p>
+
+</div>
+
+
+<div class="tarjeta">
+
+<h3>📚 Contenido completo</h3>
+
+<p>
+
+Material educativo organizado
+para todos los grados
+de secundaria.
+
+</p>
+
+</div>
+
+
+<div class="tarjeta">
+
+<h3>💻 Disponible siempre</h3>
+
+<p>
+
+Accede a la plataforma desde
+cualquier computadora o
+dispositivo con Internet.
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     FRASE
+========================= -->
+
+<div class="frase">
+
+<strong>
+"🌟 El conocimiento abre puertas. ¡Empieza a aprender hoy! 🚀"
+</strong>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<h3>🎓 Edu BOT © 2026</h3>
+
+<p>
+✨ La educación al alcance de todos. ✨
+</p>
+
+</footer>
+
+
+</body>
+
+</html>

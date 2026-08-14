@@ -1,0 +1,857 @@
+/* =====================================================
+   EDU BOT IA - ESTILO MODERNO Y COLORIDO
+   SOLO DISEÑO
+===================================================== */
+
+
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =====================================================
+   CUERPO
+===================================================== */
+
+body {
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            #bfdbfe 0%,
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 90% 15%,
+            #fbcfe8 0%,
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            #bbf7d0 0%,
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #f8fafc
+        );
+
+}
+
+
+/* =====================================================
+   VENTANA DEL CHAT
+===================================================== */
+
+.chat {
+
+    width: 900px;
+    max-width: 100%;
+
+    height: 90vh;
+    min-height: 600px;
+
+    background: rgba(255,255,255,0.96);
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid rgba(255,255,255,0.9);
+
+    box-shadow:
+
+        0 25px 60px rgba(37,99,235,0.20),
+
+        0 5px 20px rgba(0,0,0,0.10);
+
+    animation: aparecerChat 0.7s ease;
+
+}
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.encabezado {
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6a11cb,
+            #2575fc,
+            #00c6ff
+        );
+
+    color: white;
+
+    padding: 28px 25px;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+
+    box-shadow:
+        0 6px 20px rgba(37,117,252,0.25);
+
+}
+
+
+/* Círculo decorativo izquierdo */
+
+.encabezado::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.10);
+
+    left: -55px;
+    top: -80px;
+
+}
+
+
+/* Círculo decorativo derecho */
+
+.encabezado::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.10);
+
+    right: -30px;
+    bottom: -65px;
+
+}
+
+
+/* =====================================================
+   TÍTULO
+===================================================== */
+
+.encabezado h1 {
+
+    position: relative;
+
+    z-index: 2;
+
+    font-size: 38px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        2px 3px 7px rgba(0,0,0,0.25);
+
+}
+
+
+/* =====================================================
+   SUBTÍTULO
+===================================================== */
+
+.encabezado p {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 8px;
+
+    font-size: 17px;
+
+    opacity: 0.95;
+
+}
+
+
+/* =====================================================
+   ÁREA DE MENSAJES
+===================================================== */
+
+.mensajes {
+
+    flex: 1;
+
+    min-height: 0;
+
+    padding: 30px;
+
+    overflow-y: auto;
+
+    scroll-behavior: smooth;
+
+    background:
+
+        radial-gradient(
+            circle at top left,
+            rgba(219,234,254,0.65),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            rgba(252,231,243,0.55),
+            transparent 35%
+        ),
+
+        #f8fafc;
+
+}
+
+
+/* =====================================================
+   BARRA DE DESPLAZAMIENTO
+===================================================== */
+
+.mensajes::-webkit-scrollbar {
+
+    width: 9px;
+
+}
+
+.mensajes::-webkit-scrollbar-track {
+
+    background: #eef2ff;
+
+    border-radius: 20px;
+
+}
+
+.mensajes::-webkit-scrollbar-thumb {
+
+    background:
+        linear-gradient(
+            #6a11cb,
+            #2575fc
+        );
+
+    border-radius: 20px;
+
+}
+
+.mensajes::-webkit-scrollbar-thumb:hover {
+
+    background:
+        linear-gradient(
+            #2575fc,
+            #00c6ff
+        );
+
+}
+
+
+/* =====================================================
+   MENSAJE DEL BOT
+===================================================== */
+
+.bot {
+
+    position: relative;
+
+    background: white;
+
+    color: #1e293b;
+
+    padding: 18px 20px;
+
+    border-radius: 20px;
+
+    border-top-left-radius: 6px;
+
+    width: 82%;
+
+    max-width: 720px;
+
+    margin-bottom: 18px;
+
+    line-height: 1.7;
+
+    border-left: 6px solid #6a11cb;
+
+    box-shadow:
+        0 7px 20px rgba(0,0,0,0.08);
+
+    animation: aparecer 0.3s ease;
+
+    word-wrap: break-word;
+
+}
+
+
+/* Pequeño detalle del mensaje */
+
+.bot::before {
+
+    content: "🤖";
+
+    position: absolute;
+
+    left: -18px;
+
+    top: -15px;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background: white;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.12);
+
+    font-size: 19px;
+
+}
+
+
+/* =====================================================
+   MENSAJE DEL USUARIO
+===================================================== */
+
+.usuario {
+
+    background:
+        linear-gradient(
+            135deg,
+            #6a11cb,
+            #2575fc,
+            #00a6ff
+        );
+
+    color: white;
+
+    padding: 15px 19px;
+
+    border-radius: 20px;
+
+    border-bottom-right-radius: 6px;
+
+    width: 75%;
+
+    max-width: 650px;
+
+    margin-left: auto;
+
+    margin-bottom: 18px;
+
+    line-height: 1.6;
+
+    box-shadow:
+        0 8px 18px rgba(37,117,252,0.22);
+
+    animation: aparecer 0.3s ease;
+
+    word-wrap: break-word;
+
+}
+
+
+/* =====================================================
+   ANIMACIÓN DE MENSAJES
+===================================================== */
+
+@keyframes aparecer {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(0.98);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   ANIMACIÓN DEL CHAT
+===================================================== */
+
+@keyframes aparecerChat {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.97);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   TEXTO DEL BOT
+===================================================== */
+
+.bot b,
+.bot strong {
+
+    color: #6a11cb;
+
+    font-weight: bold;
+
+}
+
+
+.usuario b,
+.usuario strong {
+
+    color: white;
+
+}
+
+
+.bot a {
+
+    color: #2575fc;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+
+}
+
+
+.bot a:hover {
+
+    color: #6a11cb;
+
+    text-decoration: underline;
+
+}
+
+
+/* =====================================================
+   ÁREA DE ESCRITURA
+===================================================== */
+
+.entrada {
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 18px;
+
+    background: rgba(255,255,255,0.98);
+
+    border-top: 1px solid #e2e8f0;
+
+    gap: 12px;
+
+    flex-shrink: 0;
+
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.entrada input {
+
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 15px 18px;
+
+    font-size: 16px;
+
+    color: #1e293b;
+
+    background: #f8fafc;
+
+    border: 2px solid #dbeafe;
+
+    border-radius: 18px;
+
+    outline: none;
+
+    transition: 0.3s;
+
+}
+
+
+.entrada input::placeholder {
+
+    color: #94a3b8;
+
+}
+
+
+.entrada input:focus {
+
+    background: white;
+
+    border-color: #2575fc;
+
+    box-shadow:
+
+        0 0 0 4px rgba(37,117,252,0.10),
+
+        0 5px 15px rgba(37,117,252,0.08);
+
+}
+
+
+/* =====================================================
+   BOTÓN ENVIAR
+===================================================== */
+
+.entrada button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #6a11cb,
+            #2575fc,
+            #00c6ff
+        );
+
+    color: white;
+
+    border: none;
+
+    padding: 15px 27px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    border-radius: 18px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    box-shadow:
+        0 7px 18px rgba(37,117,252,0.25);
+
+    white-space: nowrap;
+
+}
+
+
+.entrada button:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+    box-shadow:
+        0 12px 25px rgba(37,117,252,0.35);
+
+}
+
+
+.entrada button:active {
+
+    transform:
+        translateY(0)
+        scale(0.97);
+
+}
+
+
+/* =====================================================
+   EFECTO CUANDO SE PASA SOBRE EL INPUT
+===================================================== */
+
+.entrada:hover {
+
+    box-shadow:
+        0 -5px 20px rgba(37,99,235,0.05);
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 850px) {
+
+    body {
+
+        padding: 10px;
+
+    }
+
+
+    .chat {
+
+        width: 100%;
+
+        height: 95vh;
+
+    }
+
+
+    .bot {
+
+        width: 88%;
+
+    }
+
+
+    .usuario {
+
+        width: 82%;
+
+    }
+
+}
+
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
+@media (max-width: 700px) {
+
+    body {
+
+        padding: 0;
+
+    }
+
+
+    .chat {
+
+        width: 100%;
+
+        height: 100vh;
+
+        min-height: 100vh;
+
+        border-radius: 0;
+
+    }
+
+
+    .encabezado {
+
+        padding: 20px 15px;
+
+    }
+
+
+    .encabezado h1 {
+
+        font-size: 29px;
+
+    }
+
+
+    .encabezado p {
+
+        font-size: 14px;
+
+    }
+
+
+    .mensajes {
+
+        padding: 20px 15px;
+
+    }
+
+
+    .bot {
+
+        width: 94%;
+
+        font-size: 15px;
+
+        padding: 15px;
+
+    }
+
+
+    .usuario {
+
+        width: 90%;
+
+        font-size: 15px;
+
+        padding: 14px;
+
+    }
+
+
+    .entrada {
+
+        padding: 12px;
+
+        gap: 8px;
+
+    }
+
+
+    .entrada input {
+
+        font-size: 15px;
+
+        padding: 13px;
+
+    }
+
+
+    .entrada button {
+
+        padding: 13px 17px;
+
+        font-size: 14px;
+
+    }
+
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media (max-width: 420px) {
+
+    .encabezado h1 {
+
+        font-size: 24px;
+
+    }
+
+
+    .encabezado p {
+
+        font-size: 13px;
+
+    }
+
+
+    .mensajes {
+
+        padding: 15px 10px;
+
+    }
+
+
+    .bot {
+
+        width: 96%;
+
+        font-size: 14px;
+
+    }
+
+
+    .usuario {
+
+        width: 94%;
+
+        font-size: 14px;
+
+    }
+
+
+    .entrada {
+
+        padding: 9px;
+
+    }
+
+
+    .entrada input {
+
+        padding: 11px;
+
+        font-size: 14px;
+
+    }
+
+
+    .entrada button {
+
+        padding: 11px 13px;
+
+        font-size: 13px;
+
+    }
+
+}

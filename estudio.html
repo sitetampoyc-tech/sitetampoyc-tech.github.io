@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EduIA - Aprende Fácil</title>
+
+<style>
+
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,#eef7ff,#fff4ff,#effff7);
+    color:#333;
+}
+
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+header{
+    background:linear-gradient(135deg,#6a11cb,#2575fc,#00c6ff);
+    color:white;
+    padding:35px 20px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+header h1{
+    margin:0;
+    font-size:45px;
+    text-shadow:2px 3px 5px rgba(0,0,0,0.3);
+}
+
+header p{
+    font-size:20px;
+    margin-top:10px;
+}
+
+
+/* =========================
+   MENÚ
+========================= */
+
+nav{
+    background:#172554;
+    text-align:center;
+    padding:18px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+nav a{
+    display:inline-block;
+    color:white;
+    text-decoration:none;
+    margin:5px 12px;
+    padding:10px 18px;
+    border-radius:20px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+nav a:hover{
+    background:#00c6ff;
+    color:#172554;
+    transform:translateY(-3px);
+}
+
+
+/* =========================
+   PRESENTACIÓN
+========================= */
+
+.hero{
+    text-align:center;
+    padding:70px 20px;
+    background:
+    radial-gradient(circle at top left,#dbeafe,transparent 40%),
+    radial-gradient(circle at bottom right,#fbcfe8,transparent 40%);
+}
+
+.hero h2{
+    color:#6a11cb;
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:20px;
+    line-height:1.7;
+    width:80%;
+    max-width:900px;
+    margin:auto;
+}
+
+
+/* =========================
+   SECCIÓN
+========================= */
+
+section{
+    padding:50px 20px;
+}
+
+section > h2{
+    text-align:center;
+    font-size:32px;
+    color:#172554;
+    margin-bottom:35px;
+}
+
+
+/* =========================
+   TARJETAS
+========================= */
+
+.tarjetas{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.tarjeta{
+    background:white;
+    width:300px;
+    min-height:210px;
+    padding:25px;
+    border-radius:20px;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,0.12);
+
+    transition:0.4s;
+
+    border-top:6px solid #2575fc;
+}
+
+.tarjeta:hover{
+    transform:translateY(-10px) scale(1.03);
+
+    box-shadow:
+    0 15px 30px rgba(0,0,0,0.2);
+}
+
+.tarjeta h3{
+    color:#6a11cb;
+    font-size:23px;
+    margin-top:0;
+}
+
+.tarjeta p{
+    line-height:1.6;
+    color:#555;
+}
+
+
+/* Colores diferentes para las tarjetas */
+
+.tarjeta:nth-child(1){
+    border-top-color:#ff4d6d;
+}
+
+.tarjeta:nth-child(1) h3{
+    color:#ff4d6d;
+}
+
+
+.tarjeta:nth-child(2){
+    border-top-color:#ff9f1c;
+}
+
+.tarjeta:nth-child(2) h3{
+    color:#ff9f1c;
+}
+
+
+.tarjeta:nth-child(3){
+    border-top-color:#00b894;
+}
+
+.tarjeta:nth-child(3) h3{
+    color:#00b894;
+}
+
+
+.tarjeta:nth-child(4){
+    border-top-color:#6a11cb;
+}
+
+.tarjeta:nth-child(4) h3{
+    color:#6a11cb;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:linear-gradient(135deg,#172554,#6a11cb,#2575fc);
+    color:white;
+    text-align:center;
+    padding:30px;
+    margin-top:30px;
+}
+
+footer h3{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+
+/* =========================
+   ANIMACIÓN
+========================= */
+
+.hero,
+.tarjeta{
+    animation:aparecer 0.8s ease;
+}
+
+@keyframes aparecer{
+
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:35px;
+    }
+
+    .hero h2{
+        font-size:32px;
+    }
+
+    .hero p{
+        width:95%;
+        font-size:17px;
+    }
+
+    nav a{
+        margin:4px;
+        padding:8px 12px;
+        font-size:14px;
+    }
+
+    .tarjeta{
+        width:90%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     ENCABEZADO
+========================= -->
+
+<header>
+
+<h1>📚 Edu BOT</h1>
+
+<p>✨ Aprender nunca fue tan fácil ✨</p>
+
+</header>
+
+
+<!-- =========================
+     MENÚ
+========================= -->
+
+<nav>
+
+<a href="inicio.html">🏠 Inicio</a>
+
+<a href="cursos.html">📚 Cursos</a>
+
+<a href="areas.html">🧠 Áreas</a>
+
+<a href="ia.html">🤖 IA</a>
+
+<a href="contacto.html">📞 Contacto</a>
+
+</nav>
+
+
+<!-- =========================
+     PRESENTACIÓN
+========================= -->
+
+<div class="hero">
+
+<h2>🌟 Bienvenido a EduIA 🌟</h2>
+
+<p>
+
+Nuestra plataforma ayuda a estudiantes de
+<strong>1.º hasta 6.º de secundaria</strong>
+a aprender de una manera sencilla, dinámica y divertida.
+
+Aquí encontrarás clases, ejercicios, videos y una
+<strong>Inteligencia Artificial</strong>
+que responderá tus dudas cuando no entiendas un tema.
+
+</p>
+
+</div>
+
+
+<!-- =========================
+     QUÉ OFRECEMOS
+========================= -->
+
+<section>
+
+<h2>🚀 ¿Qué ofrecemos?</h2>
+
+
+<div class="tarjetas">
+
+
+<div class="tarjeta">
+
+<h3>📖 Todas las áreas</h3>
+
+<p>
+
+Aprende Matemática, Comunicación,
+Ciencia y Tecnología, Historia,
+Geografía, Inglés, Arte,
+Computación y mucho más.
+
+</p>
+
+</div>
+
+
+
+<div class="tarjeta">
+
+<h3>📝 Ejercicios</h3>
+
+<p>
+
+Practica con preguntas,
+desafíos y evaluaciones
+para mejorar tu aprendizaje.
+
+</p>
+
+</div>
+
+
+
+<div class="tarjeta">
+
+<h3>🎥 Videos</h3>
+
+<p>
+
+Cada tema cuenta con videos
+y ejemplos fáciles de comprender.
+
+</p>
+
+</div>
+
+
+
+<div class="tarjeta">
+
+<h3>🤖 IA Educativa</h3>
+
+<p>
+
+Si no entiendes un tema,
+nuestra Inteligencia Artificial
+te lo explicará paso a paso
+con ejemplos sencillos hasta
+que puedas comprenderlo.
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     PIE DE PÁGINA
+========================= -->
+
+<footer>
+
+<h3>🎓 EduIA © 2026</h3>
+
+<p>
+✨ La educación al alcance de todos ✨
+</p>
+
+</footer>
+
+
+</body>
+
+</html>

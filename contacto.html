@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contacto</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            padding: 45px 35px;
+            border-radius: 25px;
+            text-align: center;
+
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+            animation: aparecer 1s ease;
+        }
+
+        h1 {
+            color: #2575fc;
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .subtitulo {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 17px;
+        }
+
+        .contacto {
+            display: flex;
+            align-items: center;
+            text-align: left;
+
+            background: #f5f7ff;
+            margin: 18px 0;
+            padding: 20px;
+
+            border-radius: 18px;
+            transition: 0.3s;
+        }
+
+        .contacto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .icono {
+            font-size: 35px;
+            margin-right: 18px;
+        }
+
+        .informacion h2 {
+            font-size: 19px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .informacion p {
+            font-size: 17px;
+            color: #555;
+            word-break: break-word;
+        }
+
+        .pie {
+            margin-top: 30px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .contenedor {
+                padding: 35px 20px;
+            }
+
+            .contacto {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>📞 Contáctanos</h1>
+
+        <p class="subtitulo">
+            Puedes comunicarte con nosotros mediante:
+        </p>
+
+        <div class="contacto">
+            <div class="icono">📞</div>
+
+            <div class="informacion">
+                <h2>Teléfono</h2>
+                <p>917 136 393</p>
+            </div>
+        </div>
+
+        <div class="contacto">
+            <div class="icono">📧</div>
+
+            <div class="informacion">
+                <h2>Gmail</h2>
+                <p>miasucaribarreto@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="pie">
+            © 2026 - Página de Contacto
+        </div>
+
+    </div>
+
+</body>
+</html>
