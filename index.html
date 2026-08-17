@@ -176,43 +176,77 @@
     </div>
 
 
-    <script>
+<script>
 
-        function iniciarSesion(event) {
+    function iniciarSesion(event) {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            // DATOS CORRECTOS
-            const usuarioCorrecto = "santadorotea";
-            const claveCorrecta = "changuito123";
+        // USUARIOS
+        const usuarios = {
+            "tesla": {
+                clave: "Luffy123",
+                nombre: "tesla Georgette_666"
+            },
 
-            // DATOS INGRESADOS
-            const usuario = document.getElementById("usuario").value;
-            const clave = document.getElementById("clave").value;
+            "Mapi_emi": {
+                clave: "lasgerreraskpop123",
+                nombre: "Mapi_emi"
+            },
 
-            const mensaje = document.getElementById("mensaje");
+            "Vivian_003": {
+                clave: "01746",
+                nombre: "Vivian_003"
+            },
 
-            // COMPROBAR DATOS
-            if (usuario === usuarioCorrecto && clave === claveCorrecta) {
+            "anyelx.t": {
+                clave: "elnegrito.ozuna0.2",
+                nombre: "anyelx.t"
+            },
 
-                mensaje.textContent = "✅ Inicio de sesión correcto";
+            "susu": {
+                clave: "kchar",
+                nombre: "susu"
+            },
 
-                mensaje.className = "correcto";
-
-                // Ir a menu.html
-                setTimeout(function() {
-                    window.location.href = "estudio.html";
-                }, 800);
-
-            } else {
-
-                mensaje.textContent = "❌ Usuario o contraseña incorrectos";
-
-                mensaje.className = "error";
+            // USUARIO ORIGINAL
+            "santadorotea": {
+                clave: "changuito123",
+                nombre: "santadorotea"
             }
-        }
+        };
 
-    </script>
+        // DATOS INGRESADOS
+        const usuario = document.getElementById("usuario").value.trim();
+        const clave = document.getElementById("clave").value;
+
+        const mensaje = document.getElementById("mensaje");
+
+        // COMPROBAR DATOS
+        if (usuarios[usuario] && usuarios[usuario].clave === clave) {
+
+            mensaje.textContent = "✅ Inicio de sesión correcto";
+            mensaje.className = "correcto";
+
+            // Guardar el usuario para mostrarlo en estudio.html
+            localStorage.setItem(
+                "nombreUsuario",
+                usuarios[usuario].nombre
+            );
+
+            setTimeout(function() {
+                window.location.href = "estudio.html";
+            }, 800);
+
+        } else {
+
+            mensaje.textContent = "❌ Usuario o contraseña incorrectos";
+            mensaje.className = "error";
+
+        }
+    }
+
+</script>
 
 </body>
 </html>
