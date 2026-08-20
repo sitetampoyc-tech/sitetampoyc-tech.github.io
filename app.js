@@ -596,24 +596,40 @@ function obtenerDatosCurso() {
     let datos = null;
 
     // --------------------------------------------------
-    // MATEMÁTICA
-    // --------------------------------------------------
+// MATEMÁTICA
+// --------------------------------------------------
 
-    if (cursoSeleccionado === "matematica") {
+if (cursoSeleccionado === "matematica") {
 
-        if (typeof matematica !== "undefined") {
+    // ==============================================
+    // 1. ARITMÉTICA
+    // ==============================================
 
-            datos = matematica[gradoSeleccionado] || matematica;
-
-        }
-
-        else if (typeof matematicas !== "undefined") {
-
-            datos = matematicas[gradoSeleccionado] || matematicas;
-
-        }
-
+    if (gradoSeleccionado === "1" && typeof aritmetica1 !== "undefined") {
+        datos = aritmetica1;
     }
+
+    else if (gradoSeleccionado === "2" && typeof aritmetica2 !== "undefined") {
+        datos = aritmetica2;
+    }
+
+    else if (gradoSeleccionado === "3" && typeof aritmetica3 !== "undefined") {
+        datos = aritmetica3;
+    }
+
+    else if (gradoSeleccionado === "4" && typeof aritmetica4 !== "undefined") {
+        datos = aritmetica4;
+    }
+
+    else if (gradoSeleccionado === "5" && typeof aritmetica5 !== "undefined") {
+        datos = aritmetica5;
+    }
+
+    else if (gradoSeleccionado === "6" && typeof aritmetica6 !== "undefined") {
+        datos = aritmetica6;
+    }
+
+}
 
     // --------------------------------------------------
     // COMUNICACIÓN
