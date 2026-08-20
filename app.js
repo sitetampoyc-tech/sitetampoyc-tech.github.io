@@ -159,7 +159,64 @@ function responder() {
 
         return;
     }
+         
+    // ==================================================
+    // NIVEL DE INGLÉS
+    // ==================================================
 
+if (estado === "nivel") {
+
+    if (
+        texto === "basico" ||
+        texto === "básico" ||
+        texto.includes("nivel basico") ||
+        texto.includes("nivel básico")
+    ) {
+
+        nivelInglesSeleccionado = "basico";
+
+    }
+    else if (
+        texto === "intermedio" ||
+        texto.includes("nivel intermedio")
+    ) {
+
+        nivelInglesSeleccionado = "intermedio";
+
+    }
+    else if (
+        texto === "avanzado" ||
+        texto.includes("nivel avanzado")
+    ) {
+
+        nivelInglesSeleccionado = "avanzado";
+
+    }
+    else {
+
+        responderBot(`
+            ❌ <strong>No reconocí ese nivel.</strong><br><br>
+
+            Elige uno de estos niveles:<br><br>
+
+            🟢 <strong>Básico</strong><br>
+            🔵 <strong>Intermedio</strong><br>
+            🟣 <strong>Avanzado</strong><br><br>
+
+            ✏️ Escribe <strong>básico</strong>, 
+            <strong>intermedio</strong> o 
+            <strong>avanzado</strong>.
+        `);
+
+        return;
+    }
+
+    console.log("🇬🇧 Nivel de Inglés:", nivelInglesSeleccionado);
+
+    cargarCurso();
+
+    return;
+}
     // ==================================================
     // TEMA
     // ==================================================
@@ -287,31 +344,38 @@ function seleccionarCurso(texto) {
         return;
     }
 
-    // --------------------------------------------------
-    // INGLÉS
-    // --------------------------------------------------
+// --------------------------------------------------
+// INGLÉS
+// --------------------------------------------------
 
-    if (
-        texto === "ingles" ||
-        texto === "inglés" ||
-        texto.includes("idioma ingles")
-    ) {
+if (
+    texto === "ingles" ||
+    texto === "inglés" ||
+    texto.includes("idioma ingles")
+) {
 
-        cursoSeleccionado = "ingles";
-        estado = "grado";
+    cursoSeleccionado = "ingles";
+    estado = "nivel";
+    nivelInglesSeleccionado = "";
 
-        responderBot(`
-            🇬🇧 <strong>INGLÉS</strong><br><br>
+    responderBot(`
+        🇬🇧 <strong>INGLÉS</strong><br><br>
 
-            ✅ Curso seleccionado correctamente.<br><br>
+        ✅ Curso seleccionado correctamente.<br><br>
 
-            ¿Qué grado deseas estudiar?
-        `);
+        📚 <strong>¿Qué nivel deseas estudiar?</strong><br><br>
 
-        mostrarGrados();
+        🟢 <strong>Básico</strong><br>
+        🔵 <strong>Intermedio</strong><br>
+        🟣 <strong>Avanzado</strong><br><br>
 
-        return;
-    }
+        ✏️ Escribe <strong>básico</strong>, 
+        <strong>intermedio</strong> o 
+        <strong>avanzado</strong>.
+    `);
+
+    return;
+}
 
     // --------------------------------------------------
     // COMPUTACIÓN
@@ -591,19 +655,55 @@ function obtenerDatosCurso() {
 
     }
 
-    // --------------------------------------------------
-    // INGLÉS
-    // --------------------------------------------------
+   // --------------------------------------------------
+// INGLÉS
+// --------------------------------------------------
 
-    if (cursoSeleccionado === "ingles") {
+if (cursoSeleccionado === "ingles") {
 
-        if (typeof ingles !== "undefined") {
+    // ==============================
+    // BÁSICO
+    // ==============================
 
-            datos = ingles[gradoSeleccionado] || ingles;
+    if (nivelInglesSeleccionado === "basico") {
+
+        if (typeof inglesBasico !== "undefined") {
+
+            datos = inglesBasico;
 
         }
 
     }
+
+    // ==============================
+    // INTERMEDIO
+    // ==============================
+
+    else if (nivelInglesSeleccionado === "intermedio") {
+
+        if (typeof inglesIntermedio !== "undefined") {
+
+            datos = inglesIntermedio;
+
+        }
+
+    }
+
+    // ==============================
+    // AVANZADO
+    // ==============================
+
+    else if (nivelInglesSeleccionado === "avanzado") {
+
+        if (typeof inglesAvanzado !== "undefined") {
+
+            datos = inglesAvanzado;
+
+        }
+
+    }
+
+}
 
     // --------------------------------------------------
     // COMPUTACIÓN
