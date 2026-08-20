@@ -217,6 +217,85 @@ if (estado === "nivel") {
 
     return;
 }
+// ==================================================
+// SOCIALES
+// ==================================================
+
+if (estado === "tema") {
+
+    // ==============================================
+    // HISTORIA DEL PERÚ
+    // ==============================================
+
+    if (
+        texto === "historia del peru" ||
+        texto.includes("historia del peru")
+    ) {
+
+        temaSeleccionado = "historiaPeru";
+
+    }
+
+    // ==============================================
+    // HISTORIA UNIVERSAL
+    // ==============================================
+
+    else if (
+        texto === "historia universal" ||
+        texto.includes("historia universal")
+    ) {
+
+        temaSeleccionado = "historiaUniversal";
+
+    }
+
+    // ==============================================
+    // ECONOMÍA
+    // ==============================================
+
+    else if (
+        texto === "economia" ||
+        texto.includes("economia")
+    ) {
+
+        temaSeleccionado = "economia";
+
+    }
+
+    // ==============================================
+    // NO RECONOCIDO
+    // ==============================================
+
+    else {
+
+        responderBot(`
+            ❌ <strong>No reconocí ese tema.</strong><br><br>
+
+            Elige uno de estos temas:<br><br>
+
+            🇵🇪 <strong>Historia del Perú</strong><br>
+            🌎 <strong>Historia Universal</strong><br>
+            💰 <strong>Economía</strong><br><br>
+
+            ✏️ Escribe el nombre del tema.
+        `);
+
+        return;
+    }
+
+    console.log("🌎 Tema de Sociales:", temaSeleccionado);
+
+    cargarCurso();
+
+    return;
+}
+
+    console.log("🇬🇧 Nivel de Inglés:", nivelInglesSeleccionado);
+
+    cargarCurso();
+
+    return;
+}
     // ==================================================
     // TEMA
     // ==================================================
@@ -317,32 +396,36 @@ function seleccionarCurso(texto) {
         return;
     }
 
-    // --------------------------------------------------
-    // CIENCIAS SOCIALES
-    // --------------------------------------------------
+   // --------------------------------------------------
+// CIENCIAS SOCIALES
+// --------------------------------------------------
 
-    if (
-        texto === "social" ||
-        texto === "sociales" ||
-        texto === "ciencias sociales" ||
-        texto.includes("ciencias sociales")
-    ) {
+if (
+    texto === "sociales" ||
+    texto === "ciencias sociales" ||
+    texto.includes("ciencias sociales")
+) {
 
-        cursoSeleccionado = "sociales";
-        estado = "grado";
+    cursoSeleccionado = "sociales";
+    estado = "tema";
+    temaSeleccionado = "";
 
-        responderBot(`
-            🌎 <strong>CIENCIAS SOCIALES</strong><br><br>
+    responderBot(`
+        🌎 <strong>CIENCIAS SOCIALES</strong><br><br>
 
-            ✅ Curso seleccionado correctamente.<br><br>
+        ✅ Curso seleccionado correctamente.<br><br>
 
-            ¿Qué grado deseas estudiar?
-        `);
+        📚 <strong>¿Qué tema deseas estudiar?</strong><br><br>
 
-        mostrarGrados();
+        🇵🇪 <strong>Historia del Perú</strong><br>
+        🌎 <strong>Historia Universal</strong><br>
+        💰 <strong>Economía</strong><br><br>
 
-        return;
-    }
+        ✏️ Escribe el nombre del tema.
+    `);
+
+    return;
+}
 
 // --------------------------------------------------
 // INGLÉS
