@@ -159,142 +159,144 @@ function responder() {
 
         return;
     }
-         
+
     // ==================================================
     // NIVEL DE INGLÉS
     // ==================================================
 
-if (estado === "nivel") {
+    if (estado === "nivel") {
 
-    if (
-        texto === "basico" ||
-        texto === "básico" ||
-        texto.includes("nivel basico") ||
-        texto.includes("nivel básico")
-    ) {
+        if (
+            texto === "basico" ||
+            texto.includes("nivel basico")
+        ) {
 
-        nivelInglesSeleccionado = "basico";
+            nivelInglesSeleccionado = "basico";
 
-    }
-    else if (
-        texto === "intermedio" ||
-        texto.includes("nivel intermedio")
-    ) {
+        }
 
-        nivelInglesSeleccionado = "intermedio";
+        else if (
+            texto === "intermedio" ||
+            texto.includes("nivel intermedio")
+        ) {
 
-    }
-    else if (
-        texto === "avanzado" ||
-        texto.includes("nivel avanzado")
-    ) {
+            nivelInglesSeleccionado = "intermedio";
 
-        nivelInglesSeleccionado = "avanzado";
+        }
 
-    }
-    else {
+        else if (
+            texto === "avanzado" ||
+            texto.includes("nivel avanzado")
+        ) {
 
-        responderBot(`
-            ❌ <strong>No reconocí ese nivel.</strong><br><br>
+            nivelInglesSeleccionado = "avanzado";
 
-            Elige uno de estos niveles:<br><br>
+        }
 
-            🟢 <strong>Básico</strong><br>
-            🔵 <strong>Intermedio</strong><br>
-            🟣 <strong>Avanzado</strong><br><br>
+        else {
 
-            ✏️ Escribe <strong>básico</strong>, 
-            <strong>intermedio</strong> o 
-            <strong>avanzado</strong>.
-        `);
+            responderBot(`
+                ❌ <strong>No reconocí ese nivel.</strong><br><br>
 
-        return;
-    }
+                Elige uno de estos niveles:<br><br>
 
-    console.log("🇬🇧 Nivel de Inglés:", nivelInglesSeleccionado);
+                🟢 <strong>Básico</strong><br>
+                🔵 <strong>Intermedio</strong><br>
+                🟣 <strong>Avanzado</strong><br><br>
 
-    cargarCurso();
+                ✏️ Escribe <strong>básico</strong>,
+                <strong>intermedio</strong> o
+                <strong>avanzado</strong>.
+            `);
 
-    return;
-}
-// ==================================================
-// SOCIALES
-// ==================================================
+            return;
+        }
 
-if (estado === "tema") {
+        console.log(
+            "🇬🇧 Nivel de Inglés:",
+            nivelInglesSeleccionado
+        );
 
-    // ==============================================
-    // HISTORIA DEL PERÚ
-    // ==============================================
-
-    if (
-        texto === "historia del peru" ||
-        texto.includes("historia del peru")
-    ) {
-
-        temaSeleccionado = "historiaPeru";
-
-    }
-
-    // ==============================================
-    // HISTORIA UNIVERSAL
-    // ==============================================
-
-    else if (
-        texto === "historia universal" ||
-        texto.includes("historia universal")
-    ) {
-
-        temaSeleccionado = "historiaUniversal";
-
-    }
-
-    // ==============================================
-    // ECONOMÍA
-    // ==============================================
-
-    else if (
-        texto === "economia" ||
-        texto.includes("economia")
-    ) {
-
-        temaSeleccionado = "economia";
-
-    }
-
-    // ==============================================
-    // NO RECONOCIDO
-    // ==============================================
-
-    else {
-
-        responderBot(`
-            ❌ <strong>No reconocí ese tema.</strong><br><br>
-
-            Elige uno de estos temas:<br><br>
-
-            🇵🇪 <strong>Historia del Perú</strong><br>
-            🌎 <strong>Historia Universal</strong><br>
-            💰 <strong>Economía</strong><br><br>
-
-            ✏️ Escribe el nombre del tema.
-        `);
+        cargarCurso();
 
         return;
     }
 
-    console.log("🌎 Tema de Sociales:", temaSeleccionado);
+    // ==================================================
+    // TEMA DE CIENCIAS SOCIALES
+    // ==================================================
 
-    cargarCurso();
+    if (
+        estado === "tema" &&
+        cursoSeleccionado === "sociales"
+    ) {
 
-    return;
-}
+        if (
+            texto === "historia del peru" ||
+            texto.includes("historia del peru")
+        ) {
 
-    console.log("🇬🇧 Nivel de Inglés:", nivelInglesSeleccionado);
+            temaSeleccionado = "historiaPeru";
 
-    cargarCurso();
+        }
 
-    return;
+        else if (
+            texto === "historia universal" ||
+            texto.includes("historia universal")
+        ) {
+
+            temaSeleccionado = "historiaUniversal";
+
+        }
+
+        else if (
+            texto === "economia" ||
+            texto.includes("economia")
+        ) {
+
+            temaSeleccionado = "economia";
+
+        }
+
+        else {
+
+            responderBot(`
+                ❌ <strong>No reconocí ese tema.</strong><br><br>
+
+                Elige uno de estos temas:<br><br>
+
+                🇵🇪 <strong>Historia del Perú</strong><br>
+                🌎 <strong>Historia Universal</strong><br>
+                💰 <strong>Economía</strong><br><br>
+
+                ✏️ Escribe el nombre del tema.
+            `);
+
+            return;
+        }
+
+        console.log(
+            "🌎 Tema de Sociales:",
+            temaSeleccionado
+        );
+
+        // Buscar el contenido del tema seleccionado
+        buscarTema(texto);
+
+        return;
+    }
+
+    // ==================================================
+    // TEMA DE LOS DEMÁS CURSOS
+    // ==================================================
+
+    if (estado === "tema") {
+
+        buscarTema(texto);
+
+        return;
+    }
+
 }
     // ==================================================
     // TEMA
