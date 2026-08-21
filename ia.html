@@ -5,7 +5,10 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Edu BOT IA</title>
 
@@ -17,236 +20,824 @@
 <body>
 
 
-<!-- ================================================= -->
-<!-- CONTENEDOR PRINCIPAL -->
-<!-- ================================================= -->
+<!-- =========================================================
+     APLICACIÓN PRINCIPAL
+========================================================= -->
 
-<div class="chat">
-
-
-    <!-- ================================================= -->
-    <!-- ENCABEZADO -->
-    <!-- ================================================= -->
-
-    <div class="encabezado">
-
-        <h1>🤖 Edu BOT</h1>
-
-        <p>Tu asistente educativo</p>
-
-    </div>
+<div class="app">
 
 
-    <!-- ================================================= -->
-    <!-- ÁREA DE MENSAJES -->
-    <!-- ================================================= -->
+    <!-- =====================================================
+         BARRA LATERAL
+    ===================================================== -->
 
-    <div id="chat" class="mensajes">
+    <aside class="barra-lateral">
 
-        <div class="bot">
+        <!-- LOGO -->
 
-            Hola 👋<br><br>
+        <div class="logo">
 
-            Soy <b>Edu BOT</b> 🤖.<br><br>
+            <div class="logo-icon">
+                🤖
+            </div>
 
-            Estoy preparado para ayudarte a aprender.<br><br>
+            <div class="logo-texto">
 
-            ¿Qué curso deseas aprender?<br><br>
+                <strong>Edu BOT</strong>
 
-            📚 <b>Matemática</b><br>
-            📖 <b>Comunicación</b><br>
-            🧪 <b>Ciencia y Tecnología</b><br>
-            🌎 <b>Ciencias Sociales</b><br>
-            🇬🇧 <b>Inglés</b><br>
-            💻 <b>Computación</b><br><br>
+                <span>
+                    Asistente educativo
+                </span>
 
-            ✏️ Escribe el nombre del curso para comenzar.
+            </div>
 
         </div>
 
-    </div>
 
+        <!-- NUEVO CHAT -->
 
-    <!-- ================================================= -->
-    <!-- ENTRADA DEL USUARIO -->
-    <!-- ================================================= -->
+        <button class="nuevo-chat" type="button">
 
-    <div class="entrada">
+            <span class="nuevo-icono">
+                ＋
+            </span>
 
-        <input
-            type="text"
-            id="pregunta"
-            placeholder="Escribe tu pregunta aquí..."
-            autocomplete="off"
-        >
+            <span>
+                Nuevo chat
+            </span>
 
-        <button id="enviar" type="button">
-            Enviar
         </button>
 
-    </div>
 
+        <!-- MENÚ -->
+
+        <nav class="menu">
+
+            <div class="menu-titulo">
+                MENÚ
+            </div>
+
+
+            <div class="menu-item activo">
+
+                <span>🏠</span>
+
+                <span>
+                    Inicio
+                </span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>📚</span>
+
+                <span>
+                    Cursos
+                </span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>🎓</span>
+
+                <span>
+                    Aprender
+                </span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>⭐</span>
+
+                <span>
+                    Favoritos
+                </span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>📝</span>
+
+                <span>
+                    Mis preguntas
+                </span>
+
+            </div>
+
+        </nav>
+
+
+        <!-- CURSOS -->
+
+        <div class="cursos-lateral">
+
+            <div class="menu-titulo">
+                CURSOS
+            </div>
+
+
+            <div class="curso-mini matematica">
+
+                <span>📐</span>
+
+                <span>
+                    Matemática
+                </span>
+
+            </div>
+
+
+            <div class="curso-mini comunicacion">
+
+                <span>📖</span>
+
+                <span>
+                    Comunicación
+                </span>
+
+            </div>
+
+
+            <div class="curso-mini ciencia">
+
+                <span>🧪</span>
+
+                <span>
+                    Ciencia
+                </span>
+
+            </div>
+
+
+            <div class="curso-mini sociales">
+
+                <span>🌎</span>
+
+                <span>
+                    Sociales
+                </span>
+
+            </div>
+
+
+            <div class="curso-mini ingles">
+
+                <span>🇬🇧</span>
+
+                <span>
+                    Inglés
+                </span>
+
+            </div>
+
+
+            <div class="curso-mini computacion">
+
+                <span>💻</span>
+
+                <span>
+                    Computación
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- PARTE INFERIOR -->
+
+        <div class="lateral-inferior">
+
+            <div class="estado-bot">
+
+                <span class="punto-online"></span>
+
+                <div>
+
+                    <strong>
+                        Edu BOT
+                    </strong>
+
+                    <small>
+                        En línea
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button class="configuracion" type="button">
+
+                ⚙️
+
+                <span>
+                    Configuración
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ===================================================== -->
+
+    <main class="contenido">
+
+
+        <!-- =================================================
+             ENCABEZADO
+        ================================================= -->
+
+        <header class="encabezado">
+
+            <div class="encabezado-izquierda">
+
+                <button
+                    class="boton-menu"
+                    type="button"
+                    aria-label="Menú"
+                >
+                    ☰
+                </button>
+
+
+                <div class="titulo-app">
+
+                    <div class="mini-logo">
+                        🤖
+                    </div>
+
+                    <div>
+
+                        <h1>
+                            Edu BOT
+                        </h1>
+
+                        <p>
+                            Tu asistente educativo
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="encabezado-derecha">
+
+                <div class="estado">
+
+                    <span class="punto-online"></span>
+
+                    En línea
+
+                </div>
+
+
+                <button
+                    class="boton-tema"
+                    type="button"
+                    aria-label="Cambiar tema"
+                >
+                    🌙
+                </button>
+
+
+                <div class="avatar">
+
+                    S
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             ZONA DEL CHAT
+
+             IMPORTANTE:
+             .chat es utilizado por app.js
+        ================================================= -->
+
+        <div
+            id="chat"
+            class="chat mensajes"
+        >
+
+
+            <!-- =================================================
+                 MENSAJE INICIAL
+            ================================================= -->
+
+            <div class="mensaje-inicial">
+
+                <div class="bienvenida-icono">
+
+                    🤖
+
+                </div>
+
+
+                <h2>
+                    ¡Hola! Soy Edu BOT 👋
+                </h2>
+
+
+                <p class="bienvenida-texto">
+
+                    Tu asistente educativo está listo
+                    para ayudarte a aprender.
+
+                </p>
+
+
+                <div class="separador"></div>
+
+
+                <p class="pregunta-inicial">
+
+                    <strong>
+                        ¿Qué quieres aprender hoy?
+                    </strong>
+
+                </p>
+
+
+                <!-- =================================================
+                     TARJETAS DE CURSOS
+                ================================================= -->
+
+                <div class="tarjetas-cursos">
+
+
+                    <div class="tarjeta matematica">
+
+                        <div class="tarjeta-icono">
+                            📐
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Matemática
+                            </strong>
+
+                            <span>
+                                Números y problemas
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tarjeta comunicacion">
+
+                        <div class="tarjeta-icono">
+                            📖
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Comunicación
+                            </strong>
+
+                            <span>
+                                Lectura y lenguaje
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tarjeta ciencia">
+
+                        <div class="tarjeta-icono">
+                            🧪
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Ciencia
+                            </strong>
+
+                            <span>
+                                Ciencia y tecnología
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tarjeta sociales">
+
+                        <div class="tarjeta-icono">
+                            🌎
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Ciencias Sociales
+                            </strong>
+
+                            <span>
+                                Historia y economía
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tarjeta ingles">
+
+                        <div class="tarjeta-icono">
+                            🇬🇧
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Inglés
+                            </strong>
+
+                            <span>
+                                Aprende inglés
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tarjeta computacion">
+
+                        <div class="tarjeta-icono">
+                            💻
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Computación
+                            </strong>
+
+                            <span>
+                                Tecnología
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="mensaje-ayuda">
+
+                    💡
+
+                    <span>
+                        Escribe el nombre de un curso
+                        para comenzar.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             ZONA INFERIOR
+        ================================================= -->
+
+        <div class="zona-entrada">
+
+
+            <!-- SUGERENCIAS -->
+
+            <div class="sugerencias">
+
+                <button type="button">
+                    📚 Explorar cursos
+                </button>
+
+                <button type="button">
+                    🎓 Elegir grado
+                </button>
+
+                <button type="button">
+                    💡 Ayúdame a estudiar
+                </button>
+
+            </div>
+
+
+            <!-- CAJA DE ESCRITURA -->
+
+            <div class="entrada">
+
+
+                <button
+                    class="boton-mas"
+                    type="button"
+                    aria-label="Opciones"
+                >
+                    ＋
+                </button>
+
+
+                <input
+                    type="text"
+                    id="pregunta"
+                    placeholder="Escribe tu pregunta..."
+                    autocomplete="off"
+                >
+
+
+                <button
+                    class="boton-microfono"
+                    type="button"
+                    aria-label="Micrófono"
+                >
+                    🎤
+                </button>
+
+
+                <button
+                    id="enviar"
+                    class="boton-enviar"
+                    type="button"
+                >
+
+                    ➤
+
+                </button>
+
+            </div>
+
+
+            <div class="texto-seguridad">
+
+                🤖 Edu BOT puede ayudarte a estudiar,
+                practicar y comprender mejor tus cursos.
+
+            </div>
+
+
+        </div>
+
+
+    </main>
 
 </div>
 
 
-<!-- ================================================= -->
-<!-- JAVASCRIPT -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
 
-<!-- ================================================= -->
-<!-- 1. CONOCIMIENTOS GENERALES -->
-<!-- ================================================= -->
+<!-- =========================================================
+     1. CONOCIMIENTOS GENERALES
+========================================================= -->
 
 <script src="conocimientos.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 2. COMUNICACIÓN -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     2. COMUNICACIÓN
+========================================================= -->
 
 <script src="comprension1.js"></script>
+
 <script src="produccion1.js"></script>
+
 <script src="literatura1.js"></script>
+
 <script src="comunicacion.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 3. CIENCIA Y TECNOLOGÍA - 6° PRIMARIA -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     3. CIENCIA Y TECNOLOGÍA - 6° PRIMARIA
+========================================================= -->
 
 <script src="seres_vivos_ambiente.js"></script>
+
 <script src="cuerpo_humano_salud.js"></script>
+
 <script src="materia_energia.js"></script>
+
 <script src="tierra_universo.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 4. CIENCIA Y TECNOLOGÍA - BIOLOGÍA -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     4. CIENCIA Y TECNOLOGÍA - BIOLOGÍA
+========================================================= -->
 
 <script src="biologia.js"></script>
+
 <script src="biologia2.js"></script>
+
 <script src="biologia3.js"></script>
+
 <script src="biologia4.js"></script>
+
 <script src="biologia5.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 5. CIENCIA Y TECNOLOGÍA - QUÍMICA -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     5. CIENCIA Y TECNOLOGÍA - QUÍMICA
+========================================================= -->
 
 <script src="quimica.js"></script>
+
 <script src="quimica2.js"></script>
+
 <script src="quimica3.js"></script>
+
 <script src="quimica4.js"></script>
+
 <script src="quimica5.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 6. CIENCIA Y TECNOLOGÍA - FÍSICA -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     6. CIENCIA Y TECNOLOGÍA - FÍSICA
+========================================================= -->
 
 <script src="fisica.js"></script>
+
 <script src="fisica2.js"></script>
+
 <script src="fisica3.js"></script>
+
 <script src="fisica4.js"></script>
+
 <script src="fisica5.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 7. CIENCIA Y TECNOLOGÍA - AMBIENTE Y CTS -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     7. AMBIENTE Y CTS
+========================================================= -->
 
 <script src="ambiente4.js"></script>
+
 <script src="cts5.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 8. ARCHIVO PRINCIPAL DE CIENCIA Y TECNOLOGÍA -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     8. CIENCIA Y TECNOLOGÍA
+========================================================= -->
 
 <script src="cyt.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 9. CIENCIAS SOCIALES -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     9. CIENCIAS SOCIALES
+========================================================= -->
 
 <script src="historiaPeru1.js"></script>
+
 <script src="historiaUniversal1.js"></script>
+
 <script src="economia1.js"></script>
+
 <script src="sociales.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 10. INGLÉS -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     10. INGLÉS
+========================================================= -->
 
 <script src="inglesBasico.js"></script>
+
 <script src="inglesIntermedio.js"></script>
+
 <script src="inglesAvanzado.js"></script>
+
 <script src="ingles.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 11. MATEMÁTICA - ARITMÉTICA -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     11. MATEMÁTICA - ARITMÉTICA
+========================================================= -->
 
 <script src="aritmetica1.js"></script>
+
 <script src="aritmetica2.js"></script>
+
 <script src="aritmetica3.js"></script>
+
 <script src="aritmetica4.js"></script>
+
 <script src="aritmetica5.js"></script>
+
 <script src="aritmetica6.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 12. MATEMÁTICA - ÁLGEBRA -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     12. MATEMÁTICA - ÁLGEBRA
+========================================================= -->
 
 <script src="algebra1.js"></script>
+
 <script src="algebra2.js"></script>
+
 <script src="algebra3.js"></script>
+
 <script src="algebra4.js"></script>
+
 <script src="algebra5.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 13. MATEMÁTICA - GEOMETRÍA -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     13. MATEMÁTICA - GEOMETRÍA
+========================================================= -->
 
 <script src="geometria1.js"></script>
+
 <script src="geometria2.js"></script>
+
 <script src="geometria3.js"></script>
+
 <script src="geometria4.js"></script>
+
 <script src="geometria5.js"></script>
+
 <script src="geometria6.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 14. MATEMÁTICA - ESTADÍSTICA -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     14. MATEMÁTICA - ESTADÍSTICA
+========================================================= -->
 
 <script src="estadistica1.js"></script>
+
 <script src="estadistica2.js"></script>
+
 <script src="estadistica3.js"></script>
+
 <script src="estadistica4.js"></script>
+
 <script src="estadistica5.js"></script>
+
 <script src="estadistica6.js"></script>
 
 
-<!-- ================================================= -->
-<!-- ARCHIVO PRINCIPAL DE MATEMÁTICA -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     ARCHIVO PRINCIPAL DE MATEMÁTICA
+========================================================= -->
 
 <script src="matematica.js"></script>
 
 
-<!-- ================================================= -->
-<!-- 12. APLICACIÓN PRINCIPAL -->
-<!-- ================================================= -->
+
+<!-- =========================================================
+     APLICACIÓN PRINCIPAL
+========================================================= -->
 
 <script src="app.js"></script>
 
