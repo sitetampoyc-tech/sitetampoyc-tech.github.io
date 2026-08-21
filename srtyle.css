@@ -1,568 +1,118 @@
-/* =========================================================
+/* =====================================================
    🤖 EDU BOT IA
-   DISEÑO PREMIUM - ESTILO ASISTENTE DE IA
-========================================================= */
-
-/* =========================================================
-   RESET
-========================================================= */
+   INTERFAZ MODERNA
+===================================================== */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:
-        "Segoe UI",
-        Arial,
-        Helvetica,
-        sans-serif;
 }
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
+:root {
+
+    --morado: #6d28d9;
+    --morado-claro: #8b5cf6;
+    --azul: #2563eb;
+    --azul-claro: #60a5fa;
+
+    --texto: #172554;
+    --texto-suave: #64748b;
+
+    --fondo: #ffffff;
+    --fondo-suave: #f8fafc;
+
+    --borde: #e2e8f0;
+
 }
 
 
-/* =========================================================
+/* =====================================================
    CUERPO
-========================================================= */
+===================================================== */
 
 body {
 
     min-height: 100vh;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 18px;
-
-    color: #172033;
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
     background:
 
         radial-gradient(
-            circle at 5% 10%,
-            rgba(124, 58, 237, 0.16),
+            circle at 30% 10%,
+            rgba(139,92,246,.10),
             transparent 25%
         ),
 
         radial-gradient(
-            circle at 95% 10%,
-            rgba(37, 99, 235, 0.15),
+            circle at 90% 30%,
+            rgba(96,165,250,.12),
             transparent 25%
         ),
 
-        radial-gradient(
-            circle at 15% 95%,
-            rgba(6, 182, 212, 0.13),
-            transparent 28%
-        ),
+        #ffffff;
 
-        radial-gradient(
-            circle at 90% 90%,
-            rgba(236, 72, 153, 0.12),
-            transparent 28%
-        ),
+    color: var(--texto);
 
-        linear-gradient(
-            135deg,
-            #f8f9ff,
-            #ffffff,
-            #f4f7ff
-        );
-
-    overflow: hidden;
 }
 
 
-/* =========================================================
-   DECORACIONES DEL FONDO
-========================================================= */
+/* =====================================================
+   APLICACIÓN
+===================================================== */
 
-body::before {
+.app {
 
-    content: "";
+    min-height: 100vh;
 
-    position: fixed;
+    display: flex;
 
-    width: 300px;
-    height: 300px;
-
-    border-radius: 50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(124,58,237,0.07),
-            rgba(37,99,235,0.04)
-        );
-
-    top: -150px;
-    left: 20%;
-
-    filter: blur(2px);
-
-    pointer-events: none;
-}
-
-body::after {
-
-    content: "";
-
-    position: fixed;
-
-    width: 260px;
-    height: 260px;
-
-    border-radius: 50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(6,182,212,0.07),
-            rgba(236,72,153,0.04)
-        );
-
-    right: -100px;
-    bottom: -100px;
-
-    pointer-events: none;
 }
 
 
-/* =========================================================
-   VENTANA PRINCIPAL
-========================================================= */
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
-.chat {
+.sidebar {
 
-    position: relative;
+    width: 280px;
 
-    width: 1100px;
-    max-width: 100%;
+    min-width: 280px;
 
-    height: 94vh;
-    min-height: 620px;
+    height: 100vh;
+
+    position: sticky;
+    top: 0;
 
     display: flex;
     flex-direction: column;
 
-    background: rgba(255,255,255,0.94);
-
-    border-radius: 30px;
-
-    overflow: hidden;
-
-    border: 1px solid rgba(255,255,255,0.9);
-
-    box-shadow:
-
-        0 35px 90px rgba(15,23,42,0.14),
-
-        0 10px 35px rgba(37,99,235,0.08);
-
-    animation:
-        aparecerChat
-        0.7s
-        cubic-bezier(.2,.8,.2,1);
-}
-
-
-/* =========================================================
-   BARRA SUPERIOR
-========================================================= */
-
-.encabezado {
-
-    position: relative;
-
-    min-height: 115px;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-
-    padding: 20px;
-
-    color: white;
+    padding: 25px 20px;
 
     background:
+        rgba(255,255,255,.95);
 
-        linear-gradient(
-            135deg,
-            #5b21b6,
-            #6d28d9,
-            #2563eb,
-            #0891b2
-        );
-
-    overflow: hidden;
-
-    flex-shrink: 0;
+    border-right:
+        1px solid #eef2ff;
 
     box-shadow:
-        0 8px 25px rgba(37,99,235,0.18);
+        5px 0 25px rgba(30,41,59,.04);
+
+    z-index: 100;
+
 }
 
 
-/* =========================================================
-   DECORACIONES DEL ENCABEZADO
-========================================================= */
-
-.encabezado::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 230px;
-    height: 230px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(255,255,255,0.08);
-
-    left: -100px;
-    top: -160px;
-}
-
-
-.encabezado::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 220px;
-    height: 220px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(255,255,255,0.08);
-
-    right: -90px;
-    bottom: -160px;
-}
-
-
-/* =========================================================
-   TITULO
-========================================================= */
-
-.encabezado h1 {
-
-    position: relative;
-
-    z-index: 5;
-
-    font-size: 36px;
-
-    font-weight: 800;
-
-    letter-spacing: 0.5px;
-
-    text-shadow:
-        0 4px 15px rgba(0,0,0,0.22);
-
-    animation:
-        aparecerTitulo
-        0.7s
-        ease;
-}
-
-
-/* =========================================================
-   SUBTITULO
-========================================================= */
-
-.encabezado p {
-
-    position: relative;
-
-    z-index: 5;
-
-    margin-top: 5px;
-
-    font-size: 15px;
-
-    font-weight: 500;
-
-    opacity: 0.94;
-}
-
-
-/* =========================================================
-   ÁREA DEL CHAT
-========================================================= */
-
-.mensajes {
-
-    position: relative;
-
-    flex: 1;
-
-    min-height: 0;
-
-    padding: 35px 55px;
-
-    overflow-y: auto;
-
-    scroll-behavior: smooth;
-
-    background:
-
-        radial-gradient(
-            circle at 0% 0%,
-            rgba(219,234,254,0.55),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 100% 100%,
-            rgba(237,233,254,0.55),
-            transparent 30%
-        ),
-
-        #f8fafc;
-}
-
-
-/* =========================================================
-   SCROLLBAR
-========================================================= */
-
-.mensajes::-webkit-scrollbar {
-
-    width: 8px;
-}
-
-.mensajes::-webkit-scrollbar-track {
-
-    background: transparent;
-}
-
-.mensajes::-webkit-scrollbar-thumb {
-
-    background:
-        linear-gradient(
-            180deg,
-            #7c3aed,
-            #2563eb
-        );
-
-    border-radius: 20px;
-}
-
-
-/* =========================================================
-   MENSAJE DEL BOT
-========================================================= */
-
-.bot {
-
-    position: relative;
-
-    width: fit-content;
-
-    max-width: 760px;
-
-    margin-bottom: 24px;
-
-    padding: 20px 24px;
-
-    color: #1e293b;
-
-    background: white;
-
-    border:
-
-        1px solid
-        rgba(226,232,240,0.9);
-
-    border-radius: 22px;
-
-    border-top-left-radius: 7px;
-
-    border-left:
-
-        5px solid
-        #7c3aed;
-
-    line-height: 1.7;
-
-    box-shadow:
-
-        0 8px 25px
-        rgba(15,23,42,0.07);
-
-    animation:
-        aparecerMensaje
-        0.35s
-        ease;
-
-    word-wrap: break-word;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-/* =========================================================
-   HOVER BOT
-========================================================= */
-
-.bot:hover {
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-
-        0 14px 35px
-        rgba(15,23,42,0.10);
-}
-
-
-/* =========================================================
-   ROBOT DEL BOT
-========================================================= */
-
-.bot::before {
-
-    content: "🤖";
-
-    position: absolute;
-
-    left: -22px;
-    top: -17px;
-
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 50%;
-
-    background: white;
-
-    border:
-        3px solid
-        #ede9fe;
-
-    box-shadow:
-        0 5px 16px
-        rgba(15,23,42,0.12);
-
-    font-size: 21px;
-
-    z-index: 3;
-}
-
-
-/* =========================================================
-   MENSAJE DEL USUARIO
-========================================================= */
-
-.mensajes > p {
-
-    width: fit-content;
-
-    max-width: 700px;
-
-    margin-left: auto;
-
-    margin-bottom: 24px;
-
-    padding: 16px 21px;
-
-    color: white;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #2563eb,
-            #0891b2
-        );
-
-    border-radius: 22px;
-
-    border-bottom-right-radius: 7px;
-
-    line-height: 1.65;
-
-    box-shadow:
-
-        0 8px 22px
-        rgba(37,99,235,0.20);
-
-    animation:
-        aparecerMensaje
-        0.3s
-        ease;
-
-    word-wrap: break-word;
-}
-
-
-/* =========================================================
-   TEXTO DESTACADO
-========================================================= */
-
-.bot b,
-.bot strong {
-
-    color: #6d28d9;
-
-    font-weight: 700;
-}
-
-
-/* =========================================================
-   ENLACES
-========================================================= */
-
-.bot a {
-
-    color: #2563eb;
-
-    font-weight: 700;
-
-    text-decoration: none;
-
-    transition:
-        0.2s ease;
-}
-
-.bot a:hover {
-
-    color: #7c3aed;
-
-    text-decoration: underline;
-}
-
-
-/* =========================================================
-   ÁREA DE ESCRITURA
-========================================================= */
-
-.entrada {
-
-    position: relative;
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo {
 
     display: flex;
 
@@ -570,91 +120,1397 @@ body::after {
 
     gap: 12px;
 
-    padding:
+    margin-bottom: 25px;
 
-        18px
-        24px
-        20px;
-
-    background:
-        rgba(255,255,255,0.98);
-
-    border-top:
-        1px solid
-        #e5e7eb;
-
-    box-shadow:
-        0 -5px 20px
-        rgba(15,23,42,0.04);
-
-    flex-shrink: 0;
 }
 
 
-/* =========================================================
-   CONTENEDOR VISUAL DEL INPUT
-========================================================= */
+.logo-robot {
 
-.entrada::before {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    font-size: 29px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ede9fe,
+            #dbeafe
+        );
+
+}
+
+
+.logo h2 {
+
+    font-size: 23px;
+
+    font-weight: 800;
+
+    color: #172554;
+
+}
+
+
+.logo h2 span {
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+}
+
+
+.logo p {
+
+    margin-top: 2px;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   NUEVO CHAT
+===================================================== */
+
+.nuevo-chat {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    box-shadow:
+        0 7px 20px
+        rgba(99,102,241,.25);
+
+    transition: .25s;
+
+}
+
+
+.nuevo-chat:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(99,102,241,.35);
+
+}
+
+
+/* =====================================================
+   TITULOS MENU
+===================================================== */
+
+.menu-titulo {
+
+    margin-top: 25px;
+    margin-bottom: 10px;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: .5px;
+
+}
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+.menu {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.menu-item {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px 12px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+
+.menu-item:hover {
+
+    background:
+        #f5f3ff;
+
+    color:
+        #5b21b6;
+
+    transform:
+        translateX(3px);
+
+}
+
+
+.menu-item.activo {
+
+    background:
+        linear-gradient(
+            90deg,
+            #f0eaff,
+            #f5f3ff
+        );
+
+    color:
+        #4f46e5;
+
+}
+
+
+/* =====================================================
+   PARTE INFERIOR SIDEBAR
+===================================================== */
+
+.sidebar-bottom {
+
+    margin-top: auto;
+
+}
+
+
+.online-title {
+
+    color:
+        #334155;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+}
+
+
+.online {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    background:
+        #ecfdf5;
+
+    color:
+        #15803d;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.online-dot {
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+    background:
+        #16a34a;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(22,163,74,.10);
+
+}
+
+
+/* =====================================================
+   CONFIGURACIÓN
+===================================================== */
+
+.configuracion {
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 11px;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #334155;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.configuracion:hover {
+
+    background: #f8fafc;
+
+}
+
+
+/* =====================================================
+   MODO OSCURO
+===================================================== */
+
+.modo {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 12px;
+
+    padding: 10px;
+
+    background: #f8fafc;
+
+    border-radius: 10px;
+
+    color: #475569;
+
+    font-size: 13px;
+
+}
+
+
+/* SWITCH */
+
+.switch {
+
+    position: relative;
+
+    width: 42px;
+    height: 23px;
+
+}
+
+
+.switch input {
+
+    display: none;
+
+}
+
+
+.slider {
+
+    position: absolute;
+
+    inset: 0;
+
+    background: #cbd5e1;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+}
+
+
+.slider::before {
 
     content: "";
 
     position: absolute;
 
-    left: 18px;
-    right: 18px;
+    width: 17px;
+    height: 17px;
 
-    top: 9px;
+    left: 3px;
+    top: 3px;
 
-    height: 3px;
+    border-radius: 50%;
 
-    border-radius: 10px;
+    background: white;
 
-    background:
+    transition: .25s;
 
-        linear-gradient(
-            90deg,
-            #7c3aed,
-            #2563eb,
-            #06b6d4
-        );
-
-    opacity: 0.15;
 }
 
 
-/* =========================================================
-   INPUT
-========================================================= */
+.switch input:checked + .slider {
 
-.entrada input {
+    background:
+        #7c3aed;
+
+}
+
+
+.switch input:checked + .slider::before {
+
+    transform:
+        translateX(19px);
+
+}
+
+
+/* =====================================================
+   PERFIL
+===================================================== */
+
+.perfil {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 15px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid #e2e8f0;
+
+}
+
+
+.perfil-icon {
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f1f5f9;
+
+}
+
+
+.perfil strong {
+
+    display: block;
+
+    font-size: 13px;
+
+}
+
+
+.perfil small {
+
+    display: block;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    margin-top: 2px;
+
+}
+
+
+.corazon {
+
+    margin-left: auto;
+
+    color:
+        #7c3aed;
+
+    font-size: 24px;
+
+}
+
+
+/* =====================================================
+   CONTEÚDO
+===================================================== */
+
+.contenido {
 
     flex: 1;
 
     min-width: 0;
 
-    height: 55px;
+    min-height: 100vh;
+
+    position: relative;
+
+    overflow-x: hidden;
 
     padding:
-        0 20px;
+        20px 40px 25px;
 
-    font-size: 16px;
+}
 
-    color: #172033;
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+.estado {
+
+    position: absolute;
+
+    top: 20px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+        10px 20px;
+
+    border-radius: 30px;
+
+    background: white;
+
+    box-shadow:
+        0 5px 20px
+        rgba(15,23,42,.08);
+
+    color:
+        #15803d;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+/* =====================================================
+   BOTON MÁS
+===================================================== */
+
+.boton-mas {
+
+    position: absolute;
+
+    right: 30px;
+    top: 20px;
+
+    width: 43px;
+    height: 43px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    color: white;
 
     background:
-        #f8fafc;
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #4f46e5
+        );
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================================
+   BIENVENIDA
+===================================================== */
+
+.bienvenida {
+
+    position: relative;
+
+    min-height: 310px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding-top: 45px;
+
+    overflow: hidden;
+
+}
+
+
+/* =====================================================
+   TEXTO BIENVENIDA
+===================================================== */
+
+.bienvenida-texto {
+
+    position: relative;
+
+    z-index: 5;
+
+}
+
+
+.bienvenida h1 {
+
+    font-size:
+        clamp(32px, 4vw, 49px);
+
+    font-weight: 800;
+
+    color:
+        #172554;
+
+}
+
+
+.bienvenida h1 span {
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+}
+
+
+.bienvenida p {
+
+    margin-top: 10px;
+
+    font-size: 18px;
+
+    color:
+        #64748b;
+
+}
+
+
+.bienvenida h2 {
+
+    margin-top: 32px;
+
+    font-size: 29px;
+
+    color:
+        #172554;
+
+}
+
+
+.linea-decorativa {
+
+    width: 70px;
+    height: 4px;
+
+    margin:
+        14px auto;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7c3aed,
+            #2563eb
+        );
+
+}
+
+
+/* =====================================================
+   ROBOT GRANDE
+===================================================== */
+
+.robot-grande {
+
+    position: absolute;
+
+    right: 2%;
+
+    bottom: -15px;
+
+    width: 210px;
+
+    height: 220px;
+
+    z-index: 2;
+
+    animation:
+        flotar 3s ease-in-out infinite;
+
+}
+
+
+/* ANTENA */
+
+.antena {
+
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 5px;
+    height: 35px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        #94a3b8;
+
+}
+
+
+.antena div {
+
+    position: absolute;
+
+    top: -10px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background:
+        #7c3aed;
+
+}
+
+
+/* CABEZA */
+
+.robot-cabeza {
+
+    position: absolute;
+
+    top: 30px;
+    left: 10px;
+
+    width: 190px;
+    height: 125px;
+
+    border-radius:
+        55px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #dbeafe
+        );
+
+    box-shadow:
+        0 15px 30px
+        rgba(37,99,235,.15);
 
     border:
-        2px solid
-        #e5e7eb;
+        3px solid #e2e8f0;
 
-    border-radius: 18px;
+}
 
-    outline: none;
+
+/* PANTALLA */
+
+.robot-pantalla {
+
+    position: absolute;
+
+    top: 23px;
+    left: 25px;
+
+    width: 140px;
+    height: 80px;
+
+    border-radius:
+        30px;
+
+    display: flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    gap: 35px;
+
+    color:
+        #60a5fa;
+
+    background:
+        #0f172a;
+
+}
+
+
+.ojo {
+
+    font-size: 24px;
+
+}
+
+
+.sonrisa {
+
+    position: absolute;
+
+    bottom: 8px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size: 25px;
+
+    color:
+        #60a5fa;
+
+}
+
+
+/* CUERPO */
+
+.robot-cuerpo {
+
+    position: absolute;
+
+    bottom: -10px;
+    left: 50px;
+
+    width: 110px;
+    height: 70px;
+
+    border-radius:
+        30px 30px 10px 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            white,
+            #dbeafe
+        );
+
+}
+
+
+/* =====================================================
+   TARJETAS
+===================================================== */
+
+.cursos-container {
+
+    position: relative;
+
+    z-index: 10;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 16px;
+
+    max-width: 1280px;
+
+    margin:
+        0 auto;
+
+}
+
+
+.curso-card {
+
+    position: relative;
+
+    min-height: 285px;
+
+    padding:
+        24px 14px 20px;
+
+    text-align: center;
+
+    background:
+        rgba(255,255,255,.95);
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(15,23,42,.07);
 
     transition:
-        0.25s ease;
+        .3s;
+
+    cursor: pointer;
+
+}
+
+
+.curso-card:hover {
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 18px 35px
+        rgba(15,23,42,.12);
+
+}
+
+
+/* ICONOS */
+
+.curso-icon {
+
+    width: 82px;
+    height: 82px;
+
+    margin:
+        0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 42px;
+
+}
+
+
+/* COLORES */
+
+.matematica {
+
+    border-color:
+        #ddd6fe;
+
+}
+
+.matematica .curso-icon {
+
+    background:
+        #ede9fe;
+
+}
+
+.matematica h3 {
+
+    color:
+        #7c3aed;
+
+}
+
+
+.comunicacion {
+
+    border-color:
+        #bfdbfe;
+
+}
+
+.comunicacion .curso-icon {
+
+    background:
+        #dbeafe;
+
+}
+
+.comunicacion h3 {
+
+    color:
+        #2563eb;
+
+}
+
+
+.ciencia {
+
+    border-color:
+        #bbf7d0;
+
+}
+
+.ciencia .curso-icon {
+
+    background:
+        #dcfce7;
+
+}
+
+.ciencia h3 {
+
+    color:
+        #16a34a;
+
+}
+
+
+.sociales {
+
+    border-color:
+        #fed7aa;
+
+}
+
+.sociales .curso-icon {
+
+    background:
+        #ffedd5;
+
+}
+
+.sociales h3 {
+
+    color:
+        #ea580c;
+
+}
+
+
+.ingles {
+
+    border-color:
+        #fbcfe8;
+
+}
+
+.ingles .curso-icon {
+
+    background:
+        #fce7f3;
+
+}
+
+.ingles h3 {
+
+    color:
+        #db2777;
+
+}
+
+
+.computacion {
+
+    border-color:
+        #bfdbfe;
+
+}
+
+.computacion .curso-icon {
+
+    background:
+        #dbeafe;
+
+}
+
+.computacion h3 {
+
+    color:
+        #2563eb;
+
+}
+
+
+/* TEXTO */
+
+.curso-card h3 {
+
+    font-size:
+        18px;
+
+}
+
+
+.curso-card p {
+
+    min-height:
+        52px;
+
+    margin-top:
+        9px;
+
+    color:
+        #64748b;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.5;
+
+}
+
+
+/* BOTÓN */
+
+.curso-btn {
+
+    width: 36px;
+    height: 36px;
+
+    margin-top:
+        14px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    color: white;
+
+    font-size: 21px;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
+
+    transition:
+        .2s;
+
+}
+
+
+.curso-btn:hover {
+
+    transform:
+        scale(1.12);
+
+}
+
+
+/* =====================================================
+   SUGERENCIAS
+===================================================== */
+
+.sugerencias {
+
+    max-width: 900px;
+
+    margin:
+        40px auto 20px;
+
+}
+
+
+.sugerencias > p {
+
+    color:
+        #64748b;
+
+    font-size:
+        13px;
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.sugerencias-lista {
+
+    display:
+        flex;
+
+    gap:
+        10px;
+
+    flex-wrap:
+        wrap;
+
+}
+
+
+.sugerencia {
+
+    padding:
+        11px 18px;
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius:
+        30px;
+
+    background:
+        white;
+
+    color:
+        #475569;
+
+    font-size:
+        13px;
+
+    cursor:
+        pointer;
+
+    transition:
+        .2s;
+
+}
+
+
+.sugerencia:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #c4b5fd;
+
+    color:
+        #6d28d9;
+
+    box-shadow:
+        0 5px 15px
+        rgba(124,58,237,.10);
+
+}
+
+
+/* =====================================================
+   MENSAJES
+===================================================== */
+
+.mensajes {
+
+    max-width:
+        900px;
+
+    margin:
+        20px auto;
+
+    max-height:
+        280px;
+
+    overflow-y:
+        auto;
+
+}
+
+
+.bot {
+
+    width:
+        fit-content;
+
+    max-width:
+        80%;
+
+    padding:
+        18px 20px;
+
+    margin-bottom:
+        15px;
+
+    border-radius:
+        20px;
+
+    border-top-left-radius:
+        5px;
+
+    border-left:
+        5px solid #7c3aed;
+
+    background:
+        white;
+
+    box-shadow:
+        0 8px 20px
+        rgba(15,23,42,.07);
+
+    color:
+        #334155;
+
+    line-height:
+        1.6;
+
+}
+
+
+.bot p {
+
+    margin-top:
+        7px;
+
+}
+
+
+/* =====================================================
+   BARRA DE ENTRADA
+===================================================== */
+
+.entrada {
+
+    max-width:
+        950px;
+
+    margin:
+        10px auto 0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    padding:
+        8px 10px 8px 15px;
+
+    border:
+        2px solid #c4b5fd;
+
+    border-radius:
+        35px;
+
+    background:
+        white;
+
+    box-shadow:
+        0 8px 30px
+        rgba(99,102,241,.12);
+
+}
+
+
+.entrada input {
+
+    flex:
+        1;
+
+    border:
+        none;
+
+    outline:
+        none;
+
+    padding:
+        12px;
+
+    font-size:
+        16px;
+
+    color:
+        #334155;
+
 }
 
 
@@ -662,430 +1518,566 @@ body::after {
 
     color:
         #94a3b8;
+
 }
 
 
-.entrada input:hover {
+/* BOTONES */
 
-    border-color:
-        #cbd5e1;
-}
+.boton-imagen,
+.boton-microfono {
 
+    width:
+        42px;
 
-.entrada input:focus {
+    height:
+        42px;
+
+    border:
+        none;
 
     background:
+        transparent;
+
+    color:
+        #7c3aed;
+
+    border-radius:
+        50%;
+
+    cursor:
+        pointer;
+
+    font-size:
+        19px;
+
+}
+
+
+.boton-imagen:hover,
+.boton-microfono:hover {
+
+    background:
+        #f5f3ff;
+
+}
+
+
+.boton-enviar {
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    color:
         white;
 
-    border-color:
-        #6366f1;
-
-    box-shadow:
-
-        0 0 0 4px
-        rgba(99,102,241,0.10),
-
-        0 7px 20px
-        rgba(37,99,235,0.07);
-}
-
-
-/* =========================================================
-   BOTÓN ENVIAR
-========================================================= */
-
-.entrada button {
-
-    position: relative;
-
-    height: 55px;
-
-    min-width: 120px;
-
-    padding:
-        0 25px;
-
-    border: none;
-
-    border-radius: 18px;
-
-    color: white;
-
-    font-size: 16px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    overflow: hidden;
-
     background:
-
         linear-gradient(
             135deg,
             #7c3aed,
-            #2563eb,
-            #0891b2
+            #2563eb
         );
 
-    box-shadow:
+    font-size:
+        23px;
 
-        0 8px 22px
-        rgba(37,99,235,0.24);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-/* =========================================================
-   BRILLO DEL BOTÓN
-========================================================= */
-
-.entrada button::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-
-    left: -120%;
-
-    width: 80%;
-
-    height: 100%;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.4),
-            transparent
-        );
-
-    transform:
-        skewX(-20deg);
-
-    transition:
-        left 0.55s ease;
-}
-
-
-.entrada button:hover::before {
-
-    left: 140%;
-}
-
-
-.entrada button:hover {
-
-    transform:
-        translateY(-3px);
+    cursor:
+        pointer;
 
     box-shadow:
+        0 6px 18px
+        rgba(99,102,241,.30);
 
-        0 13px 30px
-        rgba(37,99,235,0.30);
+    transition:
+        .2s;
+
 }
 
 
-.entrada button:active {
+.boton-enviar:hover {
 
     transform:
-        scale(0.96);
+        scale(1.08);
+
 }
 
 
-/* =========================================================
-   SELECCIÓN DE TEXTO
-========================================================= */
+/* =====================================================
+   PIE
+===================================================== */
 
-::selection {
+.pie {
 
-    background:
-        #c4b5fd;
+    text-align:
+        center;
 
     color:
-        #312e81;
+        #94a3b8;
+
+    font-size:
+        11px;
+
+    margin-top:
+        8px;
+
 }
 
 
-/* =========================================================
-   ANIMACIÓN DEL CHAT
-========================================================= */
+/* =====================================================
+   DECORACIONES
+===================================================== */
 
-@keyframes aparecerChat {
+.decoracion {
 
-    from {
+    position:
+        absolute;
 
-        opacity: 0;
+    border-radius:
+        50%;
 
-        transform:
-            translateY(30px)
-            scale(0.97);
-    }
+    pointer-events:
+        none;
 
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
 }
 
 
-/* =========================================================
-   ANIMACIÓN DE MENSAJES
-========================================================= */
+.decoracion-1 {
 
-@keyframes aparecerMensaje {
+    width:
+        200px;
 
-    from {
+    height:
+        200px;
 
-        opacity: 0;
+    left:
+        -100px;
 
-        transform:
-            translateY(12px)
-            scale(0.98);
-    }
+    top:
+        -70px;
 
-    to {
+    background:
+        rgba(196,181,253,.20);
 
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
 }
 
 
-/* =========================================================
-   ANIMACIÓN DEL TÍTULO
-========================================================= */
+.decoracion-2 {
 
-@keyframes aparecerTitulo {
+    width:
+        100px;
 
-    from {
+    height:
+        100px;
 
-        opacity: 0;
+    left:
+        25%;
 
-        transform:
-            translateY(-12px);
-    }
+    top:
+        30px;
 
-    to {
+    background:
+        rgba(147,197,253,.12);
 
-        opacity: 1;
+}
+
+
+.decoracion-3 {
+
+    width:
+        150px;
+
+    height:
+        150px;
+
+    right:
+        -70px;
+
+    top:
+        20px;
+
+    background:
+        rgba(186,230,253,.25);
+
+}
+
+
+/* =====================================================
+   ANIMACIÓN
+===================================================== */
+
+@keyframes flotar {
+
+    0%,
+    100% {
 
         transform:
             translateY(0);
+
     }
+
+    50% {
+
+        transform:
+            translateY(-10px);
+
+    }
+
 }
 
 
-/* =========================================================
-   TABLETS
-========================================================= */
+/* =====================================================
+   MENÚ MÓVIL
+===================================================== */
 
-@media (max-width: 900px) {
+.menu-movil {
 
-    body {
+    display:
+        none;
 
-        padding: 10px;
-    }
-
-    .chat {
-
-        width: 100%;
-
-        height: 96vh;
-    }
-
-    .mensajes {
-
-        padding:
-            30px;
-    }
-
-    .bot {
-
-        max-width: 82%;
-    }
-
-    .mensajes > p {
-
-        max-width: 78%;
-    }
 }
 
 
-/* =========================================================
-   CELULARES
-========================================================= */
+/* =====================================================
+   MODO OSCURO
+===================================================== */
 
-@media (max-width: 700px) {
+body.oscuro {
 
-    body {
+    background:
+        #0f172a;
 
-        padding: 0;
+    color:
+        #e2e8f0;
+
+}
+
+
+body.oscuro .sidebar {
+
+    background:
+        #111827;
+
+    border-color:
+        #1e293b;
+
+}
+
+
+body.oscuro .logo h2,
+body.oscuro .bienvenida h1,
+body.oscuro .bienvenida h2 {
+
+    color:
+        white;
+
+}
+
+
+body.oscuro .contenido {
+
+    background:
+        #0f172a;
+
+}
+
+
+body.oscuro .curso-card,
+body.oscuro .entrada,
+body.oscuro .bot,
+body.oscuro .sugerencia,
+body.oscuro .estado {
+
+    background:
+        #1e293b;
+
+    color:
+        #e2e8f0;
+
+}
+
+
+body.oscuro .curso-card p,
+body.oscuro .bienvenida p {
+
+    color:
+        #94a3b8;
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1200px) {
+
+    .sidebar {
+
+        width:
+            230px;
+
+        min-width:
+            230px;
+
     }
 
-    .chat {
+    .cursos-container {
 
-        width: 100%;
+        grid-template-columns:
+            repeat(3, 1fr);
 
-        height: 100vh;
-
-        min-height: 100vh;
-
-        border-radius: 0;
     }
 
-    .encabezado {
+    .robot-grande {
 
-        min-height: 105px;
+        opacity:
+            .45;
+
+    }
+
+}
+
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+
+        position:
+            fixed;
+
+        left:
+            -280px;
+
+        transition:
+            .3s;
+
+    }
+
+
+    .sidebar.mostrar {
+
+        left:
+            0;
+
+    }
+
+
+    .contenido {
+
+        width:
+            100%;
 
         padding:
-            18px 12px;
+            15px;
+
     }
 
-    .encabezado h1 {
 
-        font-size: 28px;
+    .menu-movil {
+
+        display:
+            block;
+
+        position:
+            fixed;
+
+        left:
+            15px;
+
+        top:
+            15px;
+
+        z-index:
+            200;
+
+        width:
+            42px;
+
+        height:
+            42px;
+
+        border:
+            none;
+
+        border-radius:
+            12px;
+
+        background:
+            white;
+
+        box-shadow:
+            0 5px 15px
+            rgba(0,0,0,.12);
+
+        cursor:
+            pointer;
+
+        font-size:
+            20px;
+
     }
 
-    .encabezado p {
 
-        font-size: 13px;
+    .estado {
+
+        top:
+            15px;
+
     }
 
-    .mensajes {
 
-        padding:
-            24px 15px;
+    .boton-mas {
+
+        display:
+            none;
+
     }
 
-    .bot {
 
-        max-width: 91%;
+    .bienvenida {
 
-        padding:
-            16px 18px;
+        min-height:
+            350px;
 
-        font-size: 15px;
+        padding-top:
+            60px;
+
     }
 
-    .mensajes > p {
 
-        max-width: 88%;
+    .bienvenida h1 {
 
-        padding:
-            14px 17px;
+        font-size:
+            34px;
 
-        font-size: 15px;
     }
+
+
+    .bienvenida p {
+
+        font-size:
+            15px;
+
+    }
+
+
+    .bienvenida h2 {
+
+        font-size:
+            24px;
+
+    }
+
+
+    .robot-grande {
+
+        opacity:
+            .18;
+
+        right:
+            0;
+
+    }
+
+
+    .cursos-container {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+/* =====================================================
+   CELULAR PEQUEÑO
+===================================================== */
+
+@media (max-width: 500px) {
+
+    .cursos-container {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .curso-card {
+
+        min-height:
+            240px;
+
+    }
+
+
+    .sugerencias-lista {
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .sugerencia {
+
+        width:
+            100%;
+
+    }
+
+
+    .bienvenida {
+
+        min-height:
+            300px;
+
+    }
+
+
+    .bienvenida h1 {
+
+        font-size:
+            29px;
+
+    }
+
+
+    .bienvenida h2 {
+
+        font-size:
+            21px;
+
+    }
+
 
     .entrada {
 
-        padding:
-            10px;
+        border-radius:
+            20px;
 
-        gap: 8px;
     }
 
-    .entrada input {
 
-        height: 50px;
+    .boton-imagen {
 
-        padding:
-            0 14px;
+        display:
+            none;
 
-        font-size: 15px;
     }
 
-    .entrada button {
-
-        height: 50px;
-
-        min-width: 82px;
-
-        padding:
-            0 15px;
-
-        font-size: 14px;
-    }
-}
-
-
-/* =========================================================
-   CELULARES PEQUEÑOS
-========================================================= */
-
-@media (max-width: 420px) {
-
-    .encabezado h1 {
-
-        font-size: 24px;
-    }
-
-    .encabezado p {
-
-        font-size: 12px;
-    }
-
-    .mensajes {
-
-        padding:
-            18px 10px;
-    }
-
-    .bot {
-
-        max-width: 94%;
-
-        padding:
-            14px;
-
-        font-size: 14px;
-    }
-
-    .mensajes > p {
-
-        max-width: 93%;
-
-        font-size: 14px;
-    }
-
-    .bot::before {
-
-        width: 35px;
-        height: 35px;
-
-        left: -14px;
-        top: -12px;
-
-        font-size: 18px;
-    }
-
-    .entrada input {
-
-        height: 47px;
-
-        font-size: 14px;
-    }
-
-    .entrada button {
-
-        height: 47px;
-
-        min-width: 72px;
-
-        font-size: 13px;
-    }
 }
