@@ -162,7 +162,7 @@ function responder() {
         return;
     }
 
-    // ==================================================
+       // ==================================================
     // NIVEL DE INGLÉS
     // ==================================================
 
@@ -176,7 +176,6 @@ function responder() {
             nivelInglesSeleccionado = "basico";
 
         }
-
         else if (
             texto === "intermedio" ||
             texto.includes("nivel intermedio")
@@ -185,7 +184,6 @@ function responder() {
             nivelInglesSeleccionado = "intermedio";
 
         }
-
         else if (
             texto === "avanzado" ||
             texto.includes("nivel avanzado")
@@ -194,7 +192,6 @@ function responder() {
             nivelInglesSeleccionado = "avanzado";
 
         }
-
         else {
 
             responderBot(`
@@ -224,14 +221,12 @@ function responder() {
         return;
     }
 
+
     // ==================================================
-    // TEMA DE CIENCIAS SOCIALES
+    // CIENCIAS SOCIALES
     // ==================================================
 
-    if (
-        estado === "tema" &&
-        cursoSeleccionado === "sociales"
-    ) {
+    if (estado === "tema") {
 
         if (
             texto === "historia del peru" ||
@@ -262,18 +257,7 @@ function responder() {
 
         else {
 
-            responderBot(`
-                ❌ <strong>No reconocí ese tema.</strong><br><br>
-
-                Elige uno de estos temas:<br><br>
-
-                🇵🇪 <strong>Historia del Perú</strong><br>
-                🌎 <strong>Historia Universal</strong><br>
-                💰 <strong>Economía</strong><br><br>
-
-                ✏️ Escribe el nombre del tema.
-            `);
-
+            buscarTema(texto);
             return;
         }
 
@@ -282,14 +266,14 @@ function responder() {
             temaSeleccionado
         );
 
-        // Buscar el contenido del tema seleccionado
         buscarTema(texto);
 
         return;
     }
 
+
     // ==================================================
-    // TEMA DE LOS DEMÁS CURSOS
+    // TEMA GENERAL
     // ==================================================
 
     if (estado === "tema") {
