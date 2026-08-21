@@ -5,6 +5,8 @@
 let estado = "curso";
 let cursoSeleccionado = "";
 let gradoSeleccionado = "";
+let nivelInglesSeleccionado = "";
+let temaSeleccionado = "";
 
 // ======================================================
 // ELEMENTOS
