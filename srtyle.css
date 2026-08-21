@@ -1,12 +1,11 @@
-/* =====================================================
+/* =========================================================
    🤖 EDU BOT IA
-   DISEÑO MODERNO - EDUCATIVO - COLORIDO
-===================================================== */
+   DISEÑO PREMIUM - ESTILO ASISTENTE DE IA
+========================================================= */
 
-
-/* =====================================================
+/* =========================================================
    RESET
-===================================================== */
+========================================================= */
 
 * {
     margin: 0;
@@ -19,10 +18,16 @@
         sans-serif;
 }
 
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
 
-/* =====================================================
+
+/* =========================================================
    CUERPO
-===================================================== */
+========================================================= */
 
 body {
 
@@ -32,64 +37,120 @@ body {
     justify-content: center;
     align-items: center;
 
-    padding: 20px;
+    padding: 18px;
+
+    color: #172033;
 
     background:
 
         radial-gradient(
-            circle at 10% 10%,
-            rgba(124,58,237,0.22),
+            circle at 5% 10%,
+            rgba(124, 58, 237, 0.16),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 95% 10%,
+            rgba(37, 99, 235, 0.15),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 15% 95%,
+            rgba(6, 182, 212, 0.13),
             transparent 28%
         ),
 
         radial-gradient(
-            circle at 90% 10%,
-            rgba(37,99,235,0.20),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 20% 90%,
-            rgba(16,185,129,0.18),
-            transparent 30%
-        ),
-
-        radial-gradient(
             circle at 90% 90%,
-            rgba(236,72,153,0.18),
-            transparent 30%
+            rgba(236, 72, 153, 0.12),
+            transparent 28%
         ),
 
         linear-gradient(
             135deg,
-            #eef2ff,
-            #f8fafc,
-            #eff6ff
+            #f8f9ff,
+            #ffffff,
+            #f4f7ff
         );
 
     overflow: hidden;
 }
 
 
-/* =====================================================
+/* =========================================================
+   DECORACIONES DEL FONDO
+========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,0.07),
+            rgba(37,99,235,0.04)
+        );
+
+    top: -150px;
+    left: 20%;
+
+    filter: blur(2px);
+
+    pointer-events: none;
+}
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(6,182,212,0.07),
+            rgba(236,72,153,0.04)
+        );
+
+    right: -100px;
+    bottom: -100px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
    VENTANA PRINCIPAL
-===================================================== */
+========================================================= */
 
 .chat {
 
-    width: 950px;
+    position: relative;
+
+    width: 1100px;
     max-width: 100%;
 
-    height: 92vh;
-    min-height: 600px;
+    height: 94vh;
+    min-height: 620px;
 
     display: flex;
     flex-direction: column;
 
-    background: rgba(255,255,255,0.88);
-
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.94);
 
     border-radius: 30px;
 
@@ -99,27 +160,26 @@ body {
 
     box-shadow:
 
-        0 30px 80px rgba(30,41,59,0.18),
+        0 35px 90px rgba(15,23,42,0.14),
 
-        0 10px 30px rgba(37,99,235,0.12);
+        0 10px 35px rgba(37,99,235,0.08);
 
     animation:
         aparecerChat
         0.7s
         cubic-bezier(.2,.8,.2,1);
-
 }
 
 
-/* =====================================================
-   ENCABEZADO
-===================================================== */
+/* =========================================================
+   BARRA SUPERIOR
+========================================================= */
 
 .encabezado {
 
     position: relative;
 
-    min-height: 145px;
+    min-height: 115px;
 
     display: flex;
     flex-direction: column;
@@ -129,7 +189,7 @@ body {
 
     text-align: center;
 
-    padding: 25px;
+    padding: 20px;
 
     color: white;
 
@@ -137,10 +197,10 @@ body {
 
         linear-gradient(
             135deg,
-            #4c1d95 0%,
-            #6d28d9 30%,
-            #2563eb 70%,
-            #06b6d4 100%
+            #5b21b6,
+            #6d28d9,
+            #2563eb,
+            #0891b2
         );
 
     overflow: hidden;
@@ -148,14 +208,13 @@ body {
     flex-shrink: 0;
 
     box-shadow:
-        0 8px 25px rgba(37,99,235,0.25);
-
+        0 8px 25px rgba(37,99,235,0.18);
 }
 
 
-/* =====================================================
-   DECORACIÓN DEL ENCABEZADO
-===================================================== */
+/* =========================================================
+   DECORACIONES DEL ENCABEZADO
+========================================================= */
 
 .encabezado::before {
 
@@ -171,9 +230,8 @@ body {
     background:
         rgba(255,255,255,0.08);
 
-    top: -150px;
-    left: -80px;
-
+    left: -100px;
+    top: -160px;
 }
 
 
@@ -183,23 +241,22 @@ body {
 
     position: absolute;
 
-    width: 190px;
-    height: 190px;
+    width: 220px;
+    height: 220px;
 
     border-radius: 50%;
 
     background:
         rgba(255,255,255,0.08);
 
-    right: -70px;
-    bottom: -130px;
-
+    right: -90px;
+    bottom: -160px;
 }
 
 
-/* =====================================================
-   TÍTULO
-===================================================== */
+/* =========================================================
+   TITULO
+========================================================= */
 
 .encabezado h1 {
 
@@ -207,26 +264,25 @@ body {
 
     z-index: 5;
 
-    font-size: 40px;
+    font-size: 36px;
 
     font-weight: 800;
 
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 
     text-shadow:
-        0 4px 12px rgba(0,0,0,0.25);
+        0 4px 15px rgba(0,0,0,0.22);
 
     animation:
         aparecerTitulo
-        0.8s
+        0.7s
         ease;
-
 }
 
 
-/* =====================================================
-   SUBTÍTULO
-===================================================== */
+/* =========================================================
+   SUBTITULO
+========================================================= */
 
 .encabezado p {
 
@@ -234,28 +290,29 @@ body {
 
     z-index: 5;
 
-    margin-top: 7px;
+    margin-top: 5px;
 
-    font-size: 16px;
+    font-size: 15px;
 
     font-weight: 500;
 
     opacity: 0.94;
-
 }
 
 
-/* =====================================================
-   ÁREA DE MENSAJES
-===================================================== */
+/* =========================================================
+   ÁREA DEL CHAT
+========================================================= */
 
 .mensajes {
+
+    position: relative;
 
     flex: 1;
 
     min-height: 0;
 
-    padding: 30px;
+    padding: 35px 55px;
 
     overflow-y: auto;
 
@@ -265,80 +322,50 @@ body {
 
         radial-gradient(
             circle at 0% 0%,
-            rgba(219,234,254,0.75),
-            transparent 32%
+            rgba(219,234,254,0.55),
+            transparent 30%
         ),
 
         radial-gradient(
             circle at 100% 100%,
-            rgba(243,232,255,0.65),
-            transparent 32%
+            rgba(237,233,254,0.55),
+            transparent 30%
         ),
 
-        linear-gradient(
-            180deg,
-            #f8fafc,
-            #f1f5f9
-        );
-
+        #f8fafc;
 }
 
 
-/* =====================================================
+/* =========================================================
    SCROLLBAR
-===================================================== */
+========================================================= */
 
 .mensajes::-webkit-scrollbar {
 
-    width: 10px;
-
+    width: 8px;
 }
-
 
 .mensajes::-webkit-scrollbar-track {
 
-    background:
-        rgba(226,232,240,0.6);
-
-    border-radius: 20px;
-
+    background: transparent;
 }
-
 
 .mensajes::-webkit-scrollbar-thumb {
 
     background:
-
         linear-gradient(
             180deg,
             #7c3aed,
-            #2563eb,
-            #06b6d4
+            #2563eb
         );
 
     border-radius: 20px;
-
-    border: 2px solid #f1f5f9;
-
 }
 
 
-.mensajes::-webkit-scrollbar-thumb:hover {
-
-    background:
-
-        linear-gradient(
-            180deg,
-            #6d28d9,
-            #1d4ed8
-        );
-
-}
-
-
-/* =====================================================
-   MENSAJES DEL BOT
-===================================================== */
+/* =========================================================
+   MENSAJE DEL BOT
+========================================================= */
 
 .bot {
 
@@ -346,31 +373,36 @@ body {
 
     width: fit-content;
 
-    max-width: 78%;
+    max-width: 760px;
 
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 
-    padding: 18px 22px;
-
-    background:
-
-        rgba(255,255,255,0.96);
+    padding: 20px 24px;
 
     color: #1e293b;
+
+    background: white;
+
+    border:
+
+        1px solid
+        rgba(226,232,240,0.9);
 
     border-radius: 22px;
 
     border-top-left-radius: 7px;
 
-    border-left: 5px solid #7c3aed;
+    border-left:
+
+        5px solid
+        #7c3aed;
 
     line-height: 1.7;
 
     box-shadow:
 
-        0 8px 25px rgba(15,23,42,0.08),
-
-        0 2px 6px rgba(124,58,237,0.06);
+        0 8px 25px
+        rgba(15,23,42,0.07);
 
     animation:
         aparecerMensaje
@@ -382,13 +414,12 @@ body {
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease;
-
 }
 
 
-/* =====================================================
+/* =========================================================
    HOVER BOT
-===================================================== */
+========================================================= */
 
 .bot:hover {
 
@@ -397,16 +428,14 @@ body {
 
     box-shadow:
 
-        0 12px 30px rgba(15,23,42,0.11),
-
-        0 3px 10px rgba(124,58,237,0.08);
-
+        0 14px 35px
+        rgba(15,23,42,0.10);
 }
 
 
-/* =====================================================
-   ICONO DEL BOT
-===================================================== */
+/* =========================================================
+   ROBOT DEL BOT
+========================================================= */
 
 .bot::before {
 
@@ -414,253 +443,50 @@ body {
 
     position: absolute;
 
-    left: -19px;
-    top: -15px;
+    left: -22px;
+    top: -17px;
 
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 42px;
 
     display: flex;
 
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
     border-radius: 50%;
 
     background: white;
 
     border:
-        3px solid #ede9fe;
+        3px solid
+        #ede9fe;
 
     box-shadow:
-        0 5px 15px rgba(15,23,42,0.12);
+        0 5px 16px
+        rgba(15,23,42,0.12);
 
-    font-size: 19px;
+    font-size: 21px;
 
     z-index: 3;
-
 }
 
 
-/* =====================================================
-   MENSAJES DEL USUARIO
-===================================================== */
-
-/*
-   app.js crea actualmente <p>.
-   Por eso hacemos que los mensajes del usuario
-   también tengan un estilo agradable.
-*/
+/* =========================================================
+   MENSAJE DEL USUARIO
+========================================================= */
 
 .mensajes > p {
 
     width: fit-content;
 
-    max-width: 75%;
+    max-width: 700px;
 
     margin-left: auto;
 
-    margin-bottom: 18px;
+    margin-bottom: 24px;
 
-    padding: 15px 19px;
-
-    color: white;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #6d28d9,
-            #2563eb,
-            #0891b2
-        );
-
-    border-radius: 21px;
-
-    border-bottom-right-radius: 7px;
-
-    line-height: 1.6;
-
-    box-shadow:
-
-        0 8px 22px rgba(37,99,235,0.22);
-
-    animation:
-        aparecerMensaje
-        0.3s
-        ease;
-
-    word-wrap: break-word;
-
-}
-
-
-/* =====================================================
-   TEXTO DEL BOT
-===================================================== */
-
-.bot strong,
-.bot b {
-
-    color: #6d28d9;
-
-    font-weight: 700;
-
-}
-
-
-/* =====================================================
-   TEXTO DEL USUARIO
-===================================================== */
-
-.mensajes > p strong {
-
-    color: white;
-
-}
-
-
-/* =====================================================
-   ENLACES
-===================================================== */
-
-.bot a {
-
-    color: #2563eb;
-
-    font-weight: 700;
-
-    text-decoration: none;
-
-    transition: 0.2s;
-
-}
-
-
-.bot a:hover {
-
-    color: #7c3aed;
-
-    text-decoration: underline;
-
-}
-
-
-/* =====================================================
-   ÁREA DE ESCRITURA
-===================================================== */
-
-.entrada {
-
-    position: relative;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    padding: 17px 20px;
-
-    background:
-
-        rgba(255,255,255,0.96);
-
-    border-top:
-        1px solid rgba(226,232,240,0.9);
-
-    box-shadow:
-        0 -5px 20px rgba(15,23,42,0.04);
-
-    flex-shrink: 0;
-
-}
-
-
-/* =====================================================
-   INPUT
-===================================================== */
-
-.entrada input {
-
-    flex: 1;
-
-    min-width: 0;
-
-    padding: 15px 19px;
-
-    font-size: 16px;
-
-    color: #1e293b;
-
-    background:
-        #f8fafc;
-
-    border:
-        2px solid #e2e8f0;
-
-    border-radius: 18px;
-
-    outline: none;
-
-    transition:
-        0.25s ease;
-
-}
-
-
-.entrada input::placeholder {
-
-    color: #94a3b8;
-
-}
-
-
-.entrada input:hover {
-
-    border-color:
-        #cbd5e1;
-
-}
-
-
-.entrada input:focus {
-
-    background: white;
-
-    border-color:
-        #6366f1;
-
-    box-shadow:
-
-        0 0 0 4px
-        rgba(99,102,241,0.10),
-
-        0 6px 18px
-        rgba(37,99,235,0.08);
-
-}
-
-
-/* =====================================================
-   BOTÓN ENVIAR
-===================================================== */
-
-.entrada button {
-
-    position: relative;
-
-    overflow: hidden;
-
-    border: none;
-
-    padding: 15px 25px;
-
-    min-width: 105px;
-
-    font-size: 16px;
-
-    font-weight: 700;
+    padding: 16px 21px;
 
     color: white;
 
@@ -673,23 +499,249 @@ body {
             #0891b2
         );
 
-    border-radius: 18px;
+    border-radius: 22px;
 
-    cursor: pointer;
+    border-bottom-right-radius: 7px;
+
+    line-height: 1.65;
 
     box-shadow:
 
-        0 8px 20px
-        rgba(37,99,235,0.25);
+        0 8px 22px
+        rgba(37,99,235,0.20);
+
+    animation:
+        aparecerMensaje
+        0.3s
+        ease;
+
+    word-wrap: break-word;
+}
+
+
+/* =========================================================
+   TEXTO DESTACADO
+========================================================= */
+
+.bot b,
+.bot strong {
+
+    color: #6d28d9;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ENLACES
+========================================================= */
+
+.bot a {
+
+    color: #2563eb;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        0.2s ease;
+}
+
+.bot a:hover {
+
+    color: #7c3aed;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   ÁREA DE ESCRITURA
+========================================================= */
+
+.entrada {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+
+        18px
+        24px
+        20px;
+
+    background:
+        rgba(255,255,255,0.98);
+
+    border-top:
+        1px solid
+        #e5e7eb;
+
+    box-shadow:
+        0 -5px 20px
+        rgba(15,23,42,0.04);
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   CONTENEDOR VISUAL DEL INPUT
+========================================================= */
+
+.entrada::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 18px;
+    right: 18px;
+
+    top: 9px;
+
+    height: 3px;
+
+    border-radius: 10px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #7c3aed,
+            #2563eb,
+            #06b6d4
+        );
+
+    opacity: 0.15;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.entrada input {
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 55px;
+
+    padding:
+        0 20px;
+
+    font-size: 16px;
+
+    color: #172033;
+
+    background:
+        #f8fafc;
+
+    border:
+        2px solid
+        #e5e7eb;
+
+    border-radius: 18px;
+
+    outline: none;
+
+    transition:
+        0.25s ease;
+}
+
+
+.entrada input::placeholder {
+
+    color:
+        #94a3b8;
+}
+
+
+.entrada input:hover {
+
+    border-color:
+        #cbd5e1;
+}
+
+
+.entrada input:focus {
+
+    background:
+        white;
+
+    border-color:
+        #6366f1;
+
+    box-shadow:
+
+        0 0 0 4px
+        rgba(99,102,241,0.10),
+
+        0 7px 20px
+        rgba(37,99,235,0.07);
+}
+
+
+/* =========================================================
+   BOTÓN ENVIAR
+========================================================= */
+
+.entrada button {
+
+    position: relative;
+
+    height: 55px;
+
+    min-width: 120px;
+
+    padding:
+        0 25px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb,
+            #0891b2
+        );
+
+    box-shadow:
+
+        0 8px 22px
+        rgba(37,99,235,0.24);
 
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease;
-
 }
 
 
-/* Brillo */
+/* =========================================================
+   BRILLO DEL BOTÓN
+========================================================= */
 
 .entrada button::before {
 
@@ -698,9 +750,11 @@ body {
     position: absolute;
 
     top: 0;
-    left: -100%;
 
-    width: 70%;
+    left: -120%;
+
+    width: 80%;
+
     height: 100%;
 
     background:
@@ -708,22 +762,21 @@ body {
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,0.35),
+            rgba(255,255,255,0.4),
             transparent
         );
 
-    transform: skewX(-20deg);
+    transform:
+        skewX(-20deg);
 
     transition:
-        left 0.5s ease;
-
+        left 0.55s ease;
 }
 
 
 .entrada button:hover::before {
 
-    left: 130%;
-
+    left: 140%;
 }
 
 
@@ -734,24 +787,35 @@ body {
 
     box-shadow:
 
-        0 12px 28px
-        rgba(37,99,235,0.32);
-
+        0 13px 30px
+        rgba(37,99,235,0.30);
 }
 
 
 .entrada button:active {
 
     transform:
-        translateY(0)
-        scale(0.97);
-
+        scale(0.96);
 }
 
 
-/* =====================================================
-   ANIMACIONES
-===================================================== */
+/* =========================================================
+   SELECCIÓN DE TEXTO
+========================================================= */
+
+::selection {
+
+    background:
+        #c4b5fd;
+
+    color:
+        #312e81;
+}
+
+
+/* =========================================================
+   ANIMACIÓN DEL CHAT
+========================================================= */
 
 @keyframes aparecerChat {
 
@@ -762,7 +826,6 @@ body {
         transform:
             translateY(30px)
             scale(0.97);
-
     }
 
     to {
@@ -772,11 +835,13 @@ body {
         transform:
             translateY(0)
             scale(1);
-
     }
-
 }
 
+
+/* =========================================================
+   ANIMACIÓN DE MENSAJES
+========================================================= */
 
 @keyframes aparecerMensaje {
 
@@ -785,9 +850,8 @@ body {
         opacity: 0;
 
         transform:
-            translateY(10px)
+            translateY(12px)
             scale(0.98);
-
     }
 
     to {
@@ -797,11 +861,13 @@ body {
         transform:
             translateY(0)
             scale(1);
-
     }
-
 }
 
+
+/* =========================================================
+   ANIMACIÓN DEL TÍTULO
+========================================================= */
 
 @keyframes aparecerTitulo {
 
@@ -810,8 +876,7 @@ body {
         opacity: 0;
 
         transform:
-            translateY(-10px);
-
+            translateY(-12px);
     }
 
     to {
@@ -820,75 +885,56 @@ body {
 
         transform:
             translateY(0);
-
     }
-
 }
 
 
-/* =====================================================
-   SELECCIÓN DE TEXTO
-===================================================== */
-
-::selection {
-
-    background: #c4b5fd;
-
-    color: #312e81;
-
-}
-
-
-/* =====================================================
+/* =========================================================
    TABLETS
-===================================================== */
+========================================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
 
     body {
 
         padding: 10px;
-
     }
-
 
     .chat {
 
         width: 100%;
 
-        height: 95vh;
-
+        height: 96vh;
     }
 
+    .mensajes {
+
+        padding:
+            30px;
+    }
 
     .bot {
 
-        max-width: 85%;
-
+        max-width: 82%;
     }
-
 
     .mensajes > p {
 
-        max-width: 82%;
-
+        max-width: 78%;
     }
-
 }
 
 
-/* =====================================================
+/* =========================================================
    CELULARES
-===================================================== */
+========================================================= */
 
 @media (max-width: 700px) {
 
     body {
 
         padding: 0;
-
     }
-
 
     .chat {
 
@@ -899,191 +945,147 @@ body {
         min-height: 100vh;
 
         border-radius: 0;
-
     }
-
 
     .encabezado {
 
-        min-height: 125px;
+        min-height: 105px;
 
-        padding: 20px 15px;
-
+        padding:
+            18px 12px;
     }
-
 
     .encabezado h1 {
 
-        font-size: 30px;
-
+        font-size: 28px;
     }
-
 
     .encabezado p {
 
-        font-size: 14px;
-
+        font-size: 13px;
     }
-
 
     .mensajes {
 
-        padding: 22px 15px;
-
+        padding:
+            24px 15px;
     }
-
 
     .bot {
 
         max-width: 91%;
 
-        padding: 15px 17px;
+        padding:
+            16px 18px;
 
         font-size: 15px;
-
     }
-
 
     .mensajes > p {
 
         max-width: 88%;
 
+        padding:
+            14px 17px;
+
         font-size: 15px;
-
-        padding: 14px 16px;
-
     }
-
 
     .entrada {
 
-        padding: 11px;
+        padding:
+            10px;
 
         gap: 8px;
-
     }
-
 
     .entrada input {
 
-        padding: 13px;
+        height: 50px;
+
+        padding:
+            0 14px;
 
         font-size: 15px;
-
     }
-
 
     .entrada button {
 
-        min-width: 80px;
+        height: 50px;
 
-        padding: 13px 15px;
+        min-width: 82px;
+
+        padding:
+            0 15px;
 
         font-size: 14px;
-
     }
-
 }
 
 
-/* =====================================================
+/* =========================================================
    CELULARES PEQUEÑOS
-===================================================== */
+========================================================= */
 
 @media (max-width: 420px) {
 
     .encabezado h1 {
 
-        font-size: 25px;
-
+        font-size: 24px;
     }
-
 
     .encabezado p {
 
-        font-size: 13px;
-
+        font-size: 12px;
     }
-
 
     .mensajes {
 
-        padding: 17px 10px;
-
+        padding:
+            18px 10px;
     }
-
 
     .bot {
 
         max-width: 94%;
 
+        padding:
+            14px;
+
         font-size: 14px;
-
-        padding: 14px;
-
     }
-
 
     .mensajes > p {
 
-        max-width: 92%;
+        max-width: 93%;
 
         font-size: 14px;
-
     }
-
 
     .bot::before {
 
-        width: 34px;
-        height: 34px;
+        width: 35px;
+        height: 35px;
 
-        left: -15px;
+        left: -14px;
+        top: -12px;
 
-        font-size: 17px;
-
+        font-size: 18px;
     }
-
-
-    .entrada {
-
-        padding: 9px;
-
-    }
-
 
     .entrada input {
 
-        padding: 11px;
+        height: 47px;
 
         font-size: 14px;
-
     }
-
 
     .entrada button {
 
-        min-width: 70px;
+        height: 47px;
 
-        padding: 11px;
+        min-width: 72px;
 
         font-size: 13px;
-
     }
-
-}
-
-
-/* =====================================================
-   PANTALLAS MUY ALTAS
-===================================================== */
-
-@media (min-height: 900px) {
-
-    .chat {
-
-        height: 88vh;
-
-    }
-
 }
