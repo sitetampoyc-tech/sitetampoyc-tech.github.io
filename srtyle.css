@@ -1,6 +1,6 @@
 /* =====================================================
-   🤖 EDU BOT IA
-   INTERFAZ MODERNA
+   EDU BOT IA
+   DISEÑO PREMIUM EDUCATIVO
 ===================================================== */
 
 * {
@@ -13,16 +13,17 @@
 
     --morado: #6d28d9;
     --morado-claro: #8b5cf6;
+
     --azul: #2563eb;
-    --azul-claro: #60a5fa;
+    --cyan: #06b6d4;
 
     --texto: #172554;
     --texto-suave: #64748b;
 
-    --fondo: #ffffff;
-    --fondo-suave: #f8fafc;
+    --fondo: #fbfbff;
+    --blanco: #ffffff;
 
-    --borde: #e2e8f0;
+    --borde: #e9e5ff;
 
 }
 
@@ -38,38 +39,47 @@ body {
     font-family:
         "Segoe UI",
         Arial,
+        Helvetica,
         sans-serif;
+
+    color: var(--texto);
 
     background:
 
         radial-gradient(
-            circle at 30% 10%,
-            rgba(139,92,246,.10),
+            circle at 10% 0%,
+            rgba(139,92,246,.18),
             transparent 25%
         ),
 
         radial-gradient(
-            circle at 90% 30%,
-            rgba(96,165,250,.12),
+            circle at 90% 20%,
+            rgba(37,99,235,.14),
             transparent 25%
         ),
 
-        #ffffff;
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #faf9ff,
+            #f7faff
+        );
 
-    color: var(--texto);
+    overflow: hidden;
 
 }
 
 
 /* =====================================================
-   APLICACIÓN
+   APP
 ===================================================== */
 
 .app {
 
-    min-height: 100vh;
-
     display: flex;
+
+    width: 100vw;
+    height: 100vh;
 
 }
 
@@ -80,28 +90,27 @@ body {
 
 .sidebar {
 
-    width: 280px;
-
-    min-width: 280px;
+    width: 295px;
 
     height: 100vh;
-
-    position: sticky;
-    top: 0;
-
-    display: flex;
-    flex-direction: column;
 
     padding: 25px 20px;
 
     background:
-        rgba(255,255,255,.95);
 
-    border-right:
-        1px solid #eef2ff;
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.98),
+            rgba(249,247,255,.98)
+        );
 
-    box-shadow:
-        5px 0 25px rgba(30,41,59,.04);
+    border-right: 1px solid #eeeafd;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow-y: auto;
 
     z-index: 100;
 
@@ -125,53 +134,48 @@ body {
 }
 
 
-.logo-robot {
+.logo-icon {
 
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
+
+    border-radius: 17px;
 
     display: flex;
 
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
-    border-radius: 15px;
-
-    font-size: 29px;
+    font-size: 27px;
 
     background:
+
         linear-gradient(
             135deg,
             #ede9fe,
             #dbeafe
         );
 
+    box-shadow:
+
+        0 7px 18px
+        rgba(109,40,217,.15);
+
 }
 
 
 .logo h2 {
 
-    font-size: 23px;
+    font-size: 24px;
 
-    font-weight: 800;
-
-    color: #172554;
+    color: #111827;
 
 }
 
 
 .logo h2 span {
 
-    background:
-        linear-gradient(
-            90deg,
-            #2563eb,
-            #7c3aed
-        );
-
-    -webkit-background-clip: text;
-
-    color: transparent;
+    color: var(--morado);
 
 }
 
@@ -180,9 +184,9 @@ body {
 
     margin-top: 2px;
 
-    color: #64748b;
-
     font-size: 13px;
+
+    color: var(--texto-suave);
 
 }
 
@@ -195,11 +199,11 @@ body {
 
     width: 100%;
 
-    padding: 13px;
+    padding: 14px 18px;
 
     border: none;
 
-    border-radius: 12px;
+    border-radius: 14px;
 
     color: white;
 
@@ -210,6 +214,7 @@ body {
     cursor: pointer;
 
     background:
+
         linear-gradient(
             135deg,
             #2563eb,
@@ -217,22 +222,34 @@ body {
         );
 
     box-shadow:
-        0 7px 20px
-        rgba(99,102,241,.25);
+
+        0 8px 20px
+        rgba(79,70,229,.25);
 
     transition: .25s;
 
 }
 
 
+.nuevo-chat span {
+
+    font-size: 23px;
+
+    vertical-align: -2px;
+
+    margin-right: 5px;
+
+}
+
+
 .nuevo-chat:hover {
 
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 
     box-shadow:
-        0 10px 25px
-        rgba(99,102,241,.35);
+
+        0 12px 28px
+        rgba(79,70,229,.32);
 
 }
 
@@ -243,10 +260,10 @@ body {
 
 .menu-titulo {
 
-    margin-top: 25px;
-    margin-bottom: 10px;
+    margin:
 
-    color: #64748b;
+        23px 0
+        9px 0;
 
     font-size: 12px;
 
@@ -254,11 +271,13 @@ body {
 
     letter-spacing: .5px;
 
+    color: #64748b;
+
 }
 
 
 /* =====================================================
-   MENU
+   BOTONES MENU
 ===================================================== */
 
 .menu {
@@ -272,7 +291,8 @@ body {
 }
 
 
-.menu-item {
+.menu-btn,
+.curso-menu {
 
     width: 100%;
 
@@ -286,11 +306,11 @@ body {
 
     border: none;
 
-    border-radius: 10px;
+    border-radius: 11px;
 
     background: transparent;
 
-    color: #334155;
+    color: #1e293b;
 
     font-size: 14px;
 
@@ -305,61 +325,58 @@ body {
 }
 
 
-.menu-item:hover {
+.menu-btn:hover,
+.curso-menu:hover {
 
-    background:
-        #f5f3ff;
+    background: #f1edff;
 
-    color:
-        #5b21b6;
+    color: var(--morado);
 
-    transform:
-        translateX(3px);
+    transform: translateX(3px);
 
 }
 
 
-.menu-item.activo {
+.menu-btn.activo {
 
     background:
+
         linear-gradient(
             90deg,
             #f0eaff,
-            #f5f3ff
+            #f7f4ff
         );
 
-    color:
-        #4f46e5;
+    color: #4f46e5;
+
+    font-weight: 700;
+
+}
+
+
+.cursos-menu {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
 
 }
 
 
 /* =====================================================
-   PARTE INFERIOR SIDEBAR
+   ESTADO
 ===================================================== */
 
-.sidebar-bottom {
+.estado {
 
     margin-top: auto;
 
 }
 
 
-.online-title {
-
-    color:
-        #334155;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    margin-bottom: 8px;
-
-}
-
-
-.online {
+.estado-online {
 
     display: flex;
 
@@ -367,15 +384,13 @@ body {
 
     gap: 9px;
 
-    padding: 10px 12px;
+    padding: 11px 13px;
 
-    border-radius: 10px;
+    border-radius: 11px;
 
-    background:
-        #ecfdf5;
+    background: #dcfce7;
 
-    color:
-        #15803d;
+    color: #15803d;
 
     font-size: 13px;
 
@@ -384,21 +399,19 @@ body {
 }
 
 
-.online-dot {
+.estado-online span,
+.online-pill span {
 
     width: 9px;
     height: 9px;
 
     border-radius: 50%;
 
-    display: inline-block;
-
-    background:
-        #16a34a;
+    background: #16a34a;
 
     box-shadow:
         0 0 0 4px
-        rgba(22,163,74,.10);
+        rgba(34,197,94,.12);
 
 }
 
@@ -407,17 +420,17 @@ body {
    CONFIGURACIÓN
 ===================================================== */
 
-.configuracion {
+.config-btn {
 
     width: 100%;
 
-    margin-top: 12px;
+    margin-top: 10px;
 
     padding: 11px;
 
-    border: 1px solid #e2e8f0;
+    border: 1px solid #e5e7eb;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
     background: white;
 
@@ -427,12 +440,16 @@ body {
 
     cursor: pointer;
 
+    transition: .2s;
+
 }
 
 
-.configuracion:hover {
+.config-btn:hover {
 
-    background: #f8fafc;
+    border-color: #c4b5fd;
+
+    background: #faf8ff;
 
 }
 
@@ -443,23 +460,23 @@ body {
 
 .modo {
 
-    display: flex;
+    margin-top: 9px;
 
-    align-items: center;
+    padding: 12px;
 
-    justify-content: space-between;
-
-    margin-top: 12px;
-
-    padding: 10px;
+    border-radius: 12px;
 
     background: #f8fafc;
 
-    border-radius: 10px;
+    display: flex;
 
-    color: #475569;
+    justify-content: space-between;
+
+    align-items: center;
 
     font-size: 13px;
+
+    font-weight: 600;
 
 }
 
@@ -478,7 +495,10 @@ body {
 
 .switch input {
 
-    display: none;
+    opacity: 0;
+
+    width: 0;
+    height: 0;
 
 }
 
@@ -489,11 +509,13 @@ body {
 
     inset: 0;
 
+    border-radius: 20px;
+
     background: #cbd5e1;
 
-    border-radius: 30px;
-
     cursor: pointer;
+
+    transition: .3s;
 
 }
 
@@ -510,27 +532,25 @@ body {
     left: 3px;
     top: 3px;
 
-    border-radius: 50%;
-
     background: white;
 
-    transition: .25s;
+    border-radius: 50%;
+
+    transition: .3s;
 
 }
 
 
 .switch input:checked + .slider {
 
-    background:
-        #7c3aed;
+    background: var(--morado);
 
 }
 
 
 .switch input:checked + .slider::before {
 
-    transform:
-        translateX(19px);
+    transform: translateX(19px);
 
 }
 
@@ -547,1087 +567,139 @@ body {
 
     gap: 10px;
 
-    margin-top: 15px;
+    margin-top: 18px;
 
-    padding-top: 15px;
+    padding-top: 17px;
 
-    border-top:
-        1px solid #e2e8f0;
+    border-top: 1px solid #e5e7eb;
 
 }
 
 
 .perfil-icon {
 
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
 
     display: flex;
 
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
     border-radius: 50%;
 
-    background: #f1f5f9;
+    background: #ede9fe;
+
+    font-size: 22px;
 
 }
 
 
-.perfil strong {
+.perfil-texto {
 
-    display: block;
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.perfil-texto strong {
 
     font-size: 13px;
 
 }
 
 
-.perfil small {
-
-    display: block;
-
-    color: #64748b;
+.perfil-texto span {
 
     font-size: 11px;
 
-    margin-top: 2px;
+    color: #64748b;
 
 }
 
 
 .corazon {
 
-    margin-left: auto;
+    border: none;
 
-    color:
-        #7c3aed;
+    background: #f1edff;
 
-    font-size: 24px;
+    color: #7c3aed;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    font-size: 20px;
+
+    cursor: pointer;
 
 }
 
 
 /* =====================================================
-   CONTEÚDO
+   MAIN
 ===================================================== */
 
-.contenido {
+.main {
+
+    position: relative;
 
     flex: 1;
 
-    min-width: 0;
+    height: 100vh;
 
-    min-height: 100vh;
-
-    position: relative;
+    overflow-y: auto;
 
     overflow-x: hidden;
 
-    padding:
-        20px 40px 25px;
+    padding: 25px 35px 40px;
 
 }
 
 
 /* =====================================================
-   ESTADO
+   ESTADO SUPERIOR
 ===================================================== */
 
-.estado {
+.estado-superior {
 
-    position: absolute;
+    display: flex;
 
-    top: 20px;
-    left: 50%;
+    justify-content: center;
 
-    transform:
-        translateX(-50%);
+}
+
+
+.online-pill {
 
     display: flex;
 
     align-items: center;
 
-    gap: 9px;
+    gap: 10px;
 
-    padding:
-        10px 20px;
+    padding: 10px 25px;
 
     border-radius: 30px;
 
-    background: white;
+    background: rgba(255,255,255,.8);
+
+    border: 1px solid #f1f5f9;
 
     box-shadow:
-        0 5px 20px
-        rgba(15,23,42,.08);
 
-    color:
-        #15803d;
+        0 7px 25px
+        rgba(15,23,42,.06);
 
-    font-size: 13px;
+    font-size: 14px;
 
     font-weight: 700;
-
-}
-
-
-/* =====================================================
-   BOTON MÁS
-===================================================== */
-
-.boton-mas {
-
-    position: absolute;
-
-    right: 30px;
-    top: 20px;
-
-    width: 43px;
-    height: 43px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    color: white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #4f46e5
-        );
-
-    font-size: 25px;
-
-    cursor: pointer;
-
-}
-
-
-/* =====================================================
-   BIENVENIDA
-===================================================== */
-
-.bienvenida {
-
-    position: relative;
-
-    min-height: 310px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    padding-top: 45px;
-
-    overflow: hidden;
-
-}
-
-
-/* =====================================================
-   TEXTO BIENVENIDA
-===================================================== */
-
-.bienvenida-texto {
-
-    position: relative;
-
-    z-index: 5;
-
-}
-
-
-.bienvenida h1 {
-
-    font-size:
-        clamp(32px, 4vw, 49px);
-
-    font-weight: 800;
-
-    color:
-        #172554;
-
-}
-
-
-.bienvenida h1 span {
-
-    background:
-        linear-gradient(
-            90deg,
-            #2563eb,
-            #7c3aed
-        );
-
-    -webkit-background-clip: text;
-
-    color: transparent;
-
-}
-
-
-.bienvenida p {
-
-    margin-top: 10px;
-
-    font-size: 18px;
-
-    color:
-        #64748b;
-
-}
-
-
-.bienvenida h2 {
-
-    margin-top: 32px;
-
-    font-size: 29px;
-
-    color:
-        #172554;
-
-}
-
-
-.linea-decorativa {
-
-    width: 70px;
-    height: 4px;
-
-    margin:
-        14px auto;
-
-    border-radius: 10px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #7c3aed,
-            #2563eb
-        );
-
-}
-
-
-/* =====================================================
-   ROBOT GRANDE
-===================================================== */
-
-.robot-grande {
-
-    position: absolute;
-
-    right: 2%;
-
-    bottom: -15px;
-
-    width: 210px;
-
-    height: 220px;
-
-    z-index: 2;
-
-    animation:
-        flotar 3s ease-in-out infinite;
-
-}
-
-
-/* ANTENA */
-
-.antena {
-
-    position: absolute;
-
-    top: 0;
-    left: 50%;
-
-    width: 5px;
-    height: 35px;
-
-    transform:
-        translateX(-50%);
-
-    background:
-        #94a3b8;
-
-}
-
-
-.antena div {
-
-    position: absolute;
-
-    top: -10px;
-    left: 50%;
-
-    transform:
-        translateX(-50%);
-
-    width: 18px;
-    height: 18px;
-
-    border-radius: 50%;
-
-    background:
-        #7c3aed;
-
-}
-
-
-/* CABEZA */
-
-.robot-cabeza {
-
-    position: absolute;
-
-    top: 30px;
-    left: 10px;
-
-    width: 190px;
-    height: 125px;
-
-    border-radius:
-        55px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #dbeafe
-        );
-
-    box-shadow:
-        0 15px 30px
-        rgba(37,99,235,.15);
-
-    border:
-        3px solid #e2e8f0;
-
-}
-
-
-/* PANTALLA */
-
-.robot-pantalla {
-
-    position: absolute;
-
-    top: 23px;
-    left: 25px;
-
-    width: 140px;
-    height: 80px;
-
-    border-radius:
-        30px;
-
-    display: flex;
-
-    justify-content:
-        center;
-
-    align-items:
-        center;
-
-    gap: 35px;
-
-    color:
-        #60a5fa;
-
-    background:
-        #0f172a;
-
-}
-
-
-.ojo {
-
-    font-size: 24px;
-
-}
-
-
-.sonrisa {
-
-    position: absolute;
-
-    bottom: 8px;
-
-    left: 50%;
-
-    transform:
-        translateX(-50%);
-
-    font-size: 25px;
-
-    color:
-        #60a5fa;
-
-}
-
-
-/* CUERPO */
-
-.robot-cuerpo {
-
-    position: absolute;
-
-    bottom: -10px;
-    left: 50px;
-
-    width: 110px;
-    height: 70px;
-
-    border-radius:
-        30px 30px 10px 10px;
-
-    background:
-        linear-gradient(
-            145deg,
-            white,
-            #dbeafe
-        );
-
-}
-
-
-/* =====================================================
-   TARJETAS
-===================================================== */
-
-.cursos-container {
-
-    position: relative;
-
-    z-index: 10;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(6, 1fr);
-
-    gap: 16px;
-
-    max-width: 1280px;
-
-    margin:
-        0 auto;
-
-}
-
-
-.curso-card {
-
-    position: relative;
-
-    min-height: 285px;
-
-    padding:
-        24px 14px 20px;
-
-    text-align: center;
-
-    background:
-        rgba(255,255,255,.95);
-
-    border:
-        1px solid #e2e8f0;
-
-    border-radius: 20px;
-
-    box-shadow:
-        0 8px 25px
-        rgba(15,23,42,.07);
-
-    transition:
-        .3s;
-
-    cursor: pointer;
-
-}
-
-
-.curso-card:hover {
-
-    transform:
-        translateY(-8px);
-
-    box-shadow:
-        0 18px 35px
-        rgba(15,23,42,.12);
-
-}
-
-
-/* ICONOS */
-
-.curso-icon {
-
-    width: 82px;
-    height: 82px;
-
-    margin:
-        0 auto 18px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    font-size: 42px;
-
-}
-
-
-/* COLORES */
-
-.matematica {
-
-    border-color:
-        #ddd6fe;
-
-}
-
-.matematica .curso-icon {
-
-    background:
-        #ede9fe;
-
-}
-
-.matematica h3 {
-
-    color:
-        #7c3aed;
-
-}
-
-
-.comunicacion {
-
-    border-color:
-        #bfdbfe;
-
-}
-
-.comunicacion .curso-icon {
-
-    background:
-        #dbeafe;
-
-}
-
-.comunicacion h3 {
-
-    color:
-        #2563eb;
-
-}
-
-
-.ciencia {
-
-    border-color:
-        #bbf7d0;
-
-}
-
-.ciencia .curso-icon {
-
-    background:
-        #dcfce7;
-
-}
-
-.ciencia h3 {
-
-    color:
-        #16a34a;
-
-}
-
-
-.sociales {
-
-    border-color:
-        #fed7aa;
-
-}
-
-.sociales .curso-icon {
-
-    background:
-        #ffedd5;
-
-}
-
-.sociales h3 {
-
-    color:
-        #ea580c;
-
-}
-
-
-.ingles {
-
-    border-color:
-        #fbcfe8;
-
-}
-
-.ingles .curso-icon {
-
-    background:
-        #fce7f3;
-
-}
-
-.ingles h3 {
-
-    color:
-        #db2777;
-
-}
-
-
-.computacion {
-
-    border-color:
-        #bfdbfe;
-
-}
-
-.computacion .curso-icon {
-
-    background:
-        #dbeafe;
-
-}
-
-.computacion h3 {
-
-    color:
-        #2563eb;
-
-}
-
-
-/* TEXTO */
-
-.curso-card h3 {
-
-    font-size:
-        18px;
-
-}
-
-
-.curso-card p {
-
-    min-height:
-        52px;
-
-    margin-top:
-        9px;
-
-    color:
-        #64748b;
-
-    font-size:
-        13px;
-
-    line-height:
-        1.5;
-
-}
-
-
-/* BOTÓN */
-
-.curso-btn {
-
-    width: 36px;
-    height: 36px;
-
-    margin-top:
-        14px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    color: white;
-
-    font-size: 21px;
-
-    cursor: pointer;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #2563eb
-        );
-
-    transition:
-        .2s;
-
-}
-
-
-.curso-btn:hover {
-
-    transform:
-        scale(1.12);
-
-}
-
-
-/* =====================================================
-   SUGERENCIAS
-===================================================== */
-
-.sugerencias {
-
-    max-width: 900px;
-
-    margin:
-        40px auto 20px;
-
-}
-
-
-.sugerencias > p {
-
-    color:
-        #64748b;
-
-    font-size:
-        13px;
-
-    margin-bottom:
-        10px;
-
-}
-
-
-.sugerencias-lista {
-
-    display:
-        flex;
-
-    gap:
-        10px;
-
-    flex-wrap:
-        wrap;
-
-}
-
-
-.sugerencia {
-
-    padding:
-        11px 18px;
-
-    border:
-        1px solid #e2e8f0;
-
-    border-radius:
-        30px;
-
-    background:
-        white;
-
-    color:
-        #475569;
-
-    font-size:
-        13px;
-
-    cursor:
-        pointer;
-
-    transition:
-        .2s;
-
-}
-
-
-.sugerencia:hover {
-
-    transform:
-        translateY(-2px);
-
-    border-color:
-        #c4b5fd;
-
-    color:
-        #6d28d9;
-
-    box-shadow:
-        0 5px 15px
-        rgba(124,58,237,.10);
-
-}
-
-
-/* =====================================================
-   MENSAJES
-===================================================== */
-
-.mensajes {
-
-    max-width:
-        900px;
-
-    margin:
-        20px auto;
-
-    max-height:
-        280px;
-
-    overflow-y:
-        auto;
-
-}
-
-
-.bot {
-
-    width:
-        fit-content;
-
-    max-width:
-        80%;
-
-    padding:
-        18px 20px;
-
-    margin-bottom:
-        15px;
-
-    border-radius:
-        20px;
-
-    border-top-left-radius:
-        5px;
-
-    border-left:
-        5px solid #7c3aed;
-
-    background:
-        white;
-
-    box-shadow:
-        0 8px 20px
-        rgba(15,23,42,.07);
-
-    color:
-        #334155;
-
-    line-height:
-        1.6;
-
-}
-
-
-.bot p {
-
-    margin-top:
-        7px;
-
-}
-
-
-/* =====================================================
-   BARRA DE ENTRADA
-===================================================== */
-
-.entrada {
-
-    max-width:
-        950px;
-
-    margin:
-        10px auto 0;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        8px;
-
-    padding:
-        8px 10px 8px 15px;
-
-    border:
-        2px solid #c4b5fd;
-
-    border-radius:
-        35px;
-
-    background:
-        white;
-
-    box-shadow:
-        0 8px 30px
-        rgba(99,102,241,.12);
-
-}
-
-
-.entrada input {
-
-    flex:
-        1;
-
-    border:
-        none;
-
-    outline:
-        none;
-
-    padding:
-        12px;
-
-    font-size:
-        16px;
-
-    color:
-        #334155;
-
-}
-
-
-.entrada input::placeholder {
-
-    color:
-        #94a3b8;
-
-}
-
-
-/* BOTONES */
-
-.boton-imagen,
-.boton-microfono {
-
-    width:
-        42px;
-
-    height:
-        42px;
-
-    border:
-        none;
-
-    background:
-        transparent;
-
-    color:
-        #7c3aed;
-
-    border-radius:
-        50%;
-
-    cursor:
-        pointer;
-
-    font-size:
-        19px;
-
-}
-
-
-.boton-imagen:hover,
-.boton-microfono:hover {
-
-    background:
-        #f5f3ff;
-
-}
-
-
-.boton-enviar {
-
-    width:
-        48px;
-
-    height:
-        48px;
-
-    border:
-        none;
-
-    border-radius:
-        50%;
-
-    color:
-        white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #2563eb
-        );
-
-    font-size:
-        23px;
-
-    cursor:
-        pointer;
-
-    box-shadow:
-        0 6px 18px
-        rgba(99,102,241,.30);
-
-    transition:
-        .2s;
-
-}
-
-
-.boton-enviar:hover {
-
-    transform:
-        scale(1.08);
-
-}
-
-
-/* =====================================================
-   PIE
-===================================================== */
-
-.pie {
-
-    text-align:
-        center;
-
-    color:
-        #94a3b8;
-
-    font-size:
-        11px;
-
-    margin-top:
-        8px;
 
 }
 
@@ -1638,86 +710,269 @@ body {
 
 .decoracion {
 
-    position:
-        absolute;
+    position: absolute;
 
-    border-radius:
-        50%;
+    pointer-events: none;
 
-    pointer-events:
-        none;
+    font-weight: bold;
+
+    opacity: .4;
 
 }
 
 
 .decoracion-1 {
 
-    width:
-        200px;
+    top: 130px;
+    left: 28%;
 
-    height:
-        200px;
+    color: #c084fc;
 
-    left:
-        -100px;
-
-    top:
-        -70px;
-
-    background:
-        rgba(196,181,253,.20);
+    font-size: 45px;
 
 }
 
 
 .decoracion-2 {
 
-    width:
-        100px;
+    top: 80px;
+    right: 25%;
 
-    height:
-        100px;
+    color: #f0abfc;
 
-    left:
-        25%;
-
-    top:
-        30px;
-
-    background:
-        rgba(147,197,253,.12);
+    font-size: 35px;
 
 }
 
 
 .decoracion-3 {
 
-    width:
-        150px;
+    top: 300px;
+    right: 16%;
 
-    height:
-        150px;
+    color: #60a5fa;
 
-    right:
-        -70px;
+    font-size: 35px;
 
-    top:
-        20px;
+}
 
-    background:
-        rgba(186,230,253,.25);
+
+.decoracion-4 {
+
+    top: 70px;
+    right: 9%;
+
+    color: #93c5fd;
+
+    font-size: 80px;
+
+}
+
+
+.decoracion-5 {
+
+    top: 100px;
+    left: 7%;
+
+    color: #c4b5fd;
+
+    font-size: 25px;
+
+    letter-spacing: 9px;
 
 }
 
 
 /* =====================================================
-   ANIMACIÓN
+   ROBOT DECORATIVO
 ===================================================== */
 
-@keyframes flotar {
+.robot-decorativo {
 
-    0%,
-    100% {
+    position: absolute;
+
+    top: 95px;
+    right: 30px;
+
+    width: 180px;
+
+    z-index: 1;
+
+    animation: robotFlota 4s ease-in-out infinite;
+
+}
+
+
+.robot-antena {
+
+    width: 5px;
+    height: 35px;
+
+    margin: auto;
+
+    background: #4f46e5;
+
+}
+
+
+.robot-antena::before {
+
+    content: "";
+
+    display: block;
+
+    width: 18px;
+    height: 18px;
+
+    transform:
+        translate(-6px,-8px);
+
+    border-radius: 50%;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
+
+}
+
+
+.robot-cabeza {
+
+    position: relative;
+
+    width: 155px;
+    height: 120px;
+
+    margin: auto;
+
+    border-radius: 38px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #e8e9f6
+        );
+
+    border: 2px solid #dbeafe;
+
+    box-shadow:
+
+        0 18px 35px
+        rgba(37,99,235,.16);
+
+}
+
+
+.robot-pantalla {
+
+    position: absolute;
+
+    left: 25px;
+    top: 30px;
+
+    width: 105px;
+    height: 62px;
+
+    border-radius: 28px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #111044,
+            #08082b
+        );
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    padding-top: 13px;
+
+    color: #38bdf8;
+
+    font-size: 27px;
+
+}
+
+
+.robot-sonrisa {
+
+    position: absolute;
+
+    bottom: 6px;
+
+    left: 43px;
+
+    color: #c084fc;
+
+    font-size: 25px;
+
+}
+
+
+.robot-oreja {
+
+    position: absolute;
+
+    width: 24px;
+    height: 43px;
+
+    top: 42px;
+
+    border-radius: 14px;
+
+    background: #4f46e5;
+
+}
+
+
+.robot-oreja.izquierda {
+
+    left: -13px;
+
+}
+
+
+.robot-oreja.derecha {
+
+    right: -13px;
+
+}
+
+
+.robot-cuerpo {
+
+    width: 95px;
+    height: 60px;
+
+    margin: -4px auto 0;
+
+    border-radius:
+        25px 25px 15px 15px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #e0e7ff,
+            #c7d2fe
+        );
+
+}
+
+
+@keyframes robotFlota {
+
+    0%,100% {
 
         transform:
             translateY(0);
@@ -1735,13 +990,872 @@ body {
 
 
 /* =====================================================
-   MENÚ MÓVIL
+   BIENVENIDA
+===================================================== */
+
+.bienvenida {
+
+    position: relative;
+
+    z-index: 3;
+
+    text-align: center;
+
+    margin:
+
+        65px auto
+        38px;
+
+    max-width: 850px;
+
+}
+
+
+.bienvenida h1 {
+
+    font-size: 43px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+    color: #101a3a;
+
+}
+
+
+.bienvenida h1 span {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #7c3aed,
+            #ec4899
+        );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+}
+
+
+.bienvenida p {
+
+    margin-top: 10px;
+
+    font-size: 19px;
+
+    color: #334155;
+
+}
+
+
+.bienvenida h2 {
+
+    margin-top: 30px;
+
+    font-size: 28px;
+
+}
+
+
+.linea-color {
+
+    width: 78px;
+    height: 4px;
+
+    margin: 18px auto;
+
+    border-radius: 20px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #7c3aed,
+            #2563eb
+        );
+
+}
+
+
+/* =====================================================
+   TARJETAS
+===================================================== */
+
+.tarjetas-cursos {
+
+    position: relative;
+
+    z-index: 4;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, minmax(145px,1fr));
+
+    gap: 15px;
+
+    max-width: 1280px;
+
+    margin: auto;
+
+}
+
+
+.tarjeta {
+
+    min-height: 310px;
+
+    padding: 25px 16px;
+
+    text-align: center;
+
+    border-radius: 20px;
+
+    background:
+
+        rgba(255,255,255,.82);
+
+    border: 1px solid var(--borde);
+
+    box-shadow:
+
+        0 10px 30px
+        rgba(15,23,42,.07);
+
+    backdrop-filter: blur(10px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    transition: .3s;
+
+}
+
+
+.tarjeta:hover {
+
+    transform:
+        translateY(-10px);
+
+    box-shadow:
+
+        0 20px 40px
+        rgba(79,70,229,.14);
+
+}
+
+
+.icono-curso {
+
+    width: 90px;
+    height: 90px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    font-size: 45px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.curso-matematica
+.icono-curso {
+
+    background: #ede9fe;
+
+}
+
+
+.curso-comunicacion
+.icono-curso {
+
+    background: #dbeafe;
+
+}
+
+
+.curso-ciencia
+.icono-curso {
+
+    background: #dcfce7;
+
+}
+
+
+.curso-sociales
+.icono-curso {
+
+    background: #ffedd5;
+
+}
+
+
+.curso-ingles
+.icono-curso {
+
+    background: #fce7f3;
+
+}
+
+
+.curso-computacion
+.icono-curso {
+
+    background: #dbeafe;
+
+}
+
+
+.tarjeta h3 {
+
+    font-size: 19px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.curso-matematica h3 {
+    color: #7c3aed;
+}
+
+.curso-comunicacion h3 {
+    color: #2563eb;
+}
+
+.curso-ciencia h3 {
+    color: #16a34a;
+}
+
+.curso-sociales h3 {
+    color: #ea580c;
+}
+
+.curso-ingles h3 {
+    color: #db2777;
+}
+
+.curso-computacion h3 {
+    color: #2563eb;
+}
+
+
+.tarjeta p {
+
+    flex: 1;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    color: #475569;
+
+}
+
+
+.entrar-curso {
+
+    width: 37px;
+    height: 37px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    color: white;
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+
+.curso-matematica
+.entrar-curso {
+
+    background: #7c3aed;
+
+}
+
+.curso-comunicacion
+.entrar-curso {
+
+    background: #2563eb;
+
+}
+
+.curso-ciencia
+.entrar-curso {
+
+    background: #16a34a;
+
+}
+
+.curso-sociales
+.entrar-curso {
+
+    background: #f97316;
+
+}
+
+.curso-ingles
+.entrar-curso {
+
+    background: #ec4899;
+
+}
+
+.curso-computacion
+.entrar-curso {
+
+    background: #2563eb;
+
+}
+
+
+.entrar-curso:hover {
+
+    transform:
+        scale(1.15);
+
+}
+
+
+/* =====================================================
+   SUGERENCIAS
+===================================================== */
+
+.sugerencias {
+
+    max-width: 1000px;
+
+    margin: 42px auto 25px;
+
+}
+
+
+.sugerencias > p {
+
+    color: #475569;
+
+    font-size: 14px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.botones-sugerencia {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+}
+
+
+.botones-sugerencia button {
+
+    padding: 12px 20px;
+
+    border-radius: 30px;
+
+    border: 1px solid #e5e7eb;
+
+    background: white;
+
+    color: #4f46e5;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px
+        rgba(15,23,42,.05);
+
+    transition: .2s;
+
+}
+
+
+.botones-sugerencia button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(79,70,229,.12);
+
+}
+
+
+/* =====================================================
+   CHAT
+===================================================== */
+
+.zona-chat {
+
+    display: none;
+
+    position: relative;
+
+    z-index: 10;
+
+    max-width: 1000px;
+
+    height: calc(100vh - 110px);
+
+    margin: 30px auto 0;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,.8);
+
+    border: 1px solid #e8e4ff;
+
+    box-shadow:
+
+        0 20px 50px
+        rgba(15,23,42,.08);
+
+    overflow: hidden;
+
+}
+
+
+.zona-chat.visible {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+/* =====================================================
+   MENSAJES
+===================================================== */
+
+.mensajes {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 30px;
+
+    background:
+
+        radial-gradient(
+            circle at top left,
+            rgba(237,233,254,.65),
+            transparent 30%
+        ),
+
+        #f8fafc;
+
+}
+
+
+.bot {
+
+    width: fit-content;
+
+    max-width: 78%;
+
+    padding: 18px 22px;
+
+    margin-bottom: 18px;
+
+    background: white;
+
+    border-left: 5px solid #7c3aed;
+
+    border-radius: 20px;
+
+    border-top-left-radius: 7px;
+
+    line-height: 1.7;
+
+    box-shadow:
+
+        0 8px 25px
+        rgba(15,23,42,.07);
+
+    animation:
+        aparecer .3s ease;
+
+}
+
+
+.bot::before {
+
+    content: "🤖";
+
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 35px;
+    height: 35px;
+
+    margin-right: 8px;
+
+    vertical-align: middle;
+
+    border-radius: 50%;
+
+    background: #ede9fe;
+
+}
+
+
+.bot strong,
+.bot b {
+
+    color: #6d28d9;
+
+}
+
+
+/* MENSAJE USUARIO */
+
+.mensajes > p {
+
+    width: fit-content;
+
+    max-width: 75%;
+
+    margin-left: auto;
+
+    margin-bottom: 18px;
+
+    padding: 14px 18px;
+
+    border-radius: 20px;
+
+    border-bottom-right-radius: 6px;
+
+    color: white;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #6d28d9,
+            #2563eb
+        );
+
+    box-shadow:
+
+        0 8px 20px
+        rgba(37,99,235,.2);
+
+}
+
+
+/* =====================================================
+   INPUT CHAT
+===================================================== */
+
+.entrada {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 15px;
+
+    background: white;
+
+    border-top: 1px solid #e5e7eb;
+
+}
+
+
+.boton-extra {
+
+    width: 48px;
+    height: 48px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f1edff;
+
+    color: #7c3aed;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+}
+
+
+.entrada input {
+
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 15px 18px;
+
+    border-radius: 20px;
+
+    border: 2px solid #e2e8f0;
+
+    outline: none;
+
+    font-size: 16px;
+
+}
+
+
+.entrada input:focus {
+
+    border-color: #8b5cf6;
+
+    box-shadow:
+
+        0 0 0 4px
+        rgba(139,92,246,.1);
+
+}
+
+
+.boton-enviar {
+
+    width: 52px;
+    height: 52px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
+
+    box-shadow:
+
+        0 8px 20px
+        rgba(79,70,229,.3);
+
+    transition: .25s;
+
+}
+
+
+.boton-enviar:hover {
+
+    transform:
+        scale(1.08)
+        rotate(-5deg);
+
+}
+
+
+/* =====================================================
+   SECCIONES EXTRA
+===================================================== */
+
+.seccion-extra {
+
+    display: none;
+
+    max-width: 800px;
+
+    margin: 100px auto;
+
+}
+
+
+.seccion-extra.mostrar {
+
+    display: block;
+
+}
+
+
+.extra-card {
+
+    text-align: center;
+
+    padding: 60px;
+
+    border-radius: 30px;
+
+    background: white;
+
+    box-shadow:
+
+        0 20px 50px
+        rgba(15,23,42,.08);
+
+}
+
+
+.extra-icon {
+
+    font-size: 60px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.extra-card h2 {
+
+    font-size: 32px;
+
+}
+
+
+.extra-card p {
+
+    margin: 15px;
+
+    color: #64748b;
+
+}
+
+
+.extra-action {
+
+    padding: 13px 25px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    color: white;
+
+    font-weight: bold;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================================
+   CURSO ABIERTO
+===================================================== */
+
+.curso-inicio {
+
+    text-align: center;
+
+}
+
+
+.curso-grande-icono {
+
+    font-size: 60px;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+@keyframes aparecer {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   MENU MÓVIL
 ===================================================== */
 
 .menu-movil {
 
-    display:
-        none;
+    display: none;
+
+    position: fixed;
+
+    top: 15px;
+    left: 15px;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #6d28d9;
+
+    color: white;
+
+    font-size: 20px;
+
+    z-index: 300;
 
 }
 
@@ -1752,11 +1866,17 @@ body {
 
 body.oscuro {
 
-    background:
-        #0f172a;
+    --texto: #e5e7eb;
 
-    color:
-        #e2e8f0;
+    background:
+
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(124,58,237,.22),
+            transparent 25%
+        ),
+
+        #090b18;
 
 }
 
@@ -1764,52 +1884,163 @@ body.oscuro {
 body.oscuro .sidebar {
 
     background:
-        #111827;
 
-    border-color:
-        #1e293b;
+        linear-gradient(
+            180deg,
+            #111427,
+            #0c1020
+        );
+
+    border-color: #20253d;
 
 }
 
 
 body.oscuro .logo h2,
-body.oscuro .bienvenida h1,
+body.oscuro .menu-btn,
+body.oscuro .curso-menu {
+
+    color: #f8fafc;
+
+}
+
+
+body.oscuro .menu-titulo {
+
+    color: #94a3b8;
+
+}
+
+
+body.oscuro .menu-btn:hover,
+body.oscuro .curso-menu:hover,
+body.oscuro .menu-btn.activo {
+
+    background: #211a3b;
+
+    color: #a78bfa;
+
+}
+
+
+body.oscuro .config-btn,
+body.oscuro .modo,
+body.oscuro .perfil {
+
+    background: #14182a;
+
+    border-color: #252a42;
+
+    color: #e5e7eb;
+
+}
+
+
+body.oscuro .main {
+
+    background:
+
+        radial-gradient(
+            circle at 70% 10%,
+            rgba(76,29,149,.18),
+            transparent 30%
+        );
+
+}
+
+
+body.oscuro .bienvenida h1 {
+
+    color: #f8fafc;
+
+}
+
+
+body.oscuro .bienvenida p,
 body.oscuro .bienvenida h2 {
 
-    color:
-        white;
+    color: #dbeafe;
 
 }
 
 
-body.oscuro .contenido {
+body.oscuro .tarjeta {
 
-    background:
-        #0f172a;
+    background: rgba(20,24,42,.88);
 
-}
-
-
-body.oscuro .curso-card,
-body.oscuro .entrada,
-body.oscuro .bot,
-body.oscuro .sugerencia,
-body.oscuro .estado {
-
-    background:
-        #1e293b;
-
-    color:
-        #e2e8f0;
+    border-color: #292d48;
 
 }
 
 
-body.oscuro .curso-card p,
-body.oscuro .bienvenida p {
+body.oscuro .tarjeta p {
 
-    color:
-        #94a3b8;
+    color: #cbd5e1;
+
+}
+
+
+body.oscuro .botones-sugerencia button {
+
+    background: #15192c;
+
+    border-color: #292d48;
+
+    color: #a78bfa;
+
+}
+
+
+body.oscuro .zona-chat {
+
+    background: #111427;
+
+    border-color: #282d48;
+
+}
+
+
+body.oscuro .mensajes {
+
+    background: #0f1323;
+
+}
+
+
+body.oscuro .bot {
+
+    background: #191d31;
+
+    color: #e5e7eb;
+
+}
+
+
+body.oscuro .entrada {
+
+    background: #111427;
+
+    border-color: #282d48;
+
+}
+
+
+body.oscuro .entrada input {
+
+    background: #191d31;
+
+    color: white;
+
+    border-color: #30364f;
+
+}
+
+
+body.oscuro .extra-card {
+
+    background: #15192c;
+
+    color: white;
 
 }
 
@@ -1818,29 +2049,26 @@ body.oscuro .bienvenida p {
    TABLET
 ===================================================== */
 
-@media (max-width: 1200px) {
+@media (max-width: 1150px) {
 
     .sidebar {
 
-        width:
-            230px;
-
-        min-width:
-            230px;
+        width: 250px;
 
     }
 
-    .cursos-container {
+    .tarjetas-cursos {
 
         grid-template-columns:
             repeat(3, 1fr);
 
     }
 
-    .robot-grande {
+    .robot-decorativo {
 
-        opacity:
-            .45;
+        opacity: .35;
+
+        right: 10px;
 
     }
 
@@ -1853,147 +2081,75 @@ body.oscuro .bienvenida p {
 
 @media (max-width: 800px) {
 
+    body {
+
+        overflow: auto;
+
+    }
+
     .sidebar {
 
-        position:
-            fixed;
+        position: fixed;
 
-        left:
-            -280px;
+        left: -295px;
 
-        transition:
-            .3s;
+        top: 0;
 
-    }
-
-
-    .sidebar.mostrar {
-
-        left:
-            0;
+        transition: .3s;
 
     }
 
+    .sidebar.abierta {
 
-    .contenido {
-
-        width:
-            100%;
-
-        padding:
-            15px;
+        left: 0;
 
     }
-
 
     .menu-movil {
 
-        display:
-            block;
-
-        position:
-            fixed;
-
-        left:
-            15px;
-
-        top:
-            15px;
-
-        z-index:
-            200;
-
-        width:
-            42px;
-
-        height:
-            42px;
-
-        border:
-            none;
-
-        border-radius:
-            12px;
-
-        background:
-            white;
-
-        box-shadow:
-            0 5px 15px
-            rgba(0,0,0,.12);
-
-        cursor:
-            pointer;
-
-        font-size:
-            20px;
+        display: block;
 
     }
 
+    .main {
 
-    .estado {
+        width: 100%;
 
-        top:
-            15px;
-
-    }
-
-
-    .boton-mas {
-
-        display:
-            none;
+        padding: 20px 15px;
 
     }
-
 
     .bienvenida {
 
-        min-height:
-            350px;
-
-        padding-top:
-            60px;
+        margin-top: 80px;
 
     }
-
 
     .bienvenida h1 {
 
-        font-size:
-            34px;
+        font-size: 32px;
 
     }
-
 
     .bienvenida p {
 
-        font-size:
-            15px;
+        font-size: 16px;
 
     }
-
 
     .bienvenida h2 {
 
-        font-size:
-            24px;
+        font-size: 23px;
 
     }
 
+    .robot-decorativo {
 
-    .robot-grande {
-
-        opacity:
-            .18;
-
-        right:
-            0;
+        display: none;
 
     }
 
-
-    .cursos-container {
+    .tarjetas-cursos {
 
         grid-template-columns:
             repeat(2, 1fr);
@@ -2009,74 +2165,45 @@ body.oscuro .bienvenida p {
 
 @media (max-width: 500px) {
 
-    .cursos-container {
+    .tarjetas-cursos {
 
-        grid-template-columns:
-            1fr;
-
-    }
-
-
-    .curso-card {
-
-        min-height:
-            240px;
+        grid-template-columns: 1fr;
 
     }
 
+    .tarjeta {
 
-    .sugerencias-lista {
-
-        flex-direction:
-            column;
+        min-height: 260px;
 
     }
 
+    .botones-sugerencia {
 
-    .sugerencia {
-
-        width:
-            100%;
+        flex-direction: column;
 
     }
 
+    .botones-sugerencia button {
 
-    .bienvenida {
-
-        min-height:
-            300px;
+        width: 100%;
 
     }
 
+    .zona-chat {
 
-    .bienvenida h1 {
-
-        font-size:
-            29px;
+        height: calc(100vh - 80px);
 
     }
 
+    .mensajes {
 
-    .bienvenida h2 {
-
-        font-size:
-            21px;
+        padding: 18px;
 
     }
 
+    .bot {
 
-    .entrada {
-
-        border-radius:
-            20px;
-
-    }
-
-
-    .boton-imagen {
-
-        display:
-            none;
+        max-width: 90%;
 
     }
 
