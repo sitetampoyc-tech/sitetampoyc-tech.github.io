@@ -8,957 +8,7 @@
     <title>Edu BOT IA</title>
 
     <link rel="stylesheet" href="style.css">
-<style>
-
-/* =========================================================
-   🚀 EDU BOT — DISEÑO FUTURISTA
-========================================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
-
-:root {
-    --purple: #6d28ff;
-    --blue: #1769ff;
-    --cyan: #00c8ff;
-    --pink: #ff3cac;
-    --green: #00b86b;
-    --orange: #ff8a00;
-
-    --text: #101936;
-    --muted: #68728f;
-
-    --glass: rgba(255,255,255,.72);
-    --border: rgba(109,40,255,.14);
-
-    --shadow:
-        0 20px 60px rgba(50,32,130,.12);
-}
-
-/* =========================================================
-   BASE
-========================================================= */
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Inter', sans-serif !important;
-
-    color: var(--text);
-
-    background:
-        radial-gradient(
-            circle at 80% 10%,
-            rgba(109,40,255,.16),
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 10% 85%,
-            rgba(0,200,255,.13),
-            transparent 25%
-        ),
-        linear-gradient(
-            135deg,
-            #f8f9ff,
-            #eef3ff,
-            #fbf8ff
-        ) !important;
-
-    min-height: 100vh;
-}
-
-/* =========================================================
-   FONDO DE CUADRÍCULA
-========================================================= */
-
-body::before {
-    content: "";
-
-    position: fixed;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    z-index: -1;
-
-    opacity: .35;
-
-    background-image:
-        linear-gradient(
-            rgba(109,40,255,.045) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(109,40,255,.045) 1px,
-            transparent 1px
-        );
-
-    background-size: 38px 38px;
-}
-
-/* =========================================================
-   BARRA LATERAL
-========================================================= */
-
-.sidebar {
-    background:
-        rgba(255,255,255,.72) !important;
-
-    backdrop-filter:
-        blur(25px);
-
-    -webkit-backdrop-filter:
-        blur(25px);
-
-    border-right:
-        1px solid var(--border) !important;
-
-    box-shadow:
-        12px 0 45px rgba(65,39,150,.08);
-}
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.logo-icon {
-    box-shadow:
-        0 0 0 5px rgba(109,40,255,.08),
-        0 12px 30px rgba(109,40,255,.22) !important;
-
-    border:
-        1px solid rgba(109,40,255,.16);
-}
-
-.logo h2 {
-    font-family:
-        'Space Grotesk',
-        sans-serif !important;
-
-    font-weight: 800;
-}
-
-.logo h2 span {
-
-    background:
-        linear-gradient(
-            90deg,
-            #1769ff,
-            #6d28ff,
-            #ff3cac
-        );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent !important;
-}
-
-/* =========================================================
-   NUEVO CHAT
-========================================================= */
-
-.nuevo-chat {
-
-    border: none !important;
-
-    background:
-        linear-gradient(
-            110deg,
-            #1769ff,
-            #6d28ff 55%,
-            #9b38ff
-        ) !important;
-
-    box-shadow:
-        0 12px 30px
-        rgba(79,57,255,.27) !important;
-
-    transition:
-        .25s ease;
-}
-
-.nuevo-chat:hover {
-
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 18px 40px
-        rgba(79,57,255,.35) !important;
-}
-
-/* =========================================================
-   MENÚ
-========================================================= */
-
-.menu-titulo {
-
-    color:
-        #77809d !important;
-
-    letter-spacing:
-        .13em;
-
-    font-size:
-        11px !important;
-
-    font-weight:
-        800 !important;
-}
-
-.menu-btn,
-.curso-menu,
-.config-btn {
-
-    border:
-        1px solid transparent !important;
-
-    transition:
-        .22s ease !important;
-}
-
-.menu-btn:hover,
-.curso-menu:hover,
-.config-btn:hover {
-
-    transform:
-        translateX(4px);
-
-    background:
-        rgba(109,40,255,.07) !important;
-
-    border-color:
-        rgba(109,40,255,.12) !important;
-}
-
-.menu-btn.activo {
-
-    color:
-        white !important;
-
-    background:
-        linear-gradient(
-            100deg,
-            #1769ff,
-            #6d28ff
-        ) !important;
-
-    box-shadow:
-        0 10px 25px
-        rgba(72,57,240,.22);
-}
-
-/* =========================================================
-   ESTADO ONLINE
-========================================================= */
-
-.estado-online {
-
-    background:
-        rgba(0,184,107,.10) !important;
-
-    border:
-        1px solid rgba(0,184,107,.16);
-}
-
-.estado-online span,
-.online-pill span {
-
-    box-shadow:
-        0 0 0 5px
-        rgba(0,184,107,.10),
-        0 0 14px
-        rgba(0,184,107,.65);
-}
-
-/* =========================================================
-   ONLINE SUPERIOR
-========================================================= */
-
-.online-pill {
-
-    border:
-        1px solid rgba(0,184,107,.15) !important;
-
-    background:
-        rgba(255,255,255,.72) !important;
-
-    backdrop-filter:
-        blur(18px);
-
-    box-shadow:
-        0 12px 35px
-        rgba(28,55,100,.10) !important;
-}
-
-/* =========================================================
-   TITULO PRINCIPAL
-========================================================= */
-
-.bienvenida h1 {
-
-    font-family:
-        'Space Grotesk',
-        sans-serif !important;
-
-    font-weight:
-        800 !important;
-
-    letter-spacing:
-        -.045em;
-
-    font-size:
-        clamp(
-            2.6rem,
-            5vw,
-            4.8rem
-        ) !important;
-
-    line-height:
-        1.02;
-}
-
-.bienvenida h1 span {
-
-    background:
-        linear-gradient(
-            100deg,
-            #1769ff,
-            #6d28ff 48%,
-            #ff3cac
-        );
-
-    -webkit-background-clip:
-        text;
-
-    background-clip:
-        text;
-
-    color:
-        transparent !important;
-}
-
-.bienvenida p {
-    color:
-        #5e6988 !important;
-}
-
-.bienvenida h2 {
-
-    font-family:
-        'Space Grotesk',
-        sans-serif !important;
-}
-
-.linea-color {
-
-    width:
-        100px !important;
-
-    height:
-        5px !important;
-
-    border-radius:
-        999px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #1769ff,
-            #6d28ff,
-            #ff3cac
-        ) !important;
-
-    box-shadow:
-        0 0 22px
-        rgba(109,40,255,.34);
-}
-
-/* =========================================================
-   DECORACIONES
-========================================================= */
-
-.decoracion {
-
-    filter:
-        drop-shadow(
-            0 0 14px
-            rgba(109,40,255,.35)
-        );
-
-    animation:
-        flotar 5s
-        ease-in-out
-        infinite;
-}
-
-.decoracion-2 {
-    color:
-        #ff3cac !important;
-}
-
-.decoracion-3 {
-    color:
-        #1769ff !important;
-}
-
-.decoracion-4 {
-    color:
-        #6d28ff !important;
-}
-
-@keyframes flotar {
-
-    0%,
-    100% {
-        transform:
-            translateY(0)
-            rotate(0deg);
-    }
-
-    50% {
-        transform:
-            translateY(-12px)
-            rotate(8deg);
-    }
-}
-
-/* =========================================================
-   ROBOT
-========================================================= */
-
-.robot-decorativo {
-
-    filter:
-        drop-shadow(
-            0 25px 35px
-            rgba(36,26,110,.18)
-        );
-
-    animation:
-        robotFlotando
-        4s
-        ease-in-out
-        infinite;
-}
-
-@keyframes robotFlotando {
-
-    0%,
-    100% {
-        transform:
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateY(-10px);
-    }
-}
-
-.robot-pantalla {
-
-    box-shadow:
-        inset 0 0 30px
-        rgba(0,200,255,.18),
-
-        0 0 35px
-        rgba(0,200,255,.18) !important;
-}
-
-/* =========================================================
-   TARJETAS DE CURSOS
-========================================================= */
-
-.tarjetas-cursos {
-    gap:
-        18px !important;
-}
-
-.tarjeta {
-
-    position:
-        relative;
-
-    overflow:
-        hidden;
-
-    background:
-        rgba(255,255,255,.70) !important;
-
-    backdrop-filter:
-        blur(18px);
-
-    -webkit-backdrop-filter:
-        blur(18px);
-
-    border:
-        1px solid
-        rgba(109,40,255,.14) !important;
-
-    border-radius:
-        26px !important;
-
-    box-shadow:
-        var(--shadow) !important;
-
-    transition:
-        transform .28s ease,
-        box-shadow .28s ease,
-        border-color .28s ease;
-}
-
-.tarjeta::before {
-
-    content:
-        "";
-
-    position:
-        absolute;
-
-    inset:
-        0;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.65),
-            transparent 45%
-        );
-
-    pointer-events:
-        none;
-}
-
-.tarjeta:hover {
-
-    transform:
-        translateY(-9px)
-        scale(1.015);
-
-    box-shadow:
-        0 28px 70px
-        rgba(50,32,130,.18) !important;
-
-    border-color:
-        rgba(109,40,255,.30) !important;
-}
-
-.tarjeta h3 {
-
-    font-family:
-        'Space Grotesk',
-        sans-serif !important;
-
-    font-weight:
-        800 !important;
-}
-
-.icono-curso {
-
-    position:
-        relative;
-
-    z-index:
-        2;
-
-    border:
-        1px solid
-        rgba(255,255,255,.7);
-
-    box-shadow:
-        0 12px 30px
-        rgba(65,45,150,.12);
-}
-
-/* =========================================================
-   BOTÓN DE CURSO
-========================================================= */
-
-.entrar-curso {
-
-    border:
-        none !important;
-
-    box-shadow:
-        0 8px 22px
-        rgba(40,40,100,.16);
-
-    transition:
-        .22s ease;
-}
-
-.entrar-curso:hover {
-
-    transform:
-        scale(1.12)
-        rotate(-4deg);
-
-    box-shadow:
-        0 12px 28px
-        rgba(40,40,100,.25);
-}
-
-/* =========================================================
-   SUGERENCIAS
-========================================================= */
-
-.botones-sugerencia button {
-
-    border:
-        1px solid
-        rgba(109,40,255,.12) !important;
-
-    background:
-        rgba(255,255,255,.70) !important;
-
-    backdrop-filter:
-        blur(14px);
-
-    box-shadow:
-        0 8px 25px
-        rgba(65,45,150,.08);
-
-    transition:
-        .22s ease !important;
-}
-
-.botones-sugerencia button:hover {
-
-    transform:
-        translateY(-4px);
-
-    border-color:
-        rgba(109,40,255,.28) !important;
-
-    box-shadow:
-        0 14px 32px
-        rgba(65,45,150,.13);
-}
-
-/* =========================================================
-   CHAT
-========================================================= */
-
-.zona-chat {
-
-    background:
-        rgba(255,255,255,.42) !important;
-
-    backdrop-filter:
-        blur(16px);
-}
-
-.bot {
-
-    border:
-        1px solid
-        rgba(109,40,255,.12) !important;
-
-    background:
-        rgba(255,255,255,.82) !important;
-
-    box-shadow:
-        0 15px 45px
-        rgba(52,38,125,.10) !important;
-
-    backdrop-filter:
-        blur(18px);
-}
-
-/* =========================================================
-   CAJA DE PREGUNTA
-========================================================= */
-
-.entrada {
-
-    border:
-        1px solid
-        rgba(109,40,255,.25) !important;
-
-    background:
-        rgba(255,255,255,.86) !important;
-
-    box-shadow:
-        0 18px 50px
-        rgba(58,35,140,.14),
-
-        0 0 0 5px
-        rgba(109,40,255,.035) !important;
-
-    backdrop-filter:
-        blur(22px);
-}
-
-.entrada:focus-within {
-
-    border-color:
-        #7c4dff !important;
-
-    box-shadow:
-        0 20px 55px
-        rgba(58,35,140,.18),
-
-        0 0 0 5px
-        rgba(109,40,255,.08) !important;
-}
-
-#pregunta {
-
-    font-family:
-        'Inter',
-        sans-serif !important;
-}
-
-/* =========================================================
-   BOTÓN ENVIAR
-========================================================= */
-
-.boton-enviar {
-
-    background:
-        linear-gradient(
-            135deg,
-            #1769ff,
-            #6d28ff,
-            #9b38ff
-        ) !important;
-
-    border:
-        none !important;
-
-    box-shadow:
-        0 10px 28px
-        rgba(80,45,230,.32) !important;
-
-    transition:
-        .22s ease;
-}
-
-.boton-enviar:hover {
-
-    transform:
-        scale(1.07)
-        rotate(-3deg);
-}
-
-.boton-extra {
-
-    border:
-        1px solid
-        rgba(109,40,255,.10) !important;
-
-    background:
-        rgba(109,40,255,.06) !important;
-}
-
-/* =========================================================
-   SECCIONES EXTRA
-========================================================= */
-
-.extra-card {
-
-    background:
-        rgba(255,255,255,.76) !important;
-
-    border:
-        1px solid
-        rgba(109,40,255,.14) !important;
-
-    box-shadow:
-        0 25px 70px
-        rgba(50,32,130,.14) !important;
-
-    backdrop-filter:
-        blur(24px);
-}
-
-.extra-action {
-
-    background:
-        linear-gradient(
-            100deg,
-            #1769ff,
-            #6d28ff
-        ) !important;
-
-    box-shadow:
-        0 12px 30px
-        rgba(72,57,240,.25);
-}
-
-/* =========================================================
-   MODO OSCURO
-========================================================= */
-
-body.oscuro {
-
-    background:
-        radial-gradient(
-            circle at 80% 10%,
-            rgba(109,40,255,.22),
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 15% 85%,
-            rgba(0,200,255,.10),
-            transparent 25%
-        ),
-        linear-gradient(
-            135deg,
-            #080b19,
-            #11152a,
-            #090b18
-        ) !important;
-
-    color:
-        #eef2ff;
-}
-
-body.oscuro .sidebar {
-
-    background:
-        rgba(10,13,29,.82) !important;
-
-    border-color:
-        rgba(139,92,246,.18) !important;
-}
-
-body.oscuro .menu-btn,
-body.oscuro .curso-menu,
-body.oscuro .config-btn {
-
-    color:
-        #e7eaff !important;
-}
-
-body.oscuro .menu-btn:hover,
-body.oscuro .curso-menu:hover,
-body.oscuro .config-btn:hover {
-
-    background:
-        rgba(139,92,246,.12) !important;
-}
-
-body.oscuro .bienvenida p {
-
-    color:
-        #aab3d1 !important;
-}
-
-body.oscuro .tarjeta {
-
-    background:
-        rgba(20,24,48,.78) !important;
-
-    border-color:
-        rgba(139,92,246,.22) !important;
-
-    box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.30) !important;
-}
-
-body.oscuro .bot {
-
-    background:
-        rgba(20,24,48,.85) !important;
-
-    color:
-        #edf0ff;
-}
-
-body.oscuro .entrada {
-
-    background:
-        rgba(16,20,40,.92) !important;
-
-    border-color:
-        rgba(139,92,246,.35) !important;
-}
-
-body.oscuro #pregunta {
-
-    color:
-        white !important;
-}
-
-body.oscuro #pregunta::placeholder {
-
-    color:
-        #8790b2;
-}
-
-body.oscuro .botones-sugerencia button {
-
-    background:
-        rgba(20,24,48,.78) !important;
-
-    color:
-        #e9ecff !important;
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 900px) {
-
-    .bienvenida h1 {
-
-        font-size:
-            2.6rem !important;
-    }
-
-    .tarjetas-cursos {
-
-        grid-template-columns:
-            repeat(2,1fr) !important;
-    }
-}
-
-@media (max-width: 600px) {
-
-    .tarjetas-cursos {
-
-        grid-template-columns:
-            1fr !important;
-    }
-
-    .bienvenida h1 {
-
-        font-size:
-            2.1rem !important;
-    }
-
-    .robot-decorativo {
-
-        transform:
-            scale(.72);
-    }
-
-    .botones-sugerencia {
-
-        flex-direction:
-            column;
-    }
-
-    .botones-sugerencia button {
-
-        width:
-            100%;
-    }
-}
-
-</style>
+</head>
 
 <body>
 
@@ -968,7 +18,9 @@ body.oscuro .botones-sugerencia button {
          BARRA LATERAL
     ====================================================== -->
 
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
+
+        <!-- LOGO -->
 
         <div class="logo">
 
@@ -976,9 +28,14 @@ body.oscuro .botones-sugerencia button {
                 🤖
             </div>
 
-            <div>
-                <h2>Edu <span>BOT</span></h2>
-                <p>Asistente educativo</p>
+            <div class="logo-texto">
+                <h2>
+                    Edu <span>BOT</span>
+                </h2>
+
+                <p>
+                    Asistente educativo
+                </p>
             </div>
 
         </div>
@@ -986,9 +43,18 @@ body.oscuro .botones-sugerencia button {
 
         <!-- NUEVO CHAT -->
 
-        <button id="nuevoChat" class="nuevo-chat">
-            <span>＋</span>
-            Nuevo chat
+        <button
+            id="nuevoChat"
+            class="nuevo-chat"
+            type="button"
+        >
+
+            <span class="nuevo-icono">＋</span>
+
+            <span>
+                Nuevo chat
+            </span>
+
         </button>
 
 
@@ -1000,28 +66,52 @@ body.oscuro .botones-sugerencia button {
 
         <nav class="menu">
 
-            <button class="menu-btn activo" data-seccion="inicio">
-                🏠
+            <button
+                class="menu-btn activo"
+                data-seccion="inicio"
+                type="button"
+            >
+                <span class="menu-icon">⌂</span>
                 <span>Inicio</span>
             </button>
 
-            <button class="menu-btn" data-seccion="cursos">
-                📚
+
+            <button
+                class="menu-btn"
+                data-seccion="cursos"
+                type="button"
+            >
+                <span class="menu-icon">▣</span>
                 <span>Cursos</span>
             </button>
 
-            <button class="menu-btn" data-seccion="aprender">
-                🎓
+
+            <button
+                class="menu-btn"
+                data-seccion="aprender"
+                type="button"
+            >
+                <span class="menu-icon">🎓</span>
                 <span>Aprender</span>
             </button>
 
-            <button class="menu-btn" data-seccion="favoritos">
-                ⭐
+
+            <button
+                class="menu-btn"
+                data-seccion="favoritos"
+                type="button"
+            >
+                <span class="menu-icon">★</span>
                 <span>Favoritos</span>
             </button>
 
-            <button class="menu-btn" data-seccion="preguntas">
-                📝
+
+            <button
+                class="menu-btn"
+                data-seccion="preguntas"
+                type="button"
+            >
+                <span class="menu-icon">▤</span>
                 <span>Mis preguntas</span>
             </button>
 
@@ -1034,36 +124,96 @@ body.oscuro .botones-sugerencia button {
             CURSOS
         </div>
 
+
         <div class="cursos-menu">
 
-            <button class="curso-menu" data-curso="Matemática">
-                🧮
-                <span>Matemática</span>
+            <button
+                class="curso-menu"
+                data-curso="Matemática"
+                type="button"
+            >
+                <span class="curso-menu-icon matematica">
+                    ∑
+                </span>
+
+                <span>
+                    Matemática
+                </span>
             </button>
 
-            <button class="curso-menu" data-curso="Comunicación">
-                📖
-                <span>Comunicación</span>
+
+            <button
+                class="curso-menu"
+                data-curso="Comunicación"
+                type="button"
+            >
+                <span class="curso-menu-icon comunicacion">
+                    📖
+                </span>
+
+                <span>
+                    Comunicación
+                </span>
             </button>
 
-            <button class="curso-menu" data-curso="Ciencia y Tecnología">
-                🧪
-                <span>Ciencia</span>
+
+            <button
+                class="curso-menu"
+                data-curso="Ciencia y Tecnología"
+                type="button"
+            >
+                <span class="curso-menu-icon ciencia">
+                    🧪
+                </span>
+
+                <span>
+                    Ciencia
+                </span>
             </button>
 
-            <button class="curso-menu" data-curso="Ciencias Sociales">
-                🌎
-                <span>Sociales</span>
+
+            <button
+                class="curso-menu"
+                data-curso="Ciencias Sociales"
+                type="button"
+            >
+                <span class="curso-menu-icon sociales">
+                    🌎
+                </span>
+
+                <span>
+                    Sociales
+                </span>
             </button>
 
-            <button class="curso-menu" data-curso="Inglés">
-                🇬🇧
-                <span>Inglés</span>
+
+            <button
+                class="curso-menu"
+                data-curso="Inglés"
+                type="button"
+            >
+                <span class="curso-menu-icon ingles">
+                    🇬🇧
+                </span>
+
+                <span>
+                    Inglés
+                </span>
             </button>
 
-            <button class="curso-menu" data-curso="Computación">
-                💻
-                <span>Computación</span>
+
+            <button
+                class="curso-menu"
+                data-curso="Computación"
+                type="button"
+            >
+                <span class="curso-menu-icon computacion">
+                    💻
+                </span>
+
+                <span>
+                    Computación
+                </span>
             </button>
 
         </div>
@@ -1074,12 +224,17 @@ body.oscuro .botones-sugerencia button {
         <div class="estado">
 
             <div class="menu-titulo">
-                Edu BOT En línea
+                EDU BOT
             </div>
 
             <div class="estado-online">
-                <span></span>
-                En línea
+
+                <span class="estado-punto"></span>
+
+                <span>
+                    En línea
+                </span>
+
             </div>
 
         </div>
@@ -1087,9 +242,20 @@ body.oscuro .botones-sugerencia button {
 
         <!-- CONFIGURACIÓN -->
 
-        <button id="configuracion" class="config-btn">
-            ⚙️
-            <span>Configuración</span>
+        <button
+            id="configuracion"
+            class="config-btn"
+            type="button"
+        >
+
+            <span>
+                ⚙
+            </span>
+
+            <span>
+                Configuración
+            </span>
+
         </button>
 
 
@@ -1097,10 +263,18 @@ body.oscuro .botones-sugerencia button {
 
         <div class="modo">
 
-            <div>
-                🌙
-                <span>Modo oscuro</span>
+            <div class="modo-texto">
+
+                <span>
+                    ◐
+                </span>
+
+                <span>
+                    Modo oscuro
+                </span>
+
             </div>
+
 
             <label class="switch">
 
@@ -1116,7 +290,7 @@ body.oscuro .botones-sugerencia button {
         </div>
 
 
-        <!-- PERFIL BOT -->
+        <!-- PERFIL -->
 
         <div class="perfil">
 
@@ -1124,9 +298,12 @@ body.oscuro .botones-sugerencia button {
                 🤖
             </div>
 
+
             <div class="perfil-texto">
 
-                <strong>Edu BOT</strong>
+                <strong>
+                    Edu BOT
+                </strong>
 
                 <span>
                     Tu compañero para aprender
@@ -1134,7 +311,11 @@ body.oscuro .botones-sugerencia button {
 
             </div>
 
-            <button class="corazon">
+
+            <button
+                class="corazon"
+                type="button"
+            >
                 ♡
             </button>
 
@@ -1149,17 +330,33 @@ body.oscuro .botones-sugerencia button {
 
     <main class="main">
 
+        <!-- BOTÓN MÓVIL -->
 
-        <!-- BOTÓN MENÚ MÓVIL -->
-
-        <button id="abrirMenu" class="menu-movil">
+        <button
+            id="abrirMenu"
+            class="menu-movil"
+            type="button"
+        >
             ☰
         </button>
 
 
-        <!-- ESTADO SUPERIOR -->
+        <!-- BARRA SUPERIOR -->
 
-        <div class="estado-superior">
+        <header class="topbar">
+
+            <div class="topbar-titulo">
+
+                <span class="topbar-mini-icon">
+                    ✦
+                </span>
+
+                <span>
+                    Edu BOT IA
+                </span>
+
+            </div>
+
 
             <div class="online-pill">
 
@@ -1169,244 +366,390 @@ body.oscuro .botones-sugerencia button {
 
             </div>
 
-        </div>
+
+            <button
+                class="topbar-boton"
+                type="button"
+                title="Más opciones"
+            >
+                ⋮
+            </button>
+
+        </header>
 
 
         <!-- DECORACIONES -->
 
-        <div class="decoracion decoracion-1">✦</div>
-        <div class="decoracion decoracion-2">＋</div>
-        <div class="decoracion decoracion-3">✦</div>
-        <div class="decoracion decoracion-4">◌</div>
-        <div class="decoracion decoracion-5">• • •</div>
+        <div class="decoracion decoracion-1">
+            ✦
+        </div>
+
+        <div class="decoracion decoracion-2">
+            +
+        </div>
+
+        <div class="decoracion decoracion-3">
+            ✦
+        </div>
+
+        <div class="decoracion decoracion-4">
+            ◌
+        </div>
+
+        <div class="decoracion decoracion-5">
+            • • •
+        </div>
 
 
-        <!-- ROBOT DECORATIVO -->
+        <!-- =================================================
+             INICIO
+        ================================================== -->
 
-        <div class="robot-decorativo">
+        <section
+            id="inicio"
+            class="seccion inicio-seccion"
+        >
 
-            <div class="robot-antena"></div>
+            <!-- ROBOT DECORATIVO -->
 
-            <div class="robot-cabeza">
+            <div class="robot-decorativo">
 
-                <div class="robot-oreja izquierda"></div>
-                <div class="robot-oreja derecha"></div>
+                <div class="robot-antena">
+                    <span></span>
+                </div>
 
-                <div class="robot-pantalla">
 
-                    <span>⌒</span>
-                    <span>⌒</span>
+                <div class="robot-cabeza">
 
-                    <div class="robot-sonrisa">
-                        ◡
+                    <div class="robot-oreja izquierda"></div>
+
+                    <div class="robot-oreja derecha"></div>
+
+
+                    <div class="robot-pantalla">
+
+                        <div class="robot-ojos">
+
+                            <span></span>
+
+                            <span></span>
+
+                        </div>
+
+
+                        <div class="robot-sonrisa">
+                            ◡
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="robot-cuello"></div>
+
+                <div class="robot-cuerpo">
+
+                    <div class="robot-pecho">
+                        ✦
                     </div>
 
                 </div>
 
             </div>
 
-            <div class="robot-cuerpo"></div>
 
-        </div>
-
-
-        <!-- =================================================
-             PÁGINA INICIO
-        ================================================== -->
-
-        <section id="inicio" class="seccion inicio-seccion">
+            <!-- BIENVENIDA -->
 
             <div class="bienvenida">
 
+                <div class="badge-bienvenida">
+
+                    <span>
+                        ✨
+                    </span>
+
+                    Asistente educativo inteligente
+
+                </div>
+
+
                 <h1>
+
                     ¡Hola! Soy
-                    <span>Edu BOT</span>
+
+                    <span>
+                        Edu BOT
+                    </span>
+
                     👋
+
                 </h1>
 
+
                 <p>
-                    Tu asistente educativo está listo para ayudarte a aprender.
+                    Tu asistente educativo está listo
+                    para ayudarte a aprender.
                 </p>
+
 
                 <h2>
                     ¿Qué quieres aprender hoy?
                 </h2>
 
-                <div class="linea-color"></div>
+
+                <div class="linea-color">
+
+                    <span></span>
+
+                </div>
 
             </div>
 
 
-            <!-- TARJETAS -->
+            <!-- =================================================
+                 TARJETAS DE CURSOS
+            ================================================== -->
 
-            <div id="cursos" class="tarjetas-cursos">
+            <div
+                id="cursos"
+                class="tarjetas-cursos"
+            >
 
 
                 <!-- MATEMÁTICA -->
 
-                <div class="tarjeta curso-matematica">
+                <article class="tarjeta curso-matematica">
+
+                    <div class="tarjeta-brillo"></div>
+
 
                     <div class="icono-curso">
-                        🧮
+
+                        <span>
+                            ∑
+                        </span>
+
                     </div>
+
 
                     <h3>
                         Matemática
                     </h3>
+
 
                     <p>
                         Números, álgebra,
                         geometría y más
                     </p>
 
+
                     <button
                         class="entrar-curso"
                         data-curso="Matemática"
+                        type="button"
                     >
                         →
                     </button>
 
-                </div>
+                </article>
 
 
                 <!-- COMUNICACIÓN -->
 
-                <div class="tarjeta curso-comunicacion">
+                <article class="tarjeta curso-comunicacion">
+
+                    <div class="tarjeta-brillo"></div>
+
 
                     <div class="icono-curso">
-                        📖
+
+                        <span>
+                            📖
+                        </span>
+
                     </div>
+
 
                     <h3>
                         Comunicación
                     </h3>
+
 
                     <p>
                         Lectura, escritura,
                         ortografía y más
                     </p>
 
+
                     <button
                         class="entrar-curso"
                         data-curso="Comunicación"
+                        type="button"
                     >
                         →
                     </button>
 
-                </div>
+                </article>
 
 
                 <!-- CIENCIA -->
 
-                <div class="tarjeta curso-ciencia">
+                <article class="tarjeta curso-ciencia">
+
+                    <div class="tarjeta-brillo"></div>
+
 
                     <div class="icono-curso">
-                        🧪
+
+                        <span>
+                            🧪
+                        </span>
+
                     </div>
+
 
                     <h3>
                         Ciencia
                     </h3>
+
 
                     <p>
                         Biología, química,
                         física y tecnología
                     </p>
 
+
                     <button
                         class="entrar-curso"
                         data-curso="Ciencia y Tecnología"
+                        type="button"
                     >
                         →
                     </button>
 
-                </div>
+                </article>
 
 
                 <!-- SOCIALES -->
 
-                <div class="tarjeta curso-sociales">
+                <article class="tarjeta curso-sociales">
+
+                    <div class="tarjeta-brillo"></div>
+
 
                     <div class="icono-curso">
-                        🌎
+
+                        <span>
+                            🌎
+                        </span>
+
                     </div>
+
 
                     <h3>
                         Ciencias Sociales
                     </h3>
+
 
                     <p>
                         Historia, geografía,
                         economía y más
                     </p>
 
+
                     <button
                         class="entrar-curso"
                         data-curso="Ciencias Sociales"
+                        type="button"
                     >
                         →
                     </button>
 
-                </div>
+                </article>
 
 
                 <!-- INGLÉS -->
 
-                <div class="tarjeta curso-ingles">
+                <article class="tarjeta curso-ingles">
+
+                    <div class="tarjeta-brillo"></div>
+
 
                     <div class="icono-curso">
-                        🇬🇧
+
+                        <span>
+                            🇬🇧
+                        </span>
+
                     </div>
+
 
                     <h3>
                         Inglés
                     </h3>
+
 
                     <p>
                         Gramática, vocabulario,
                         conversación y más
                     </p>
 
+
                     <button
                         class="entrar-curso"
                         data-curso="Inglés"
+                        type="button"
                     >
                         →
                     </button>
 
-                </div>
+                </article>
 
 
                 <!-- COMPUTACIÓN -->
 
-                <div class="tarjeta curso-computacion">
+                <article class="tarjeta curso-computacion">
+
+                    <div class="tarjeta-brillo"></div>
+
 
                     <div class="icono-curso">
-                        💻
+
+                        <span>
+                            💻
+                        </span>
+
                     </div>
+
 
                     <h3>
                         Computación
                     </h3>
 
+
                     <p>
-                        Tecnología, programación
-                        y más
+                        Tecnología,
+                        programación y más
                     </p>
+
 
                     <button
                         class="entrar-curso"
                         data-curso="Computación"
+                        type="button"
                     >
                         →
                     </button>
 
-                </div>
+                </article>
 
             </div>
 
 
-            <!-- SUGERENCIAS -->
+            <!-- =================================================
+                 SUGERENCIAS
+            ================================================== -->
 
             <div class="sugerencias">
 
@@ -1414,22 +757,79 @@ body.oscuro .botones-sugerencia button {
                     También puedes probar:
                 </p>
 
+
                 <div class="botones-sugerencia">
 
-                    <button data-pregunta="Explícame un tema">
-                        🧠 Explícame un tema
+
+                    <button
+                        data-pregunta="Explícame un tema"
+                        type="button"
+                    >
+
+                        <span>
+                            🧠
+                        </span>
+
+                        Explícame un tema
+
+                        <b>
+                            →
+                        </b>
+
                     </button>
 
-                    <button data-pregunta="Hazme una pregunta">
-                        ❓ Hazme una pregunta
+
+                    <button
+                        data-pregunta="Hazme una pregunta"
+                        type="button"
+                    >
+
+                        <span>
+                            ❓
+                        </span>
+
+                        Hazme una pregunta
+
+                        <b>
+                            →
+                        </b>
+
                     </button>
 
-                    <button data-pregunta="Hazme un resumen de un tema">
-                        📚 Resumen de un tema
+
+                    <button
+                        data-pregunta="Hazme un resumen de un tema"
+                        type="button"
+                    >
+
+                        <span>
+                            📚
+                        </span>
+
+                        Resumen de un tema
+
+                        <b>
+                            →
+                        </b>
+
                     </button>
 
-                    <button data-pregunta="Ayúdame a estudiar">
-                        ✨ Ayúdame a estudiar
+
+                    <button
+                        data-pregunta="Ayúdame a estudiar"
+                        type="button"
+                    >
+
+                        <span>
+                            ✨
+                        </span>
+
+                        Ayúdame a estudiar
+
+                        <b>
+                            →
+                        </b>
+
                     </button>
 
                 </div>
@@ -1440,35 +840,95 @@ body.oscuro .botones-sugerencia button {
 
 
         <!-- =================================================
-             CHAT
+             ZONA DEL CHAT
         ================================================== -->
 
-        <section id="zonaChat" class="zona-chat">
+        <section
+            id="zonaChat"
+            class="zona-chat"
+        >
 
-            <div id="chat" class="mensajes">
 
-                <div class="bot">
+            <!-- CABECERA DEL CHAT -->
 
-                    <strong>Hola 👋</strong>
+            <div class="chat-header">
 
-                    <br><br>
+                <div class="chat-header-icon">
+                    🤖
+                </div>
 
-                    Soy <b>Edu BOT</b> 🤖.
 
-                    <br><br>
+                <div>
 
-                    Estoy preparado para ayudarte a aprender.
+                    <strong>
+                        Edu BOT
+                    </strong>
 
-                    <br><br>
+                    <span>
+                        Asistente educativo
+                    </span>
 
-                    Selecciona un curso o escríbeme una pregunta para comenzar.
+                </div>
+
+
+                <div class="chat-header-status">
+
+                    <span></span>
+
+                    En línea
 
                 </div>
 
             </div>
 
 
-            <!-- ENTRADA -->
+            <!-- MENSAJES -->
+
+            <div
+                id="chat"
+                class="mensajes"
+            >
+
+                <div class="bot">
+
+                    <div class="mensaje-avatar">
+                        🤖
+                    </div>
+
+
+                    <div class="mensaje-contenido">
+
+                        <strong>
+                            ¡Hola! 👋
+                        </strong>
+
+
+                        <p>
+                            Soy <b>Edu BOT</b>.
+                        </p>
+
+
+                        <p>
+                            Estoy preparado para ayudarte
+                            a aprender.
+                        </p>
+
+
+                        <p>
+                            Selecciona un curso o escríbeme
+                            una pregunta para comenzar.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ENTRADA DEL CHAT
+            ================================================== -->
 
             <div class="entrada">
 
@@ -1476,16 +936,23 @@ body.oscuro .botones-sugerencia button {
                     id="botonImagen"
                     class="boton-extra"
                     title="Imagen"
+                    type="button"
                 >
                     🖼️
                 </button>
 
-                <input
-                    type="text"
-                    id="pregunta"
-                    placeholder="Escribe tu pregunta aquí..."
-                    autocomplete="off"
-                >
+
+                <div class="entrada-centro">
+
+                    <input
+                        type="text"
+                        id="pregunta"
+                        placeholder="Escribe tu pregunta aquí..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
 
                 <button
                     id="enviar"
@@ -1498,14 +965,29 @@ body.oscuro .botones-sugerencia button {
 
             </div>
 
+
+            <div class="chat-ayuda">
+
+                <span>
+                    ✦
+                </span>
+
+                Edu BOT puede ayudarte a estudiar,
+                practicar y comprender tus temas.
+
+            </div>
+
         </section>
 
 
         <!-- =================================================
-             SECCIONES DEL MENÚ
+             APRENDER
         ================================================== -->
 
-        <section id="aprender" class="seccion-extra">
+        <section
+            id="aprender"
+            class="seccion-extra"
+        >
 
             <div class="extra-card">
 
@@ -1513,15 +995,23 @@ body.oscuro .botones-sugerencia button {
                     🎓
                 </div>
 
+
                 <h2>
                     Aprender
                 </h2>
 
+
                 <p>
-                    Elige un curso para comenzar a estudiar.
+                    Elige un curso para comenzar
+                    tu aprendizaje.
                 </p>
 
-                <button class="extra-action" data-curso="Matemática">
+
+                <button
+                    class="extra-action"
+                    data-curso="Matemática"
+                    type="button"
+                >
                     Comenzar a aprender →
                 </button>
 
@@ -1530,7 +1020,14 @@ body.oscuro .botones-sugerencia button {
         </section>
 
 
-        <section id="favoritos" class="seccion-extra">
+        <!-- =================================================
+             FAVORITOS
+        ================================================== -->
+
+        <section
+            id="favoritos"
+            class="seccion-extra"
+        >
 
             <div class="extra-card">
 
@@ -1538,9 +1035,11 @@ body.oscuro .botones-sugerencia button {
                     ⭐
                 </div>
 
+
                 <h2>
                     Favoritos
                 </h2>
+
 
                 <p>
                     Aquí aparecerán tus contenidos favoritos.
@@ -1551,7 +1050,14 @@ body.oscuro .botones-sugerencia button {
         </section>
 
 
-        <section id="preguntas" class="seccion-extra">
+        <!-- =================================================
+             MIS PREGUNTAS
+        ================================================== -->
+
+        <section
+            id="preguntas"
+            class="seccion-extra"
+        >
 
             <div class="extra-card">
 
@@ -1559,9 +1065,11 @@ body.oscuro .botones-sugerencia button {
                     📝
                 </div>
 
+
                 <h2>
                     Mis preguntas
                 </h2>
+
 
                 <p>
                     Tus preguntas recientes aparecerán aquí.
@@ -1571,22 +1079,30 @@ body.oscuro .botones-sugerencia button {
 
         </section>
 
-
     </main>
 
 </div>
 
 
 <!-- =====================================================
-     TODOS TUS CONOCIMIENTOS
+     CONOCIMIENTOS
+     
+     NO CAMBIAR ESTA PARTE.
+     Estos archivos contienen la información educativa.
 ====================================================== -->
 
 <script src="conocimientos.js"></script>
+
+
+<!-- COMUNICACIÓN -->
 
 <script src="comprension1.js"></script>
 <script src="produccion1.js"></script>
 <script src="literatura1.js"></script>
 <script src="comunicacion.js"></script>
+
+
+<!-- CIENCIA Y TECNOLOGÍA -->
 
 <script src="seres_vivos_ambiente.js"></script>
 <script src="cuerpo_humano_salud.js"></script>
@@ -1615,15 +1131,24 @@ body.oscuro .botones-sugerencia button {
 <script src="cts5.js"></script>
 <script src="cyt.js"></script>
 
+
+<!-- CIENCIAS SOCIALES -->
+
 <script src="historiaPeru1.js"></script>
 <script src="historiaUniversal1.js"></script>
 <script src="economia1.js"></script>
 <script src="sociales.js"></script>
 
+
+<!-- INGLÉS -->
+
 <script src="inglesBasico.js"></script>
 <script src="inglesIntermedio.js"></script>
 <script src="inglesAvanzado.js"></script>
 <script src="ingles.js"></script>
+
+
+<!-- MATEMÁTICA -->
 
 <script src="aritmetica1.js"></script>
 <script src="aritmetica2.js"></script>
@@ -1655,310 +1180,133 @@ body.oscuro .botones-sugerencia button {
 <script src="matematica.js"></script>
 
 
-<!-- APP PRINCIPAL -->
+<!-- =====================================================
+     APP PRINCIPAL
+     
+     IMPORTANTE:
+     app.js se carga DESPUÉS de los conocimientos.
+====================================================== -->
 
 <script src="app.js"></script>
 
 
 <!-- =====================================================
-     FUNCIONES DE DISEÑO
+     FUNCIONES VISUALES
 ====================================================== -->
 
 <script>
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* ==========================================
-       NUEVO CHAT
-    ========================================== */
-
-    const nuevoChat = document.getElementById("nuevoChat");
-
-    nuevoChat.addEventListener("click", () => {
-
-        const chat = document.getElementById("chat");
-        const zonaChat = document.getElementById("zonaChat");
-        const inicio = document.getElementById("inicio");
-
-        chat.innerHTML = `
-            <div class="bot">
-                <strong>¡Nuevo chat! 👋</strong>
-                <br><br>
-                Soy <b>Edu BOT</b> 🤖.
-                <br><br>
-                ¿Qué quieres aprender hoy?
-            </div>
-        `;
-
-        document.getElementById("pregunta").value = "";
-
-        zonaChat.classList.remove("visible");
-
-        inicio.style.display = "block";
-
-        document.querySelectorAll(".menu-btn")
-            .forEach(btn => btn.classList.remove("activo"));
-
-        document.querySelector('[data-seccion="inicio"]')
-            .classList.add("activo");
-
-        chat.scrollTop = 0;
-
-    });
-
-
-    /* ==========================================
-       MENÚ
-    ========================================== */
-
-    document.querySelectorAll(".menu-btn")
-        .forEach(btn => {
-
-            btn.addEventListener("click", () => {
-
-                const seccion = btn.dataset.seccion;
-
-                document.querySelectorAll(".menu-btn")
-                    .forEach(b => b.classList.remove("activo"));
-
-                btn.classList.add("activo");
-
-                if (seccion === "inicio") {
-
-                    document.getElementById("inicio")
-                        .style.display = "block";
-
-                    document.getElementById("zonaChat")
-                        .classList.remove("visible");
-
-                    document.querySelectorAll(".seccion-extra")
-                        .forEach(s => s.classList.remove("mostrar"));
-
-                }
-
-                else if (seccion === "cursos") {
-
-                    document.getElementById("inicio")
-                        .style.display = "block";
-
-                    document.getElementById("zonaChat")
-                        .classList.remove("visible");
-
-                    document.getElementById("cursos")
-                        .scrollIntoView({
-                            behavior: "smooth"
-                        });
-
-                }
-
-                else {
-
-                    document.getElementById("inicio")
-                        .style.display = "none";
-
-                    document.getElementById("zonaChat")
-                        .classList.remove("visible");
-
-                    document.querySelectorAll(".seccion-extra")
-                        .forEach(s => s.classList.remove("mostrar"));
-
-                    const extra =
-                        document.getElementById(seccion);
-
-                    if (extra) {
-
-                        extra.classList.add("mostrar");
-
-                    }
-
-                }
-
-            });
-
-        });
-
-
-    /* ==========================================
-       CURSOS
-    ========================================== */
-
-    function abrirCurso(curso) {
-
-        document.getElementById("inicio")
-            .style.display = "none";
-
-        document.querySelectorAll(".seccion-extra")
-            .forEach(s => s.classList.remove("mostrar"));
-
-        document.getElementById("zonaChat")
-            .classList.add("visible");
-
-        document.querySelectorAll(".menu-btn")
-            .forEach(btn => btn.classList.remove("activo"));
-
-        document.querySelector('[data-seccion="cursos"]')
-            .classList.add("activo");
-
-
-        const chat =
-            document.getElementById("chat");
-
-        chat.innerHTML = `
-            <div class="bot curso-inicio">
-
-                <div class="curso-grande-icono">
-                    ${obtenerIcono(curso)}
-                </div>
-
-                <strong>¡Vamos a estudiar ${curso}! 🚀</strong>
-
-                <br><br>
-
-                Soy Edu BOT y estoy listo para ayudarte.
-
-                <br><br>
-
-                Puedes preguntarme cualquier cosa relacionada con
-                <b>${curso}</b>.
-
-                <br><br>
-
-                ✨ Escribe tu pregunta abajo para comenzar.
-
-            </div>
-        `;
-
-        document.getElementById("pregunta").focus();
-
-    }
-
-
-    function obtenerIcono(curso) {
-
-        const iconos = {
-
-            "Matemática": "🧮",
-
-            "Comunicación": "📖",
-
-            "Ciencia y Tecnología": "🧪",
-
-            "Ciencias Sociales": "🌎",
-
-            "Inglés": "🇬🇧",
-
-            "Computación": "💻"
-
-        };
-
-        return iconos[curso] || "📚";
-
-    }
-
-
-    document.querySelectorAll(".entrar-curso")
-        .forEach(btn => {
-
-            btn.addEventListener("click", () => {
-
-                abrirCurso(btn.dataset.curso);
-
-            });
-
-        });
-
-
-    document.querySelectorAll(".curso-menu")
-        .forEach(btn => {
-
-            btn.addEventListener("click", () => {
-
-                abrirCurso(btn.dataset.curso);
-
-            });
-
-        });
-
-
-    document.querySelectorAll(".extra-action")
-        .forEach(btn => {
-
-            btn.addEventListener("click", () => {
-
-                abrirCurso(btn.dataset.curso);
-
-            });
-
-        });
-
-
-    /* ==========================================
-       SUGERENCIAS
-    ========================================== */
-
-    document.querySelectorAll("[data-pregunta]")
-        .forEach(btn => {
-
-            btn.addEventListener("click", () => {
-
-                const input =
-                    document.getElementById("pregunta");
-
-                input.value =
-                    btn.dataset.pregunta;
-
-                document.getElementById("zonaChat")
-                    .classList.add("visible");
-
-                document.getElementById("inicio")
-                    .style.display = "none";
-
-                input.focus();
-
-            });
-
-        });
-
+document.addEventListener("DOMContentLoaded", function () {
 
     /* ==========================================
        MODO OSCURO
     ========================================== */
 
-    const modo =
+    const modoOscuro =
         document.getElementById("modoOscuro");
 
-    if (localStorage.getItem("eduBotModo") === "oscuro") {
+    if (
+        localStorage.getItem("eduBotModo") === "oscuro"
+    ) {
 
         document.body.classList.add("oscuro");
 
-        modo.checked = true;
+        if (modoOscuro) {
+            modoOscuro.checked = true;
+        }
 
     }
 
 
-    modo.addEventListener("change", () => {
+    if (modoOscuro) {
 
-        if (modo.checked) {
+        modoOscuro.addEventListener(
+            "change",
+            function () {
 
-            document.body.classList.add("oscuro");
+                if (this.checked) {
 
-            localStorage.setItem(
-                "eduBotModo",
-                "oscuro"
-            );
+                    document.body.classList.add(
+                        "oscuro"
+                    );
 
-        }
+                    localStorage.setItem(
+                        "eduBotModo",
+                        "oscuro"
+                    );
 
-        else {
+                } else {
 
-            document.body.classList.remove("oscuro");
+                    document.body.classList.remove(
+                        "oscuro"
+                    );
 
-            localStorage.setItem(
-                "eduBotModo",
-                "claro"
-            );
+                    localStorage.setItem(
+                        "eduBotModo",
+                        "claro"
+                    );
 
-        }
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       MENÚ MÓVIL
+    ========================================== */
+
+    const abrirMenu =
+        document.getElementById("abrirMenu");
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+
+    if (abrirMenu && sidebar) {
+
+        abrirMenu.addEventListener(
+            "click",
+            function () {
+
+                sidebar.classList.toggle(
+                    "abierta"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       CERRAR SIDEBAR AL ELEGIR OPCIÓN
+    ========================================== */
+
+    document.querySelectorAll(
+        ".menu-btn, .curso-menu"
+    ).forEach(function (boton) {
+
+        boton.addEventListener(
+            "click",
+            function () {
+
+                if (window.innerWidth <= 900) {
+
+                    if (sidebar) {
+
+                        sidebar.classList.remove(
+                            "abierta"
+                        );
+
+                    }
+
+                }
+
+            }
+        );
 
     });
 
@@ -1967,31 +1315,73 @@ document.addEventListener("DOMContentLoaded", () => {
        CONFIGURACIÓN
     ========================================== */
 
-    document.getElementById("configuracion")
-        .addEventListener("click", () => {
+    const configuracion =
+        document.getElementById("configuracion");
 
-            alert(
-                "⚙️ Configuración de Edu BOT\n\n" +
-                "Aquí podrás personalizar tu experiencia."
-            );
 
-        });
+    if (configuracion) {
+
+        configuracion.addEventListener(
+            "click",
+            function () {
+
+                alert(
+                    "⚙️ Configuración de Edu BOT\n\n" +
+                    "Próximamente podrás personalizar " +
+                    "tu experiencia de aprendizaje."
+                );
+
+            }
+        );
+
+    }
 
 
     /* ==========================================
-       BOTÓN MÓVIL
+       BOTÓN CORAZÓN
     ========================================== */
 
-    const abrirMenu =
-        document.getElementById("abrirMenu");
+    const corazon =
+        document.querySelector(".corazon");
 
-    abrirMenu.addEventListener("click", () => {
 
-        document.querySelector(".sidebar")
-            .classList.toggle("abierta");
+    if (corazon) {
 
-    });
+        corazon.addEventListener(
+            "click",
+            function () {
 
+                this.classList.toggle(
+                    "favorito-activo"
+                );
+
+                if (
+                    this.classList.contains(
+                        "favorito-activo"
+                    )
+                ) {
+
+                    this.textContent = "♥";
+
+                } else {
+
+                    this.textContent = "♡";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       ANIMACIÓN SUAVE AL CARGAR
+    ========================================== */
+
+    document.body.classList.add(
+        "edu-bot-cargado"
+    );
 
 });
 
