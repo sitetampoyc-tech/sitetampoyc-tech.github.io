@@ -2,23 +2,2310 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Edu BOT IA</title>
 
-    <link rel="stylesheet" href="style.css">
+    <!-- =====================================================
+         FUENTE
+    ====================================================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- =====================================================
+         ESTILOS
+         Los dejamos dentro de ia.html para asegurar que
+         la interfaz se vea aunque style.css falle.
+    ====================================================== -->
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", Arial, sans-serif;
+            background:
+                radial-gradient(
+                    circle at 80% 10%,
+                    rgba(124, 58, 237, .18),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 20% 90%,
+                    rgba(37, 99, 235, .14),
+                    transparent 28%
+                ),
+                #f8f7ff;
+
+            color: #17203a;
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+            transition:
+                background .35s ease,
+                color .35s ease;
+        }
+
+
+        /* =====================================================
+           FONDO DECORATIVO
+        ====================================================== */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124,58,237,.13),
+                    rgba(37,99,235,.04)
+                );
+
+            top: -220px;
+            right: -150px;
+
+            filter: blur(10px);
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            width: 400px;
+            height: 400px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(236,72,153,.10),
+                    rgba(124,58,237,.04)
+                );
+
+            bottom: -200px;
+            left: -150px;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+
+        /* =====================================================
+           APP
+        ====================================================== */
+
+        .app {
+            min-height: 100vh;
+
+            display: flex;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ====================================================== */
+
+        .sidebar {
+            width: 285px;
+
+            min-height: 100vh;
+
+            position: fixed;
+
+            left: 0;
+            top: 0;
+
+            padding: 25px 18px;
+
+            background:
+                rgba(255,255,255,.88);
+
+            backdrop-filter:
+                blur(25px);
+
+            border-right:
+                1px solid rgba(124,58,237,.10);
+
+            box-shadow:
+                8px 0 40px rgba(50,40,100,.06);
+
+            z-index: 1000;
+
+            overflow-y: auto;
+        }
+
+
+        /* =====================================================
+           LOGO
+        ====================================================== */
+
+        .logo {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 25px;
+
+            padding: 5px;
+        }
+
+
+        .logo-icon {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 18px;
+
+            font-size: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6d28d9,
+                    #2563eb
+                );
+
+            box-shadow:
+                0 10px 30px rgba(109,40,217,.30);
+
+            animation:
+                flotar 4s ease-in-out infinite;
+        }
+
+
+        .logo-texto h2 {
+            font-size: 22px;
+
+            font-weight: 800;
+
+            color: #151c3b;
+        }
+
+
+        .logo-texto h2 span {
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #7c3aed,
+                    #db2777
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .logo-texto p {
+            color: #7b849f;
+
+            font-size: 12px;
+
+            margin-top: 3px;
+        }
+
+
+        /* =====================================================
+           NUEVO CHAT
+        ====================================================== */
+
+        .nuevo-chat {
+            width: 100%;
+
+            border: 0;
+
+            padding: 15px;
+
+            border-radius: 15px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed,
+                    #9333ea
+                );
+
+            box-shadow:
+                0 12px 25px rgba(99,67,220,.25);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 8px;
+
+            transition:
+                transform .2s,
+                box-shadow .2s;
+        }
+
+
+        .nuevo-chat:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 18px 35px rgba(99,67,220,.35);
+        }
+
+
+        .nuevo-icono {
+            font-size: 22px;
+        }
+
+
+        /* =====================================================
+           MENÚ
+        ====================================================== */
+
+        .menu-titulo {
+            margin: 23px 5px 10px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            color: #7e87a2;
+
+            letter-spacing: .8px;
+        }
+
+
+        .menu {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .menu-btn,
+        .curso-menu {
+            width: 100%;
+
+            border: 0;
+
+            background: transparent;
+
+            border-radius: 12px;
+
+            padding: 11px 12px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            color: #33405f;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            text-align: left;
+
+            transition:
+                background .2s,
+                color .2s,
+                transform .2s;
+        }
+
+
+        .menu-btn:hover,
+        .curso-menu:hover {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(124,58,237,.10),
+                    rgba(37,99,235,.05)
+                );
+
+            color: #5b21b6;
+
+            transform: translateX(3px);
+        }
+
+
+        .menu-btn.activo {
+            background:
+                linear-gradient(
+                    90deg,
+                    #ede9fe,
+                    #eff6ff
+                );
+
+            color: #5b21b6;
+
+            box-shadow:
+                inset 3px 0 #7c3aed;
+        }
+
+
+        .menu-icon {
+            width: 25px;
+
+            font-size: 17px;
+
+            text-align: center;
+        }
+
+
+        /* =====================================================
+           CURSOS LATERALES
+        ====================================================== */
+
+        .cursos-menu {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 4px;
+        }
+
+
+        .curso-menu-icon {
+            width: 30px;
+            height: 30px;
+
+            border-radius: 9px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #f3f4ff;
+
+            font-size: 15px;
+        }
+
+
+        .matematica {
+            color: #7c3aed;
+        }
+
+        .comunicacion {
+            color: #2563eb;
+        }
+
+        .ciencia {
+            color: #059669;
+        }
+
+        .sociales {
+            color: #ea580c;
+        }
+
+        .ingles {
+            color: #db2777;
+        }
+
+
+        /* =====================================================
+           ESTADO ONLINE
+        ====================================================== */
+
+        .estado-online {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 12px 13px;
+
+            border-radius: 12px;
+
+            color: #15803d;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #dcfce7,
+                    #ecfdf5
+                );
+        }
+
+
+        .estado-punto {
+            width: 9px;
+            height: 9px;
+
+            background: #16a34a;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 0 5px rgba(22,163,74,.10);
+
+            animation:
+                pulso 2s infinite;
+        }
+
+
+        /* =====================================================
+           CONFIGURACIÓN
+        ====================================================== */
+
+        .config-btn {
+            width: 100%;
+
+            border: 1px solid #e5e7eb;
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 12px;
+
+            margin-top: 12px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #39445f;
+
+            font-weight: 600;
+
+            transition: .2s;
+        }
+
+
+        .config-btn:hover {
+            border-color: #c4b5fd;
+
+            background: #faf5ff;
+        }
+
+
+        /* =====================================================
+           MODO OSCURO
+        ====================================================== */
+
+        .modo {
+            margin-top: 10px;
+
+            padding: 12px;
+
+            background: #f5f5f7;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .modo-texto {
+            display: flex;
+
+            gap: 8px;
+
+            align-items: center;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .switch {
+            position: relative;
+
+            width: 42px;
+            height: 23px;
+        }
+
+
+        .switch input {
+            display: none;
+        }
+
+
+        .slider {
+            position: absolute;
+
+            inset: 0;
+
+            background: #cbd5e1;
+
+            border-radius: 30px;
+
+            cursor: pointer;
+
+            transition: .3s;
+        }
+
+
+        .slider::before {
+            content: "";
+
+            width: 17px;
+            height: 17px;
+
+            position: absolute;
+
+            left: 3px;
+            top: 3px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            transition: .3s;
+
+            box-shadow: 0 2px 5px #0002;
+        }
+
+
+        .switch input:checked + .slider {
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #7c3aed
+                );
+        }
+
+
+        .switch input:checked + .slider::before {
+            transform: translateX(19px);
+        }
+
+
+        /* =====================================================
+           PERFIL
+        ====================================================== */
+
+        .perfil {
+            margin-top: 15px;
+
+            padding: 13px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f5f3ff,
+                    #eff6ff
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .perfil-icon {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: white;
+
+            box-shadow: 0 4px 12px #0001;
+        }
+
+
+        .perfil-texto {
+            flex: 1;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .perfil-texto strong {
+            font-size: 13px;
+        }
+
+
+        .perfil-texto span {
+            font-size: 10px;
+
+            color: #7b849f;
+
+            margin-top: 2px;
+        }
+
+
+        .corazon {
+            border: 0;
+
+            width: 32px;
+            height: 32px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            color: #7c3aed;
+
+            font-size: 20px;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           CONTENIDO
+        ====================================================== */
+
+        .main {
+            margin-left: 285px;
+
+            width: calc(100% - 285px);
+
+            min-height: 100vh;
+
+            padding: 0 35px 40px;
+
+            position: relative;
+        }
+
+
+        /* =====================================================
+           TOPBAR
+        ====================================================== */
+
+        .topbar {
+            height: 80px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 500;
+
+            background:
+                rgba(248,247,255,.78);
+
+            backdrop-filter:
+                blur(18px);
+
+            border-bottom:
+                1px solid rgba(124,58,237,.06);
+        }
+
+
+        .topbar-titulo {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            color: #1e2a4d;
+        }
+
+
+        .topbar-mini-icon {
+            color: #7c3aed;
+
+            font-size: 22px;
+        }
+
+
+        .online-pill {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 10px 18px;
+
+            border-radius: 30px;
+
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            box-shadow: 0 5px 20px #0000000a;
+
+            color: #15803d;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .online-pill span {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #16a34a;
+
+            box-shadow:
+                0 0 0 4px #16a34a18;
+        }
+
+
+        .topbar-boton {
+            width: 44px;
+            height: 44px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            color: white;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #4f46e5
+                );
+
+            box-shadow:
+                0 8px 20px #7c3aed44;
+        }
+
+
+        /* =====================================================
+           DECORACIONES
+        ====================================================== */
+
+        .decoracion {
+            position: absolute;
+
+            pointer-events: none;
+
+            opacity: .45;
+
+            z-index: 0;
+        }
+
+
+        .decoracion-1 {
+            top: 120px;
+            left: 15%;
+
+            color: #c084fc;
+
+            font-size: 35px;
+        }
+
+
+        .decoracion-2 {
+            top: 160px;
+            right: 25%;
+
+            color: #60a5fa;
+
+            font-size: 35px;
+        }
+
+
+        .decoracion-3 {
+            top: 270px;
+            left: 7%;
+
+            color: #f472b6;
+
+            font-size: 25px;
+        }
+
+
+        .decoracion-4 {
+            top: 210px;
+            right: 7%;
+
+            color: #a78bfa;
+
+            font-size: 70px;
+        }
+
+
+        .decoracion-5 {
+            top: 290px;
+            left: 18%;
+
+            color: #c4b5fd;
+
+            letter-spacing: 8px;
+        }
+
+
+        /* =====================================================
+           INICIO
+        ====================================================== */
+
+        .inicio-seccion {
+            max-width: 1450px;
+
+            margin: auto;
+
+            padding-top: 35px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .bienvenida {
+            text-align: center;
+
+            padding-top: 35px;
+
+            position: relative;
+
+            z-index: 5;
+        }
+
+
+        .badge-bienvenida {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 9px 17px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #f3e8ff,
+                    #eff6ff
+                );
+
+            color: #6d28d9;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 25px #7c3aed12;
+        }
+
+
+        .bienvenida h1 {
+            margin-top: 18px;
+
+            font-size:
+                clamp(34px, 5vw, 58px);
+
+            line-height: 1.05;
+
+            font-weight: 800;
+
+            color: #101936;
+        }
+
+
+        .bienvenida h1 span {
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #7c3aed,
+                    #db2777
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .bienvenida > p {
+            margin-top: 16px;
+
+            color: #66708d;
+
+            font-size: 17px;
+        }
+
+
+        .bienvenida h2 {
+            margin-top: 28px;
+
+            font-size:
+                clamp(23px, 3vw, 34px);
+
+            color: #192342;
+        }
+
+
+        .linea-color {
+            width: 90px;
+            height: 5px;
+
+            border-radius: 10px;
+
+            margin: 18px auto 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #7c3aed,
+                    #ec4899
+                );
+        }
+
+
+        /* =====================================================
+           ROBOT
+        ====================================================== */
+
+        .robot-decorativo {
+            position: absolute;
+
+            right: 2%;
+
+            top: 40px;
+
+            width: 180px;
+
+            z-index: 4;
+
+            animation:
+                flotar 5s ease-in-out infinite;
+        }
+
+
+        .robot-antena {
+            width: 5px;
+            height: 28px;
+
+            background: #4f46e5;
+
+            margin: auto;
+        }
+
+
+        .robot-antena span {
+            display: block;
+
+            width: 12px;
+            height: 12px;
+
+            background: #a855f7;
+
+            border-radius: 50%;
+
+            position: relative;
+
+            left: -4px;
+
+            top: -6px;
+
+            box-shadow:
+                0 0 15px #a855f7;
+        }
+
+
+        .robot-cabeza {
+            width: 155px;
+            height: 110px;
+
+            margin: auto;
+
+            border-radius: 38px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #e8edff
+                );
+
+            border: 5px solid #c7d2fe;
+
+            box-shadow:
+                0 20px 40px #4f46e522;
+
+            position: relative;
+        }
+
+
+        .robot-oreja {
+            width: 22px;
+            height: 45px;
+
+            position: absolute;
+
+            top: 28px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    #4f46e5,
+                    #2563eb
+                );
+        }
+
+
+        .robot-oreja.izquierda {
+            left: -17px;
+        }
+
+
+        .robot-oreja.derecha {
+            right: -17px;
+        }
+
+
+        .robot-pantalla {
+            width: 115px;
+            height: 70px;
+
+            position: absolute;
+
+            left: 15px;
+            top: 15px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #080c28,
+                    #17134d
+                );
+
+            border: 3px solid #6366f1;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .robot-ojos {
+            display: flex;
+
+            gap: 25px;
+        }
+
+
+        .robot-ojos span {
+            width: 12px;
+            height: 18px;
+
+            border-radius: 50%;
+
+            background: #22d3ee;
+
+            box-shadow:
+                0 0 12px #22d3ee;
+        }
+
+
+        .robot-sonrisa {
+            color: #c084fc;
+
+            font-size: 22px;
+
+            margin-top: 2px;
+        }
+
+
+        .robot-cuello {
+            width: 35px;
+            height: 13px;
+
+            background: #c7d2fe;
+
+            margin: auto;
+        }
+
+
+        .robot-cuerpo {
+            width: 95px;
+            height: 50px;
+
+            margin: auto;
+
+            border-radius: 30px 30px 18px 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #dbeafe
+                );
+
+            border: 4px solid #c7d2fe;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+        }
+
+
+        .robot-pecho {
+            color: #7c3aed;
+
+            font-size: 20px;
+        }
+
+
+        /* =====================================================
+           TARJETAS
+        ====================================================== */
+
+        .tarjetas-cursos {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, minmax(150px, 1fr));
+
+            gap: 18px;
+
+            margin-top: 55px;
+        }
+
+
+        .tarjeta {
+            min-height: 305px;
+
+            padding: 25px 18px;
+
+            border-radius: 25px;
+
+            background:
+                rgba(255,255,255,.84);
+
+            border: 1px solid rgba(124,58,237,.12);
+
+            box-shadow:
+                0 12px 35px rgba(40,30,100,.08);
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition:
+                transform .3s,
+                box-shadow .3s,
+                border .3s;
+        }
+
+
+        .tarjeta:hover {
+            transform:
+                translateY(-10px);
+
+            box-shadow:
+                0 25px 55px rgba(50,40,120,.15);
+
+            border-color:
+                rgba(124,58,237,.25);
+        }
+
+
+        .tarjeta-brillo {
+            position: absolute;
+
+            width: 100px;
+            height: 100px;
+
+            border-radius: 50%;
+
+            top: -50px;
+            right: -30px;
+
+            filter: blur(2px);
+
+            opacity: .45;
+        }
+
+
+        .curso-matematica .tarjeta-brillo {
+            background: #a78bfa;
+        }
+
+
+        .curso-comunicacion .tarjeta-brillo {
+            background: #60a5fa;
+        }
+
+
+        .curso-ciencia .tarjeta-brillo {
+            background: #34d399;
+        }
+
+
+        .curso-sociales .tarjeta-brillo {
+            background: #fb923c;
+        }
+
+
+        .curso-ingles .tarjeta-brillo {
+            background: #f472b6;
+        }
+
+
+        .icono-curso {
+            width: 85px;
+            height: 85px;
+
+            border-radius: 50%;
+
+            margin: 3px auto 20px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 38px;
+
+            position: relative;
+
+            box-shadow:
+                inset 0 0 0 10px rgba(255,255,255,.35);
+        }
+
+
+        .curso-matematica .icono-curso {
+            background: #ede9fe;
+        }
+
+
+        .curso-comunicacion .icono-curso {
+            background: #dbeafe;
+        }
+
+
+        .curso-ciencia .icono-curso {
+            background: #dcfce7;
+        }
+
+
+        .curso-sociales .icono-curso {
+            background: #ffedd5;
+        }
+
+
+        .curso-ingles .icono-curso {
+            background: #fce7f3;
+        }
+
+
+        .tarjeta h3 {
+            font-size: 18px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .curso-matematica h3 {
+            color: #7c3aed;
+        }
+
+
+        .curso-comunicacion h3 {
+            color: #2563eb;
+        }
+
+
+        .curso-ciencia h3 {
+            color: #059669;
+        }
+
+
+        .curso-sociales h3 {
+            color: #ea580c;
+        }
+
+
+        .curso-ingles h3 {
+            color: #db2777;
+        }
+
+
+        .tarjeta p {
+            color: #64708e;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            min-height: 55px;
+        }
+
+
+        .entrar-curso {
+            width: 45px;
+            height: 45px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            color: white;
+
+            font-size: 22px;
+
+            cursor: pointer;
+
+            margin-top: 18px;
+
+            transition:
+                transform .2s,
+                box-shadow .2s;
+        }
+
+
+        .entrar-curso:hover {
+            transform: scale(1.12);
+
+            box-shadow:
+                0 10px 25px #0003;
+        }
+
+
+        .curso-matematica .entrar-curso {
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #9333ea
+                );
+        }
+
+
+        .curso-comunicacion .entrar-curso {
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #3b82f6
+                );
+        }
+
+
+        .curso-ciencia .entrar-curso {
+            background:
+                linear-gradient(
+                    135deg,
+                    #059669,
+                    #10b981
+                );
+        }
+
+
+        .curso-sociales .entrar-curso {
+            background:
+                linear-gradient(
+                    135deg,
+                    #ea580c,
+                    #f97316
+                );
+        }
+
+
+        .curso-ingles .entrar-curso {
+            background:
+                linear-gradient(
+                    135deg,
+                    #db2777,
+                    #ec4899
+                );
+        }
+
+
+        /* =====================================================
+           SUGERENCIAS
+        ====================================================== */
+
+        .sugerencias {
+            margin-top: 35px;
+        }
+
+
+        .sugerencias > p {
+            color: #66708d;
+
+            font-size: 13px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .botones-sugerencia {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+
+        .botones-sugerencia button {
+            border: 1px solid #e5e7eb;
+
+            background: white;
+
+            padding: 12px 17px;
+
+            border-radius: 30px;
+
+            cursor: pointer;
+
+            color: #39445f;
+
+            font-weight: 600;
+
+            box-shadow:
+                0 6px 20px #00000008;
+
+            transition: .2s;
+        }
+
+
+        .botones-sugerencia button:hover {
+            transform: translateY(-2px);
+
+            border-color: #c4b5fd;
+
+            box-shadow:
+                0 12px 25px #7c3aed18;
+        }
+
+
+        .botones-sugerencia b {
+            margin-left: 8px;
+
+            color: #7c3aed;
+        }
+
+
+        /* =====================================================
+           CHAT
+        ====================================================== */
+
+        .zona-chat {
+            max-width: 1050px;
+
+            margin: 45px auto 0;
+
+            background:
+                rgba(255,255,255,.9);
+
+            border:
+                1px solid rgba(124,58,237,.12);
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 25px 70px rgba(50,40,120,.12);
+
+            overflow: hidden;
+        }
+
+
+        .chat-header {
+            padding: 18px 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #f5f3ff,
+                    #eff6ff
+                );
+
+            border-bottom:
+                1px solid #e5e7eb;
+        }
+
+
+        .chat-header-icon {
+            width: 45px;
+            height: 45px;
+
+            border-radius: 14px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #2563eb
+                );
+
+            font-size: 22px;
+        }
+
+
+        .chat-header div:nth-child(2) {
+            display: flex;
+
+            flex-direction: column;
+
+            flex: 1;
+        }
+
+
+        .chat-header strong {
+            font-size: 15px;
+        }
+
+
+        .chat-header span {
+            font-size: 11px;
+
+            color: #7b849f;
+
+            margin-top: 2px;
+        }
+
+
+        .chat-header-status {
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #15803d;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .chat-header-status span {
+            width: 8px;
+            height: 8px;
+
+            background: #16a34a;
+
+            border-radius: 50%;
+        }
+
+
+        .mensajes {
+            min-height: 240px;
+
+            max-height: 520px;
+
+            overflow-y: auto;
+
+            padding: 25px;
+        }
+
+
+        .bot,
+        .usuario {
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .usuario {
+            justify-content: flex-end;
+        }
+
+
+        .mensaje-avatar {
+            width: 36px;
+            height: 36px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #ede9fe;
+
+            flex-shrink: 0;
+        }
+
+
+        .mensaje-contenido {
+            max-width: 75%;
+
+            padding: 15px 18px;
+
+            border-radius:
+                18px 18px 18px 5px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f5f3ff,
+                    #eff6ff
+                );
+
+            border: 1px solid #e5e7eb;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+
+        .usuario .mensaje-contenido {
+            border-radius:
+                18px 18px 5px 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            color: white;
+        }
+
+
+        .entrada {
+            margin: 0 20px 15px;
+
+            min-height: 65px;
+
+            border:
+                2px solid #c4b5fd;
+
+            border-radius: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 7px;
+
+            background: white;
+
+            box-shadow:
+                0 8px 30px #7c3aed10;
+
+            transition: .2s;
+        }
+
+
+        .entrada:focus-within {
+            border-color: #7c3aed;
+
+            box-shadow:
+                0 10px 35px #7c3aed20;
+        }
+
+
+        .boton-extra {
+            width: 48px;
+            height: 48px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background: #f5f3ff;
+
+            cursor: pointer;
+
+            font-size: 19px;
+        }
+
+
+        .entrada-centro {
+            flex: 1;
+
+            padding: 0 12px;
+        }
+
+
+        #pregunta {
+            width: 100%;
+
+            border: 0;
+
+            outline: none;
+
+            background: transparent;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            color: #17203a;
+        }
+
+
+        #pregunta::placeholder {
+            color: #9aa3ba;
+        }
+
+
+        .boton-enviar {
+            width: 50px;
+            height: 50px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            color: white;
+
+            font-size: 21px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px #7c3aed35;
+
+            transition: .2s;
+        }
+
+
+        .boton-enviar:hover {
+            transform:
+                rotate(-5deg) scale(1.08);
+        }
+
+
+        .chat-ayuda {
+            text-align: center;
+
+            padding:
+                0 15px 18px;
+
+            color: #8a93aa;
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           SECCIONES EXTRA
+        ====================================================== */
+
+        .seccion-extra {
+            max-width: 900px;
+
+            margin: 70px auto;
+
+            display: none;
+        }
+
+
+        .extra-card {
+            padding: 55px 35px;
+
+            text-align: center;
+
+            border-radius: 28px;
+
+            background:
+                rgba(255,255,255,.9);
+
+            border: 1px solid #e5e7eb;
+
+            box-shadow:
+                0 25px 60px #0000000d;
+        }
+
+
+        .extra-icon {
+            font-size: 55px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .extra-card h2 {
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .extra-card p {
+            color: #6b7280;
+
+            margin-bottom: 25px;
+        }
+
+
+        .extra-action {
+            border: 0;
+
+            padding: 14px 24px;
+
+            border-radius: 15px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            cursor: pointer;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           BOTÓN MÓVIL
+        ====================================================== */
+
+        .menu-movil {
+            display: none;
+
+            position: fixed;
+
+            left: 15px;
+            top: 15px;
+
+            width: 45px;
+            height: 45px;
+
+            border: 0;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            color: white;
+
+            font-size: 22px;
+
+            z-index: 2000;
+        }
+
+
+        /* =====================================================
+           ANIMACIONES
+        ====================================================== */
+
+        @keyframes flotar {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+
+        @keyframes pulso {
+
+            0% {
+                box-shadow:
+                    0 0 0 0 rgba(22,163,74,.3);
+            }
+
+            70% {
+                box-shadow:
+                    0 0 0 8px rgba(22,163,74,0);
+            }
+
+            100% {
+                box-shadow:
+                    0 0 0 0 rgba(22,163,74,0);
+            }
+        }
+
+
+        /* =====================================================
+           MODO OSCURO
+        ====================================================== */
+
+        body.oscuro {
+            background:
+                radial-gradient(
+                    circle at 80% 10%,
+                    #312e8144,
+                    transparent 28%
+                ),
+                #0b1020;
+
+            color: #e8ecff;
+        }
+
+
+        body.oscuro .sidebar,
+        body.oscuro .zona-chat,
+        body.oscuro .tarjeta,
+        body.oscuro .extra-card,
+        body.oscuro .entrada {
+            background:
+                rgba(17,24,45,.92);
+
+            border-color:
+                rgba(139,92,246,.20);
+        }
+
+
+        body.oscuro .logo-texto h2,
+        body.oscuro .bienvenida h1,
+        body.oscuro .bienvenida h2,
+        body.oscuro .topbar-titulo,
+        body.oscuro .tarjeta h3,
+        body.oscuro .extra-card h2 {
+            color: #f1f5ff;
+        }
+
+
+        body.oscuro .bienvenida > p,
+        body.oscuro .tarjeta p,
+        body.oscuro .sugerencias > p,
+        body.oscuro .chat-ayuda {
+            color: #aeb8d3;
+        }
+
+
+        body.oscuro .menu-btn,
+        body.oscuro .curso-menu {
+            color: #cbd5e1;
+        }
+
+
+        body.oscuro .menu-btn:hover,
+        body.oscuro .curso-menu:hover {
+            background: #312e8144;
+        }
+
+
+        body.oscuro .modo {
+            background: #1e293b;
+        }
+
+
+        body.oscuro .config-btn,
+        body.oscuro .botones-sugerencia button,
+        body.oscuro .boton-extra,
+        body.oscuro .online-pill {
+            background: #172033;
+
+            color: #e2e8f0;
+
+            border-color: #334155;
+        }
+
+
+        body.oscuro .chat-header {
+            background:
+                linear-gradient(
+                    90deg,
+                    #171333,
+                    #101d3d
+                );
+        }
+
+
+        body.oscuro .mensaje-contenido {
+            background: #172033;
+
+            border-color: #334155;
+        }
+
+
+        body.oscuro #pregunta {
+            color: white;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 1200px) {
+
+            .tarjetas-cursos {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .robot-decorativo {
+                opacity: .35;
+                right: 0;
+            }
+        }
+
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                transform:
+                    translateX(-105%);
+
+                transition:
+                    transform .3s ease;
+            }
+
+
+            .sidebar.abierta {
+                transform:
+                    translateX(0);
+            }
+
+
+            .main {
+                margin-left: 0;
+
+                width: 100%;
+
+                padding: 0 18px 30px;
+            }
+
+
+            .menu-movil {
+                display: block;
+            }
+
+
+            .topbar {
+                padding-left: 60px;
+            }
+
+
+            .robot-decorativo {
+                display: none;
+            }
+
+
+            .tarjetas-cursos {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .topbar {
+                height: 70px;
+            }
+
+
+            .topbar-titulo {
+                font-size: 14px;
+            }
+
+
+            .online-pill {
+                display: none;
+            }
+
+
+            .topbar-boton {
+                width: 40px;
+                height: 40px;
+            }
+
+
+            .inicio-seccion {
+                padding-top: 20px;
+            }
+
+
+            .bienvenida {
+                padding-top: 25px;
+            }
+
+
+            .bienvenida h1 {
+                font-size: 36px;
+            }
+
+
+            .bienvenida > p {
+                font-size: 14px;
+            }
+
+
+            .tarjetas-cursos {
+                grid-template-columns: 1fr;
+            }
+
+
+            .tarjeta {
+                min-height: 280px;
+            }
+
+
+            .botones-sugerencia {
+                flex-direction: column;
+            }
+
+
+            .botones-sugerencia button {
+                width: 100%;
+            }
+
+
+            .zona-chat {
+                border-radius: 20px;
+            }
+
+
+            .mensaje-contenido {
+                max-width: 85%;
+            }
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
+
 <div class="app">
+
 
     <!-- =====================================================
          SIDEBAR
     ====================================================== -->
 
     <aside class="sidebar" id="sidebar">
+
 
         <div class="logo">
 
@@ -27,142 +2314,195 @@
             </div>
 
             <div class="logo-texto">
-                <h2>Edu <span>BOT</span></h2>
-                <p>Asistente educativo</p>
+
+                <h2>
+                    Edu <span>BOT</span>
+                </h2>
+
+                <p>
+                    Asistente educativo
+                </p>
+
             </div>
 
         </div>
 
 
-        <!-- NUEVO CHAT -->
-
         <button
             id="nuevoChat"
             class="nuevo-chat"
-            type="button"
-        >
-            <span class="nuevo-icono">＋</span>
-            <span>Nuevo chat</span>
+            type="button">
+
+            <span class="nuevo-icono">
+                ＋
+            </span>
+
+            Nuevo chat
+
         </button>
 
-
-        <!-- MENÚ -->
 
         <div class="menu-titulo">
             MENÚ
         </div>
 
+
         <nav class="menu">
+
 
             <button
                 class="menu-btn activo"
                 data-seccion="inicio"
-                type="button"
-            >
-                <span class="menu-icon">⌂</span>
-                <span>Inicio</span>
+                type="button">
+
+                <span class="menu-icon">
+                    🏠
+                </span>
+
+                Inicio
+
             </button>
+
 
             <button
                 class="menu-btn"
                 data-seccion="cursos"
-                type="button"
-            >
-                <span class="menu-icon">▣</span>
-                <span>Cursos</span>
+                type="button">
+
+                <span class="menu-icon">
+                    📚
+                </span>
+
+                Cursos
+
             </button>
+
 
             <button
                 class="menu-btn"
                 data-seccion="aprender"
-                type="button"
-            >
-                <span class="menu-icon">🎓</span>
-                <span>Aprender</span>
+                type="button">
+
+                <span class="menu-icon">
+                    🎓
+                </span>
+
+                Aprender
+
             </button>
+
 
             <button
                 class="menu-btn"
                 data-seccion="favoritos"
-                type="button"
-            >
-                <span class="menu-icon">★</span>
-                <span>Favoritos</span>
+                type="button">
+
+                <span class="menu-icon">
+                    ⭐
+                </span>
+
+                Favoritos
+
             </button>
+
 
             <button
                 class="menu-btn"
                 data-seccion="preguntas"
-                type="button"
-            >
-                <span class="menu-icon">▤</span>
-                <span>Mis preguntas</span>
+                type="button">
+
+                <span class="menu-icon">
+                    📝
+                </span>
+
+                Mis preguntas
+
             </button>
+
 
         </nav>
 
-
-        <!-- CURSOS -->
 
         <div class="menu-titulo">
             CURSOS
         </div>
 
+
         <div class="cursos-menu">
+
 
             <button
                 class="curso-menu"
                 data-curso="Matemática"
-                type="button"
-            >
-                <span class="curso-menu-icon matematica">∑</span>
-                <span>Matemática</span>
+                type="button">
+
+                <span class="curso-menu-icon matematica">
+                    ∑
+                </span>
+
+                Matemática
+
             </button>
 
 
             <button
                 class="curso-menu"
                 data-curso="Comunicación"
-                type="button"
-            >
-                <span class="curso-menu-icon comunicacion">📖</span>
-                <span>Comunicación</span>
+                type="button">
+
+                <span class="curso-menu-icon comunicacion">
+                    📖
+                </span>
+
+                Comunicación
+
             </button>
 
 
             <button
                 class="curso-menu"
                 data-curso="Ciencia y Tecnología"
-                type="button"
-            >
-                <span class="curso-menu-icon ciencia">🧪</span>
-                <span>Ciencia</span>
+                type="button">
+
+                <span class="curso-menu-icon ciencia">
+                    🧪
+                </span>
+
+                Ciencia y Tecnología
+
             </button>
 
 
             <button
                 class="curso-menu"
                 data-curso="Ciencias Sociales"
-                type="button"
-            >
-                <span class="curso-menu-icon sociales">🌎</span>
-                <span>Sociales</span>
+                type="button">
+
+                <span class="curso-menu-icon sociales">
+                    🌎
+                </span>
+
+                Ciencias Sociales
+
             </button>
 
 
             <button
                 class="curso-menu"
                 data-curso="Inglés"
-                type="button"
-            >
-                <span class="curso-menu-icon ingles">🇬🇧</span>
-                <span>Inglés</span>
+                type="button">
+
+                <span class="curso-menu-icon ingles">
+                    🇬🇧
+                </span>
+
+                Inglés
+
             </button>
+
 
         </div>
 
-
-        <!-- ESTADO -->
 
         <div class="estado">
 
@@ -174,40 +2514,47 @@
 
                 <span class="estado-punto"></span>
 
-                <span>En línea</span>
+                En línea
 
             </div>
 
         </div>
 
 
-        <!-- CONFIGURACIÓN -->
-
         <button
             id="configuracion"
             class="config-btn"
-            type="button"
-        >
-            <span>⚙</span>
-            <span>Configuración</span>
+            type="button">
+
+            ⚙️
+
+            <span>
+                Configuración
+            </span>
+
         </button>
 
-
-        <!-- MODO OSCURO -->
 
         <div class="modo">
 
             <div class="modo-texto">
-                <span>◐</span>
-                <span>Modo oscuro</span>
+
+                <span>
+                    🌙
+                </span>
+
+                <span>
+                    Modo oscuro
+                </span>
+
             </div>
+
 
             <label class="switch">
 
                 <input
                     type="checkbox"
-                    id="modoOscuro"
-                >
+                    id="modoOscuro">
 
                 <span class="slider"></span>
 
@@ -215,8 +2562,6 @@
 
         </div>
 
-
-        <!-- PERFIL -->
 
         <div class="perfil">
 
@@ -226,7 +2571,9 @@
 
             <div class="perfil-texto">
 
-                <strong>Edu BOT</strong>
+                <strong>
+                    Edu BOT
+                </strong>
 
                 <span>
                     Tu compañero para aprender
@@ -236,34 +2583,34 @@
 
             <button
                 class="corazon"
-                type="button"
-            >
+                type="button">
+
                 ♡
+
             </button>
 
         </div>
+
 
     </aside>
 
 
     <!-- =====================================================
-         CONTENIDO PRINCIPAL
+         CONTENIDO
     ====================================================== -->
 
     <main class="main">
 
-        <!-- MENÚ MÓVIL -->
 
         <button
             id="abrirMenu"
             class="menu-movil"
-            type="button"
-        >
+            type="button">
+
             ☰
+
         </button>
 
-
-        <!-- BARRA SUPERIOR -->
 
         <header class="topbar">
 
@@ -273,9 +2620,7 @@
                     ✦
                 </span>
 
-                <span>
-                    Edu BOT IA
-                </span>
+                Edu BOT IA
 
             </div>
 
@@ -291,15 +2636,16 @@
 
             <button
                 class="topbar-boton"
-                type="button"
-            >
+                type="button">
+
                 ⋮
+
             </button>
 
         </header>
 
 
-        <!-- DECORACIONES FUTURISTAS -->
+        <!-- DECORACIONES -->
 
         <div class="decoracion decoracion-1">
             ✦
@@ -328,8 +2674,7 @@
 
         <section
             id="inicio"
-            class="seccion inicio-seccion"
-        >
+            class="seccion inicio-seccion">
 
 
             <!-- ROBOT -->
@@ -340,11 +2685,13 @@
                     <span></span>
                 </div>
 
+
                 <div class="robot-cabeza">
 
                     <div class="robot-oreja izquierda"></div>
 
                     <div class="robot-oreja derecha"></div>
+
 
                     <div class="robot-pantalla">
 
@@ -363,7 +2710,9 @@
 
                 </div>
 
+
                 <div class="robot-cuello"></div>
+
 
                 <div class="robot-cuerpo">
 
@@ -380,9 +2729,10 @@
 
             <div class="bienvenida">
 
+
                 <div class="badge-bienvenida">
 
-                    <span>✨</span>
+                    ✨
 
                     Asistente educativo inteligente
 
@@ -403,8 +2753,10 @@
 
 
                 <p>
+
                     Tu asistente educativo está listo
                     para ayudarte a aprender.
+
                 </p>
 
 
@@ -413,9 +2765,7 @@
                 </h2>
 
 
-                <div class="linea-color">
-                    <span></span>
-                </div>
+                <div class="linea-color"></div>
 
             </div>
 
@@ -426,20 +2776,15 @@
 
             <div
                 id="cursos"
-                class="tarjetas-cursos"
-            >
+                class="tarjetas-cursos">
 
 
-                <!-- MATEMÁTICA -->
-
-                <article
-                    class="tarjeta curso-matematica"
-                >
+                <article class="tarjeta curso-matematica">
 
                     <div class="tarjeta-brillo"></div>
 
                     <div class="icono-curso">
-                        <span>∑</span>
+                        ∑
                     </div>
 
                     <h3>
@@ -448,30 +2793,27 @@
 
                     <p>
                         Números, álgebra,
-                        geometría y más
+                        geometría y más.
                     </p>
 
                     <button
                         class="entrar-curso"
                         data-curso="Matemática"
-                        type="button"
-                    >
+                        type="button">
+
                         →
+
                     </button>
 
                 </article>
 
 
-                <!-- COMUNICACIÓN -->
-
-                <article
-                    class="tarjeta curso-comunicacion"
-                >
+                <article class="tarjeta curso-comunicacion">
 
                     <div class="tarjeta-brillo"></div>
 
                     <div class="icono-curso">
-                        <span>📖</span>
+                        📖
                     </div>
 
                     <h3>
@@ -480,30 +2822,27 @@
 
                     <p>
                         Lectura, escritura,
-                        ortografía y más
+                        ortografía y más.
                     </p>
 
                     <button
                         class="entrar-curso"
                         data-curso="Comunicación"
-                        type="button"
-                    >
+                        type="button">
+
                         →
+
                     </button>
 
                 </article>
 
 
-                <!-- CIENCIA -->
-
-                <article
-                    class="tarjeta curso-ciencia"
-                >
+                <article class="tarjeta curso-ciencia">
 
                     <div class="tarjeta-brillo"></div>
 
                     <div class="icono-curso">
-                        <span>🧪</span>
+                        🧪
                     </div>
 
                     <h3>
@@ -512,30 +2851,27 @@
 
                     <p>
                         Biología, química,
-                        física y tecnología
+                        física y tecnología.
                     </p>
 
                     <button
                         class="entrar-curso"
                         data-curso="Ciencia y Tecnología"
-                        type="button"
-                    >
+                        type="button">
+
                         →
+
                     </button>
 
                 </article>
 
 
-                <!-- SOCIALES -->
-
-                <article
-                    class="tarjeta curso-sociales"
-                >
+                <article class="tarjeta curso-sociales">
 
                     <div class="tarjeta-brillo"></div>
 
                     <div class="icono-curso">
-                        <span>🌎</span>
+                        🌎
                     </div>
 
                     <h3>
@@ -544,30 +2880,27 @@
 
                     <p>
                         Historia, geografía,
-                        economía y más
+                        economía y más.
                     </p>
 
                     <button
                         class="entrar-curso"
                         data-curso="Ciencias Sociales"
-                        type="button"
-                    >
+                        type="button">
+
                         →
+
                     </button>
 
                 </article>
 
 
-                <!-- INGLÉS -->
-
-                <article
-                    class="tarjeta curso-ingles"
-                >
+                <article class="tarjeta curso-ingles">
 
                     <div class="tarjeta-brillo"></div>
 
                     <div class="icono-curso">
-                        <span>🇬🇧</span>
+                        🇬🇧
                     </div>
 
                     <h3>
@@ -576,18 +2909,20 @@
 
                     <p>
                         Gramática, vocabulario,
-                        conversación y más
+                        conversación y más.
                     </p>
 
                     <button
                         class="entrar-curso"
                         data-curso="Inglés"
-                        type="button"
-                    >
+                        type="button">
+
                         →
+
                     </button>
 
                 </article>
+
 
             </div>
 
@@ -608,10 +2943,9 @@
 
                     <button
                         data-pregunta="Explícame un tema"
-                        type="button"
-                    >
+                        type="button">
 
-                        <span>🧠</span>
+                        🧠
 
                         Explícame un tema
 
@@ -622,10 +2956,9 @@
 
                     <button
                         data-pregunta="Hazme una pregunta"
-                        type="button"
-                    >
+                        type="button">
 
-                        <span>❓</span>
+                        ❓
 
                         Hazme una pregunta
 
@@ -636,10 +2969,9 @@
 
                     <button
                         data-pregunta="Hazme un resumen de un tema"
-                        type="button"
-                    >
+                        type="button">
 
-                        <span>📚</span>
+                        📚
 
                         Resumen de un tema
 
@@ -650,10 +2982,9 @@
 
                     <button
                         data-pregunta="Ayúdame a estudiar"
-                        type="button"
-                    >
+                        type="button">
 
-                        <span>✨</span>
+                        ✨
 
                         Ayúdame a estudiar
 
@@ -661,9 +2992,11 @@
 
                     </button>
 
+
                 </div>
 
             </div>
+
 
         </section>
 
@@ -674,11 +3007,8 @@
 
         <section
             id="zonaChat"
-            class="zona-chat"
-        >
+            class="zona-chat">
 
-
-            <!-- CABECERA -->
 
             <div class="chat-header">
 
@@ -711,18 +3041,17 @@
             </div>
 
 
-            <!-- MENSAJES -->
-
             <div
                 id="chat"
-                class="mensajes"
-            >
+                class="mensajes">
+
 
                 <div class="bot">
 
                     <div class="mensaje-avatar">
                         🤖
                     </div>
+
 
                     <div class="mensaje-contenido">
 
@@ -740,28 +3069,27 @@
                         </p>
 
                         <p>
-                            Selecciona un curso o escríbeme
-                            una pregunta para comenzar.
+                            Selecciona un curso para comenzar.
                         </p>
 
                     </div>
 
                 </div>
 
+
             </div>
 
 
-            <!-- ENTRADA -->
-
             <div class="entrada">
+
 
                 <button
                     id="botonImagen"
                     class="boton-extra"
-                    title="Imagen"
-                    type="button"
-                >
+                    type="button">
+
                     🖼️
+
                 </button>
 
 
@@ -771,8 +3099,7 @@
                         type="text"
                         id="pregunta"
                         placeholder="Escribe tu pregunta aquí..."
-                        autocomplete="off"
-                    >
+                        autocomplete="off">
 
                 </div>
 
@@ -780,23 +3107,25 @@
                 <button
                     id="enviar"
                     class="boton-enviar"
-                    type="button"
-                    title="Enviar"
-                >
+                    type="button">
+
                     ➤
+
                 </button>
+
 
             </div>
 
 
             <div class="chat-ayuda">
 
-                <span>✦</span>
+                ✦
 
                 Edu BOT puede ayudarte a estudiar,
                 practicar y comprender tus temas.
 
             </div>
+
 
         </section>
 
@@ -807,8 +3136,8 @@
 
         <section
             id="aprender"
-            class="seccion-extra"
-        >
+            class="seccion-extra">
+
 
             <div class="extra-card">
 
@@ -828,9 +3157,10 @@
                 <button
                     class="extra-action"
                     data-curso="Matemática"
-                    type="button"
-                >
+                    type="button">
+
                     Comenzar a aprender →
+
                 </button>
 
             </div>
@@ -844,8 +3174,8 @@
 
         <section
             id="favoritos"
-            class="seccion-extra"
-        >
+            class="seccion-extra">
+
 
             <div class="extra-card">
 
@@ -872,8 +3202,8 @@
 
         <section
             id="preguntas"
-            class="seccion-extra"
-        >
+            class="seccion-extra">
+
 
             <div class="extra-card">
 
@@ -893,6 +3223,7 @@
 
         </section>
 
+
     </main>
 
 </div>
@@ -901,8 +3232,7 @@
 <!-- =====================================================
      CONOCIMIENTOS
      
-     IMPORTANTE:
-     NO MODIFICAR EL ORDEN.
+     NO CAMBIAR LOS ARCHIVOS EDUCATIVOS.
 ====================================================== -->
 
 <script src="conocimientos.js"></script>
@@ -998,216 +3328,370 @@
      APP PRINCIPAL
      
      IMPORTANTE:
-     app.js va AL FINAL.
+     SIEMPRE DESPUÉS DE LOS CONOCIMIENTOS.
 ====================================================== -->
 
 <script src="app.js"></script>
 
 
 <!-- =====================================================
-     FUNCIONES DE INTERFAZ
+     FUNCIONES DE LA INTERFAZ
 ====================================================== -->
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
 
-    /* =================================================
-       MODO OSCURO
-    ================================================= */
+        /* ==========================================
+           MODO OSCURO
+        ========================================== */
 
-    const modoOscuro =
-        document.getElementById("modoOscuro");
+        const modoOscuro =
+            document.getElementById("modoOscuro");
 
 
-    if (
-        localStorage.getItem("eduBotModo") === "oscuro"
-    ) {
+        if (
+            localStorage.getItem("eduBotModo") === "oscuro"
+        ) {
 
-        document.body.classList.add("oscuro");
+            document.body.classList.add("oscuro");
 
-        if (modoOscuro) {
-            modoOscuro.checked = true;
+            if (modoOscuro) {
+                modoOscuro.checked = true;
+            }
+
         }
 
-    }
 
+        if (modoOscuro) {
 
-    if (modoOscuro) {
+            modoOscuro.addEventListener(
+                "change",
+                function () {
 
-        modoOscuro.addEventListener(
-            "change",
-            function () {
+                    if (this.checked) {
 
-                if (this.checked) {
+                        document.body.classList.add(
+                            "oscuro"
+                        );
 
-                    document.body.classList.add(
-                        "oscuro"
-                    );
+                        localStorage.setItem(
+                            "eduBotModo",
+                            "oscuro"
+                        );
 
-                    localStorage.setItem(
-                        "eduBotModo",
-                        "oscuro"
-                    );
+                    } else {
 
-                } else {
+                        document.body.classList.remove(
+                            "oscuro"
+                        );
 
-                    document.body.classList.remove(
-                        "oscuro"
-                    );
-
-                    localStorage.setItem(
-                        "eduBotModo",
-                        "claro"
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =================================================
-       MENÚ MÓVIL
-    ================================================= */
-
-    const abrirMenu =
-        document.getElementById("abrirMenu");
-
-    const sidebar =
-        document.getElementById("sidebar");
-
-
-    if (abrirMenu && sidebar) {
-
-        abrirMenu.addEventListener(
-            "click",
-            function () {
-
-                sidebar.classList.toggle(
-                    "abierta"
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =================================================
-       CERRAR SIDEBAR
-    ================================================= */
-
-    document.querySelectorAll(
-        ".menu-btn, .curso-menu"
-    ).forEach(function (boton) {
-
-        boton.addEventListener(
-            "click",
-            function () {
-
-                if (window.innerWidth <= 900) {
-
-                    if (sidebar) {
-
-                        sidebar.classList.remove(
-                            "abierta"
+                        localStorage.setItem(
+                            "eduBotModo",
+                            "claro"
                         );
 
                     }
 
                 }
+            );
 
-            }
-        );
-
-    });
+        }
 
 
-    /* =================================================
-       CONFIGURACIÓN
-    ================================================= */
+        /* ==========================================
+           MENÚ MÓVIL
+        ========================================== */
 
-    const configuracion =
-        document.getElementById("configuracion");
+        const abrirMenu =
+            document.getElementById("abrirMenu");
 
-
-    if (configuracion) {
-
-        configuracion.addEventListener(
-            "click",
-            function () {
-
-                alert(
-                    "⚙️ Configuración de Edu BOT\n\n" +
-                    "Próximamente podrás personalizar " +
-                    "tu experiencia de aprendizaje."
-                );
-
-            }
-        );
-
-    }
+        const sidebar =
+            document.getElementById("sidebar");
 
 
-    /* =================================================
-       CORAZÓN
-    ================================================= */
+        if (abrirMenu && sidebar) {
 
-    const corazon =
-        document.querySelector(".corazon");
+            abrirMenu.addEventListener(
+                "click",
+                function () {
 
-
-    if (corazon) {
-
-        corazon.addEventListener(
-            "click",
-            function () {
-
-                this.classList.toggle(
-                    "favorito-activo"
-                );
-
-
-                if (
-                    this.classList.contains(
-                        "favorito-activo"
-                    )
-                ) {
-
-                    this.textContent = "♥";
-
-                } else {
-
-                    this.textContent = "♡";
+                    sidebar.classList.toggle(
+                        "abierta"
+                    );
 
                 }
+            );
+
+        }
+
+
+        /* ==========================================
+           NAVEGACIÓN DEL MENÚ
+        ========================================== */
+
+        document.querySelectorAll(
+            ".menu-btn"
+        ).forEach(
+            function (boton) {
+
+                boton.addEventListener(
+                    "click",
+                    function () {
+
+                        const seccion =
+                            this.dataset.seccion;
+
+
+                        document.querySelectorAll(
+                            ".seccion-extra"
+                        ).forEach(
+                            function (elemento) {
+
+                                elemento.style.display =
+                                    "none";
+
+                            }
+                        );
+
+
+                        if (
+                            seccion === "inicio" ||
+                            seccion === "cursos"
+                        ) {
+
+                            document
+                                .getElementById("inicio")
+                                .style.display =
+                                "block";
+
+                            document
+                                .getElementById("zonaChat")
+                                .style.display =
+                                "block";
+
+                        } else {
+
+                            const destino =
+                                document.getElementById(
+                                    seccion
+                                );
+
+                            if (destino) {
+
+                                destino.style.display =
+                                    "block";
+
+                                destino.scrollIntoView({
+                                    behavior: "smooth"
+                                });
+
+                            }
+
+                        }
+
+
+                        document.querySelectorAll(
+                            ".menu-btn"
+                        ).forEach(
+                            function (item) {
+
+                                item.classList.remove(
+                                    "activo"
+                                );
+
+                            }
+                        );
+
+
+                        this.classList.add(
+                            "activo"
+                        );
+
+
+                        if (
+                            window.innerWidth <= 900
+                        ) {
+
+                            sidebar.classList.remove(
+                                "abierta"
+                            );
+
+                        }
+
+                    }
+                );
 
             }
         );
 
-    }
+
+        /* ==========================================
+           BOTONES DE CURSOS
+           
+           Dejamos que app.js controle la lógica.
+        ========================================== */
+
+        document.querySelectorAll(
+            ".curso-menu, .entrar-curso, .extra-action"
+        ).forEach(
+            function (boton) {
+
+                boton.addEventListener(
+                    "click",
+                    function () {
+
+                        const inicio =
+                            document.getElementById(
+                                "inicio"
+                            );
+
+                        const chat =
+                            document.getElementById(
+                                "zonaChat"
+                            );
 
 
-    /* =================================================
-       ANIMACIÓN DE ENTRADA
-    ================================================= */
+                        if (inicio) {
+                            inicio.style.display =
+                                "block";
+                        }
 
-    setTimeout(function () {
+                        if (chat) {
+                            chat.style.display =
+                                "block";
+                        }
 
-        document.body.classList.add(
-            "edu-bot-cargado"
+
+                        if (
+                            window.innerWidth <= 900 &&
+                            sidebar
+                        ) {
+
+                            sidebar.classList.remove(
+                                "abierta"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
         );
 
-    }, 100);
+
+        /* ==========================================
+           BOTONES DE SUGERENCIAS
+        ========================================== */
+
+        document.querySelectorAll(
+            "[data-pregunta]"
+        ).forEach(
+            function (boton) {
+
+                boton.addEventListener(
+                    "click",
+                    function () {
+
+                        const pregunta =
+                            document.getElementById(
+                                "pregunta"
+                            );
+
+                        if (pregunta) {
+
+                            pregunta.value =
+                                this.dataset.pregunta;
+
+                            pregunta.focus();
+
+                        }
+
+                    }
+                );
+
+            }
+        );
 
 
-});
+        /* ==========================================
+           CONFIGURACIÓN
+        ========================================== */
+
+        const configuracion =
+            document.getElementById(
+                "configuracion"
+            );
+
+
+        if (configuracion) {
+
+            configuracion.addEventListener(
+                "click",
+                function () {
+
+                    alert(
+                        "⚙️ Configuración de Edu BOT\n\n" +
+                        "Esta sección estará disponible próximamente."
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* ==========================================
+           CORAZÓN
+        ========================================== */
+
+        const corazon =
+            document.querySelector(
+                ".corazon"
+            );
+
+
+        if (corazon) {
+
+            corazon.addEventListener(
+                "click",
+                function () {
+
+                    this.classList.toggle(
+                        "favorito-activo"
+                    );
+
+
+                    if (
+                        this.classList.contains(
+                            "favorito-activo"
+                        )
+                    ) {
+
+                        this.textContent = "♥";
+
+                    } else {
+
+                        this.textContent = "♡";
+
+                    }
+
+                }
+            );
+
+        }
+
+
+    }
+
+);
 
 </script>
+
 
 </body>
 </html>
