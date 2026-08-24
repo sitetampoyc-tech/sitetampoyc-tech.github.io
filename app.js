@@ -1,5 +1,5 @@
 // ======================================================
-// 🤖 EDU BOT IA
+// EDU BOT IA
 // SISTEMA:
 // CURSO → GRADO/NIVEL → TEMAS → PREGUNTAS
 // ======================================================
@@ -21,8 +21,6 @@ let temaSeleccionado = "";
 
 let datosTemaSeleccionado = null;
 
-window.socialesTemas = [];
-
 
 // ======================================================
 // ELEMENTOS DEL HTML
@@ -41,7 +39,7 @@ const chat = document.getElementById("chat");
 
 if (enviar) {
 
-    enviar.addEventListener("click", () => {
+    enviar.addEventListener("click", function () {
 
         responder();
 
@@ -56,7 +54,7 @@ if (enviar) {
 
 if (pregunta) {
 
-    pregunta.addEventListener("keydown", (e) => {
+    pregunta.addEventListener("keydown", function (e) {
 
         if (e.key === "Enter") {
 
@@ -79,19 +77,24 @@ function responder() {
 
     if (!pregunta) return;
 
+
     const textoOriginal = pregunta.value.trim();
+
 
     if (!textoOriginal) return;
 
+
     const texto = normalizar(textoOriginal);
 
+
     mostrarUsuario(textoOriginal);
+
 
     pregunta.value = "";
 
 
     // ==================================================
-    // SELECCIONAR CURSO
+    // ESTADO CURSO
     // ==================================================
 
     if (estado === "curso") {
@@ -104,16 +107,14 @@ function responder() {
 
 
     // ==================================================
-    // SELECCIONAR GRADO
-    // SOLO:
-    // MATEMÁTICA
-    // COMUNICACIÓN
-    // CIENCIA Y TECNOLOGÍA
+    // ESTADO GRADO
+    // SOLO MATEMÁTICA / COMUNICACIÓN / CYT
     // ==================================================
 
     if (estado === "grado") {
 
         const grado = detectarGrado(texto);
+
 
         if (!grado) {
 
@@ -127,16 +128,35 @@ function responder() {
 
                 <br><br>
 
-                🟢 6 primaria<br>
-                🔵 1 secundaria<br>
-                🟣 2 secundaria<br>
-                🟠 3 secundaria<br>
-                🔴 4 secundaria<br>
+                🟢 6 primaria
+
+                <br>
+
+                🔵 1 secundaria
+
+                <br>
+
+                🟣 2 secundaria
+
+                <br>
+
+                🟠 3 secundaria
+
+                <br>
+
+                🔴 4 secundaria
+
+                <br>
+
                 🟤 5 secundaria
 
                 <br><br>
 
-                ✏️ También puedes escribir solamente el número.
+                ✏️ También puedes escribir solamente:
+
+                <strong>1</strong>, <strong>2</strong>,
+                <strong>3</strong>, <strong>4</strong>,
+                <strong>5</strong> o <strong>6</strong>.
 
             `);
 
@@ -148,9 +168,36 @@ function responder() {
         gradoSeleccionado = grado;
 
 
-        // ==================================================
-        // INGRESAR A LOS CONTENIDOS
-        // ==================================================
+        // ------------------------------------------------
+        // SEGURIDAD
+        // ------------------------------------------------
+        // Sociales e Inglés NO deberían llegar aquí.
+        // Pero si llegan, los redirigimos correctamente.
+        // ------------------------------------------------
+
+        if (cursoSeleccionado === "sociales") {
+
+            cargarSociales();
+
+            return;
+
+        }
+
+
+        if (cursoSeleccionado === "ingles") {
+
+            estado = "nivel";
+
+            mostrarNivelesIngles();
+
+            return;
+
+        }
+
+
+        // ------------------------------------------------
+        // RESTO DE CURSOS
+        // ------------------------------------------------
 
         cargarCurso();
 
@@ -173,7 +220,7 @@ function responder() {
 
 
     // ==================================================
-    // SELECCIONAR TEMA
+    // TEMA
     // ==================================================
 
     if (estado === "tema") {
@@ -216,9 +263,13 @@ function seleccionarCurso(texto) {
     if (
 
         texto === "mat" ||
+
         texto === "mate" ||
+
         texto === "matematica" ||
+
         texto === "matematicas" ||
+
         texto.includes("matematica")
 
     ) {
@@ -241,7 +292,9 @@ function seleccionarCurso(texto) {
     if (
 
         texto === "com" ||
+
         texto === "comunicacion" ||
+
         texto.includes("comunicacion")
 
     ) {
@@ -264,10 +317,17 @@ function seleccionarCurso(texto) {
     if (
 
         texto === "cyt" ||
+
         texto === "ciencia" ||
+
         texto === "ciencias" ||
+
         texto.includes("ciencia y tecnologia") ||
+
         texto.includes("ciencia tecnologia") ||
+
+        texto.includes("ciencia y tecnologia") ||
+
         texto.includes("tecnologia")
 
     ) {
@@ -285,15 +345,19 @@ function seleccionarCurso(texto) {
 
     // ==================================================
     // CIENCIAS SOCIALES
-    // IMPORTANTE:
-    // NO PIDE GRADO
+    // SIN GRADO
     // ==================================================
 
     if (
 
         texto === "social" ||
+
         texto === "sociales" ||
+
+        texto === "social" ||
+
         texto === "ciencias sociales" ||
+
         texto.includes("ciencias sociales")
 
     ) {
@@ -311,16 +375,19 @@ function seleccionarCurso(texto) {
 
     // ==================================================
     // INGLÉS
-    // IMPORTANTE:
-    // NO PIDE GRADO
+    // SIN GRADO
     // ==================================================
 
     if (
 
         texto === "ingles" ||
+
         texto === "inglés" ||
+
         texto === "english" ||
+
         texto.includes("idioma ingles") ||
+
         texto.includes("idioma inglés")
 
     ) {
@@ -346,17 +413,25 @@ function seleccionarCurso(texto) {
 
         <br><br>
 
-        Puedes elegir:
+        Puedes elegir uno de estos:
 
         <br><br>
 
-        🧮 <strong>Matemática</strong><br>
+        🧮 <strong>Matemática</strong>
 
-        📖 <strong>Comunicación</strong><br>
+        <br>
 
-        🧪 <strong>Ciencia y Tecnología</strong><br>
+        📖 <strong>Comunicación</strong>
 
-        🌎 <strong>Ciencias Sociales</strong><br>
+        <br>
+
+        🧪 <strong>Ciencia y Tecnología</strong>
+
+        <br>
+
+        🌎 <strong>Ciencias Sociales</strong>
+
+        <br>
 
         🇬🇧 <strong>Inglés</strong>
 
@@ -387,11 +462,29 @@ function iniciarCurso(curso, icono, nombre) {
 
 
     // ==================================================
-    // 🌎 CIENCIAS SOCIALES
+    // INGLÉS
+    // NO PIDE GRADO
+    // ==================================================
+
+    if (curso === "ingles") {
+
+        estado = "nivel";
+
+        mostrarNivelesIngles();
+
+        return;
+
+    }
+
+
+    // ==================================================
+    // SOCIALES
     // NO PIDE GRADO
     // ==================================================
 
     if (curso === "sociales") {
+
+        estado = "tema";
 
         cargarSociales();
 
@@ -401,24 +494,8 @@ function iniciarCurso(curso, icono, nombre) {
 
 
     // ==================================================
-    // 🇬🇧 INGLÉS
-    // NO PIDE GRADO
-    // ==================================================
-
-    if (curso === "ingles") {
-
-        estado = "nivel";
-
-        mostrarSelectorIngles();
-
-        return;
-
-    }
-
-
-    // ==================================================
-    // RESTO DE CURSOS
-    // SÍ PIDE GRADO
+    // MATEMÁTICA / COMUNICACIÓN / CYT
+    // SÍ PIDEN GRADO
     // ==================================================
 
     estado = "grado";
@@ -458,65 +535,6 @@ function iniciarCurso(curso, icono, nombre) {
 
 
     mostrarGrados();
-
-}
-
-
-// ======================================================
-// SELECTOR DE INGLÉS
-// ======================================================
-
-function mostrarSelectorIngles() {
-
-    responderBot(`
-
-        <div class="selector-futurista">
-
-            <div class="selector-badge">
-                ● EDU BOT IA
-            </div>
-
-            <div class="selector-icon">
-                🇬🇧
-            </div>
-
-            <h2>
-                INGLÉS
-            </h2>
-
-            <div class="selector-linea"></div>
-
-            <h3>
-                🌐 Selecciona tu nivel
-            </h3>
-
-            <p>
-                Elige el nivel que deseas estudiar.
-            </p>
-
-        </div>
-
-        <br>
-
-        🟢 <strong>Básico</strong>
-
-        <br><br>
-
-        🔵 <strong>Intermedio</strong>
-
-        <br><br>
-
-        🟣 <strong>Avanzado</strong>
-
-        <br><br>
-
-        ✏️ Escribe:
-        <strong>básico</strong>,
-        <strong>intermedio</strong>
-        o
-        <strong>avanzado</strong>.
-
-    `);
 
 }
 
@@ -571,11 +589,15 @@ function mostrarGrados() {
 
         Ejemplos:
 
-        <strong>2</strong>
-
-        o
-
         <strong>2 secundaria</strong>
+
+        <br>
+
+        <strong>segundo</strong>
+
+        <br>
+
+        <strong>2</strong>
 
     `);
 
@@ -591,17 +613,28 @@ function detectarGrado(texto) {
     texto = normalizar(texto);
 
 
+    // ==================================================
     // 6 PRIMARIA
+    // ==================================================
 
     if (
 
         texto === "6" ||
+
         texto.includes("6 primaria") ||
+
         texto.includes("6to primaria") ||
+
         texto.includes("6to de primaria") ||
-        texto.includes("sexto primaria") ||
-        texto.includes("sexto de primaria") ||
+
         texto.includes("6 grado") ||
+
+        texto.includes("sexto") ||
+
+        texto.includes("sexto primaria") ||
+
+        texto.includes("sexto de primaria") ||
+
         texto.includes("sexto grado")
 
     ) {
@@ -611,15 +644,24 @@ function detectarGrado(texto) {
     }
 
 
+    // ==================================================
     // 5 SECUNDARIA
+    // ==================================================
 
     if (
 
         texto === "5" ||
+
         texto.includes("5 secundaria") ||
+
         texto.includes("5to secundaria") ||
+
         texto.includes("5to de secundaria") ||
+
+        texto.includes("quinto") ||
+
         texto.includes("quinto secundaria") ||
+
         texto.includes("quinto de secundaria")
 
     ) {
@@ -629,15 +671,24 @@ function detectarGrado(texto) {
     }
 
 
+    // ==================================================
     // 4 SECUNDARIA
+    // ==================================================
 
     if (
 
         texto === "4" ||
+
         texto.includes("4 secundaria") ||
+
         texto.includes("4to secundaria") ||
+
         texto.includes("4to de secundaria") ||
+
+        texto.includes("cuarto") ||
+
         texto.includes("cuarto secundaria") ||
+
         texto.includes("cuarto de secundaria")
 
     ) {
@@ -647,15 +698,24 @@ function detectarGrado(texto) {
     }
 
 
+    // ==================================================
     // 3 SECUNDARIA
+    // ==================================================
 
     if (
 
         texto === "3" ||
+
         texto.includes("3 secundaria") ||
+
         texto.includes("3ro secundaria") ||
+
         texto.includes("3ro de secundaria") ||
+
+        texto.includes("tercero") ||
+
         texto.includes("tercero secundaria") ||
+
         texto.includes("tercero de secundaria")
 
     ) {
@@ -665,15 +725,24 @@ function detectarGrado(texto) {
     }
 
 
+    // ==================================================
     // 2 SECUNDARIA
+    // ==================================================
 
     if (
 
         texto === "2" ||
+
         texto.includes("2 secundaria") ||
+
         texto.includes("2do secundaria") ||
+
         texto.includes("2do de secundaria") ||
+
+        texto.includes("segundo") ||
+
         texto.includes("segundo secundaria") ||
+
         texto.includes("segundo de secundaria")
 
     ) {
@@ -683,15 +752,24 @@ function detectarGrado(texto) {
     }
 
 
+    // ==================================================
     // 1 SECUNDARIA
+    // ==================================================
 
     if (
 
         texto === "1" ||
+
         texto.includes("1 secundaria") ||
+
         texto.includes("1ro secundaria") ||
+
         texto.includes("1ro de secundaria") ||
+
+        texto.includes("primero") ||
+
         texto.includes("primero secundaria") ||
+
         texto.includes("primero de secundaria")
 
     ) {
@@ -727,7 +805,7 @@ function cargarCurso() {
 
 
     // ==================================================
-    // SOCIALES
+    // CIENCIAS SOCIALES
     // ==================================================
 
     if (cursoSeleccionado === "sociales") {
@@ -747,26 +825,10 @@ function cargarCurso() {
 
         const datos = obtenerDatosCurso();
 
+
         if (!datos) {
 
-            responderBot(`
-
-                ❌ <strong>No encontré los contenidos de Inglés.</strong>
-
-                <br><br>
-
-                El nivel seleccionado fue:
-
-                <strong>
-                    ${capitalizar(nivelInglesSeleccionado)}
-                </strong>
-
-                <br><br>
-
-                Verifica que el archivo correspondiente
-                esté cargado antes de <strong>app.js</strong>.
-
-            `);
+            mostrarErrorArchivoIngles();
 
             return;
 
@@ -803,13 +865,15 @@ function cargarCurso() {
             <br><br>
 
             Curso:
+
             <strong>
                 ${nombreCurso(cursoSeleccionado)}
             </strong>
 
-            <br>
+            <br><br>
 
             Grado:
+
             <strong>
                 ${nombreGrado(gradoSeleccionado)}
             </strong>
@@ -840,6 +904,238 @@ function cargarCurso() {
 
 
 // ======================================================
+// MOSTRAR NIVELES DE INGLÉS
+// ======================================================
+
+function mostrarNivelesIngles() {
+
+    estado = "nivel";
+
+
+    responderBot(`
+
+        <div class="selector-futurista">
+
+            <div class="selector-badge">
+                ● EDU BOT IA
+            </div>
+
+            <div class="selector-icon">
+                🇬🇧
+            </div>
+
+            <h2>
+                INGLÉS
+            </h2>
+
+            <div class="selector-linea"></div>
+
+            <h3>
+                🌐 Selecciona tu nivel
+            </h3>
+
+            <p>
+                Elige el nivel que deseas estudiar.
+            </p>
+
+        </div>
+
+        <div class="tema-futurista">
+
+            <span class="tema-numero">
+                01
+            </span>
+
+            <span class="tema-icono">
+                🟢
+            </span>
+
+            <strong>
+                Básico
+            </strong>
+
+        </div>
+
+        <div class="tema-futurista">
+
+            <span class="tema-numero">
+                02
+            </span>
+
+            <span class="tema-icono">
+                🔵
+            </span>
+
+            <strong>
+                Intermedio
+            </strong>
+
+        </div>
+
+        <div class="tema-futurista">
+
+            <span class="tema-numero">
+                03
+            </span>
+
+            <span class="tema-icono">
+                🟣
+            </span>
+
+            <strong>
+                Avanzado
+            </strong>
+
+        </div>
+
+        <br>
+
+        ✏️ <strong>
+        Escribe el número o nombre del nivel.
+        </strong>
+
+        <br><br>
+
+        Ejemplos:
+
+        <strong>1</strong>,
+
+        <strong>básico</strong>,
+
+        <strong>2</strong>,
+
+        <strong>intermedio</strong>,
+
+        <strong>3</strong>
+
+        o
+
+        <strong>avanzado</strong>.
+
+    `);
+
+}
+
+
+// ======================================================
+// SELECCIONAR NIVEL DE INGLÉS
+// ======================================================
+
+function seleccionarNivelIngles(texto) {
+
+    texto = normalizar(texto);
+
+
+    // ==================================================
+    // BÁSICO
+    // ==================================================
+
+    if (
+
+        texto === "1" ||
+
+        texto === "basico" ||
+
+        texto.includes("basico") ||
+
+        texto.includes("nivel basico")
+
+    ) {
+
+        nivelInglesSeleccionado = "basico";
+
+    }
+
+
+    // ==================================================
+    // INTERMEDIO
+    // ==================================================
+
+    else if (
+
+        texto === "2" ||
+
+        texto === "intermedio" ||
+
+        texto.includes("intermedio") ||
+
+        texto.includes("nivel intermedio")
+
+    ) {
+
+        nivelInglesSeleccionado = "intermedio";
+
+    }
+
+
+    // ==================================================
+    // AVANZADO
+    // ==================================================
+
+    else if (
+
+        texto === "3" ||
+
+        texto === "avanzado" ||
+
+        texto.includes("avanzado") ||
+
+        texto.includes("nivel avanzado")
+
+    ) {
+
+        nivelInglesSeleccionado = "avanzado";
+
+    }
+
+
+    // ==================================================
+    // NO RECONOCIDO
+    // ==================================================
+
+    else {
+
+        responderBot(`
+
+            ❌ <strong>No reconocí ese nivel.</strong>
+
+            <br><br>
+
+            🟢 <strong>1 - Básico</strong>
+
+            <br>
+
+            🔵 <strong>2 - Intermedio</strong>
+
+            <br>
+
+            🟣 <strong>3 - Avanzado</strong>
+
+            <br><br>
+
+            ✏️ Escribe el número o nombre.
+
+        `);
+
+        return;
+
+    }
+
+
+    // ==================================================
+    // IMPORTANTE:
+    // INGLÉS NO UTILIZA GRADO
+    // ==================================================
+
+    gradoSeleccionado = "";
+
+
+    cargarCurso();
+
+}
+
+
+// ======================================================
 // CIENCIA Y TECNOLOGÍA
 // ======================================================
 
@@ -855,11 +1151,9 @@ function cargarCienciaTecnologia() {
 
             Verifica que:
 
-            <br><br>
-
             <strong>cyt.js</strong>
 
-            esté cargado antes de
+            esté antes de:
 
             <strong>app.js</strong>.
 
@@ -877,12 +1171,13 @@ function cargarCienciaTecnologia() {
 
         responderBot(`
 
-            ❌ <strong>No encontré contenidos.</strong>
+            ❌ No encontré contenidos de
 
-            <br><br>
+            <strong>
+                Ciencia y Tecnología
+            </strong>
 
-            No existen contenidos de
-            Ciencia y Tecnología para:
+            para:
 
             <strong>
                 ${nombreGrado(gradoSeleccionado)}
@@ -909,7 +1204,7 @@ function cargarCienciaTecnologia() {
 
 // ======================================================
 // CIENCIAS SOCIALES
-// NO PIDE GRADO
+// SIN GRADO
 // ======================================================
 
 function cargarSociales() {
@@ -927,28 +1222,39 @@ function cargarSociales() {
 
         {
             numero: "1",
+
             nombre: "Historia del Perú",
+
             icono: "🇵🇪",
+
             datos:
                 typeof historiaPeru1 !== "undefined"
                     ? historiaPeru1
                     : null
         },
 
+
         {
             numero: "2",
+
             nombre: "Historia Universal",
+
             icono: "🌎",
+
             datos:
                 typeof historiaUniversal1 !== "undefined"
                     ? historiaUniversal1
                     : null
         },
 
+
         {
             numero: "3",
+
             nombre: "Economía",
+
             icono: "💰",
+
             datos:
                 typeof economia1 !== "undefined"
                     ? economia1
@@ -984,8 +1290,7 @@ function cargarSociales() {
             </h3>
 
             <p>
-                Elige directamente el tema
-                que deseas estudiar.
+                Elige el tema que deseas estudiar.
             </p>
 
         </div>
@@ -993,7 +1298,7 @@ function cargarSociales() {
     `);
 
 
-    temas.forEach((tema) => {
+    temas.forEach(function (tema) {
 
         responderBot(`
 
@@ -1022,18 +1327,21 @@ function cargarSociales() {
 
         <br>
 
-        ✏️ <strong>Escribe el número
-        o nombre del tema.</strong>
+        ✏️ <strong>
+        Escribe el número o nombre del tema.
+        </strong>
 
         <br><br>
 
-        Ejemplo:
+        <strong>1</strong> → Historia del Perú
 
-        <strong>1</strong>
+        <br>
 
-        o
+        <strong>2</strong> → Historia Universal
 
-        <strong>Historia del Perú</strong>
+        <br>
+
+        <strong>3</strong> → Economía
 
     `);
 
@@ -1041,87 +1349,7 @@ function cargarSociales() {
 
 
 // ======================================================
-// SELECCIONAR NIVEL DE INGLÉS
-// ======================================================
-
-function seleccionarNivelIngles(texto) {
-
-    texto = normalizar(texto);
-
-
-    if (
-
-        texto === "basico" ||
-        texto === "basica" ||
-        texto.includes("nivel basico")
-
-    ) {
-
-        nivelInglesSeleccionado = "basico";
-
-    }
-
-
-    else if (
-
-        texto === "intermedio" ||
-        texto.includes("nivel intermedio")
-
-    ) {
-
-        nivelInglesSeleccionado = "intermedio";
-
-    }
-
-
-    else if (
-
-        texto === "avanzado" ||
-        texto.includes("nivel avanzado")
-
-    ) {
-
-        nivelInglesSeleccionado = "avanzado";
-
-    }
-
-
-    else {
-
-        responderBot(`
-
-            ❌ <strong>No reconocí ese nivel.</strong>
-
-            <br><br>
-
-            🟢 Básico
-
-            <br>
-
-            🔵 Intermedio
-
-            <br>
-
-            🟣 Avanzado
-
-            <br><br>
-
-            ✏️ Escribe uno de esos niveles.
-
-        `);
-
-        return;
-
-    }
-
-
-    cargarCurso();
-
-}
-
-
-// ======================================================
-// OBTENER DATOS DEL CURSO
+// DATOS DEL CURSO
 // ======================================================
 
 function obtenerDatosCurso() {
@@ -1138,89 +1366,131 @@ function obtenerDatosCurso() {
         const temas = {};
 
 
-        const numero = gradoSeleccionado;
+        // ------------------------------------------------
+        // 1°
+        // ------------------------------------------------
 
+        if (gradoSeleccionado === "1") {
 
-        const archivos = {
+            if (typeof aritmetica1 !== "undefined")
+                temas.aritmetica = aritmetica1;
 
-            aritmetica:
-                `aritmetica${numero}`,
+            if (typeof algebra1 !== "undefined")
+                temas.algebra = algebra1;
 
-            algebra:
-                `algebra${numero}`,
+            if (typeof geometria1 !== "undefined")
+                temas.geometria = geometria1;
 
-            geometria:
-                `geometria${numero}`,
-
-            estadistica:
-                `estadistica${numero}`
-
-        };
-
-
-        // ----------------------------------------------
-        // ARITMÉTICA
-        // ----------------------------------------------
-
-        const aritmetica = obtenerVariable(archivos.aritmetica);
-
-        if (aritmetica !== null) {
-
-            temas.aritmetica = aritmetica;
+            if (typeof estadistica1 !== "undefined")
+                temas.estadistica = estadistica1;
 
         }
 
 
-        // ----------------------------------------------
-        // ÁLGEBRA
-        // ----------------------------------------------
+        // ------------------------------------------------
+        // 2°
+        // ------------------------------------------------
 
-        let algebra = obtenerVariable(archivos.algebra);
+        else if (gradoSeleccionado === "2") {
 
+            if (typeof aritmetica2 !== "undefined")
+                temas.aritmetica = aritmetica2;
 
-        // Respaldo para 6 si todavía no existe algebra6
+            if (typeof algebra2 !== "undefined")
+                temas.algebra = algebra2;
 
-        if (
+            if (typeof geometria2 !== "undefined")
+                temas.geometria = geometria2;
 
-            algebra === null &&
-            numero === "6"
-
-        ) {
-
-            algebra = obtenerVariable("algebra5");
-
-        }
-
-
-        if (algebra !== null) {
-
-            temas.algebra = algebra;
+            if (typeof estadistica2 !== "undefined")
+                temas.estadistica = estadistica2;
 
         }
 
 
-        // ----------------------------------------------
-        // GEOMETRÍA
-        // ----------------------------------------------
+        // ------------------------------------------------
+        // 3°
+        // ------------------------------------------------
 
-        const geometria = obtenerVariable(archivos.geometria);
+        else if (gradoSeleccionado === "3") {
 
-        if (geometria !== null) {
+            if (typeof aritmetica3 !== "undefined")
+                temas.aritmetica = aritmetica3;
 
-            temas.geometria = geometria;
+            if (typeof algebra3 !== "undefined")
+                temas.algebra = algebra3;
+
+            if (typeof geometria3 !== "undefined")
+                temas.geometria = geometria3;
+
+            if (typeof estadistica3 !== "undefined")
+                temas.estadistica = estadistica3;
 
         }
 
 
-        // ----------------------------------------------
-        // ESTADÍSTICA
-        // ----------------------------------------------
+        // ------------------------------------------------
+        // 4°
+        // ------------------------------------------------
 
-        const estadistica = obtenerVariable(archivos.estadistica);
+        else if (gradoSeleccionado === "4") {
 
-        if (estadistica !== null) {
+            if (typeof aritmetica4 !== "undefined")
+                temas.aritmetica = aritmetica4;
 
-            temas.estadistica = estadistica;
+            if (typeof algebra4 !== "undefined")
+                temas.algebra = algebra4;
+
+            if (typeof geometria4 !== "undefined")
+                temas.geometria = geometria4;
+
+            if (typeof estadistica4 !== "undefined")
+                temas.estadistica = estadistica4;
+
+        }
+
+
+        // ------------------------------------------------
+        // 5°
+        // ------------------------------------------------
+
+        else if (gradoSeleccionado === "5") {
+
+            if (typeof aritmetica5 !== "undefined")
+                temas.aritmetica = aritmetica5;
+
+            if (typeof algebra5 !== "undefined")
+                temas.algebra = algebra5;
+
+            if (typeof geometria5 !== "undefined")
+                temas.geometria = geometria5;
+
+            if (typeof estadistica5 !== "undefined")
+                temas.estadistica = estadistica5;
+
+        }
+
+
+        // ------------------------------------------------
+        // 6° PRIMARIA
+        // ------------------------------------------------
+
+        else if (gradoSeleccionado === "6") {
+
+            if (typeof aritmetica6 !== "undefined")
+                temas.aritmetica = aritmetica6;
+
+            if (typeof algebra6 !== "undefined")
+                temas.algebra = algebra6;
+
+            else if (typeof algebra5 !== "undefined")
+                temas.algebra = algebra5;
+
+            if (typeof geometria6 !== "undefined")
+                temas.geometria = geometria6;
+
+            if (typeof estadistica6 !== "undefined")
+                temas.estadistica = estadistica6;
 
         }
 
@@ -1238,7 +1508,7 @@ function obtenerDatosCurso() {
     // COMUNICACIÓN
     // ==================================================
 
-    else if (cursoSeleccionado === "comunicacion") {
+    if (cursoSeleccionado === "comunicacion") {
 
         if (typeof comunicacion !== "undefined") {
 
@@ -1263,14 +1533,15 @@ function obtenerDatosCurso() {
 
     // ==================================================
     // INGLÉS
-    // NO USA GRADO
+    // SIN GRADO
     // ==================================================
 
-    else if (cursoSeleccionado === "ingles") {
+    if (cursoSeleccionado === "ingles") {
 
         if (
 
             nivelInglesSeleccionado === "basico" &&
+
             typeof inglesBasico !== "undefined"
 
         ) {
@@ -1283,6 +1554,7 @@ function obtenerDatosCurso() {
         else if (
 
             nivelInglesSeleccionado === "intermedio" &&
+
             typeof inglesIntermedio !== "undefined"
 
         ) {
@@ -1295,6 +1567,7 @@ function obtenerDatosCurso() {
         else if (
 
             nivelInglesSeleccionado === "avanzado" &&
+
             typeof inglesAvanzado !== "undefined"
 
         ) {
@@ -1312,32 +1585,94 @@ function obtenerDatosCurso() {
 
 
 // ======================================================
-// OBTENER VARIABLE GLOBAL DE FORMA SEGURA
+// ERROR DE ARCHIVOS DE INGLÉS
 // ======================================================
 
-function obtenerVariable(nombre) {
+function mostrarErrorArchivoIngles() {
 
-    try {
+    let faltantes = [];
 
-        if (typeof window[nombre] !== "undefined") {
 
-            return window[nombre];
+    if (
+        nivelInglesSeleccionado === "basico" &&
+        typeof inglesBasico === "undefined"
+    ) {
+
+        faltantes.push("inglesBasico.js");
+
+    }
+
+
+    if (
+        nivelInglesSeleccionado === "intermedio" &&
+        typeof inglesIntermedio === "undefined"
+    ) {
+
+        faltantes.push("inglesIntermedio.js");
+
+    }
+
+
+    if (
+        nivelInglesSeleccionado === "avanzado" &&
+        typeof inglesAvanzado === "undefined"
+    ) {
+
+        faltantes.push("inglesAvanzado.js");
+
+    }
+
+
+    responderBot(`
+
+        ❌ <strong>No encontré los contenidos de Inglés.</strong>
+
+        <br><br>
+
+        Nivel seleccionado:
+
+        <strong>
+            ${capitalizar(nivelInglesSeleccionado)}
+        </strong>
+
+        <br><br>
+
+        ${
+
+            faltantes.length
+
+                ? `
+                    Verifica que esté cargado:
+
+                    <br><br>
+
+                    <strong>
+                        ${faltantes.join("<br>")}
+                    </strong>
+
+                    <br><br>
+
+                    y que aparezca <strong>antes de app.js</strong>.
+                `
+
+                : `
+                    Verifica que las variables de tus archivos
+                    tengan estos nombres:
+
+                    <br><br>
+
+                    <strong>
+                        inglesBasico
+                        <br>
+                        inglesIntermedio
+                        <br>
+                        inglesAvanzado
+                    </strong>
+                `
 
         }
 
-    }
-
-    catch (error) {
-
-        console.warn(
-            "No se pudo cargar:",
-            nombre
-        );
-
-    }
-
-
-    return null;
+    `);
 
 }
 
@@ -1347,33 +1682,6 @@ function obtenerVariable(nombre) {
 // ======================================================
 
 function mostrarEncabezadoTemas(datos) {
-
-    let informacionExtra = "";
-
-
-    if (cursoSeleccionado === "ingles") {
-
-        informacionExtra = `
-            <p>
-                🇬🇧 Nivel:
-                <strong>
-                    ${capitalizar(nivelInglesSeleccionado)}
-                </strong>
-            </p>
-        `;
-
-    }
-
-    else {
-
-        informacionExtra = `
-            <p>
-                🎓 ${nombreGrado(gradoSeleccionado)}
-            </p>
-        `;
-
-    }
-
 
     responderBot(`
 
@@ -1391,7 +1699,26 @@ function mostrarEncabezadoTemas(datos) {
                 ${nombreCurso(cursoSeleccionado)}
             </h2>
 
-            ${informacionExtra}
+            <p>
+
+                ${
+                    gradoSeleccionado
+                        ? nombreGrado(gradoSeleccionado)
+                        : ""
+                }
+
+                ${
+                    cursoSeleccionado === "ingles"
+                        ? `
+                            Nivel:
+                            ${capitalizar(
+                                nivelInglesSeleccionado
+                            )}
+                        `
+                        : ""
+                }
+
+            </p>
 
             <div class="selector-linea"></div>
 
@@ -1438,7 +1765,14 @@ function obtenerListaTemas(objeto) {
 
     for (const clave in principal) {
 
-        if (clave === "nombre") continue;
+        if (clave === "nombre")
+            continue;
+
+
+        if (
+            typeof principal[clave] === "function"
+        )
+            continue;
 
 
         lista.push({
@@ -1487,11 +1821,10 @@ function mostrarTemas(objeto) {
     }
 
 
-    lista.forEach((tema, indice) => {
+    lista.forEach(function (tema, indice) {
 
         const numero =
-            String(indice + 1)
-                .padStart(2, "0");
+            String(indice + 1).padStart(2, "0");
 
 
         const iconos = [
@@ -1509,9 +1842,7 @@ function mostrarTemas(objeto) {
 
 
         const icono =
-            iconos[
-                indice % iconos.length
-            ];
+            iconos[indice % iconos.length];
 
 
         responderBot(`
@@ -1561,7 +1892,7 @@ function seleccionarTema(texto) {
 
 
     // ==================================================
-    // CIENCIAS SOCIALES
+    // SOCIALES
     // ==================================================
 
     if (cursoSeleccionado === "sociales") {
@@ -1570,27 +1901,60 @@ function seleccionarTema(texto) {
             window.socialesTemas || [];
 
 
-        const elegido =
-            lista.find((tema) => {
-
-                const nombre =
-                    normalizar(tema.nombre);
+        let elegido = null;
 
 
-                return (
+        // ------------------------------------------------
+        // POR NÚMERO
+        // ------------------------------------------------
 
-                    texto === tema.numero ||
+        if (/^\d+$/.test(texto)) {
 
-                    texto === nombre ||
+            const indice =
+                Number(texto) - 1;
 
-                    texto.includes(nombre) ||
 
-                    nombre.includes(texto)
+            if (lista[indice]) {
 
-                );
+                elegido =
+                    lista[indice];
 
-            });
+            }
 
+        }
+
+
+        // ------------------------------------------------
+        // POR NOMBRE
+        // ------------------------------------------------
+
+        if (!elegido) {
+
+            elegido =
+                lista.find(function (tema) {
+
+                    const nombre =
+                        normalizar(tema.nombre);
+
+
+                    return (
+
+                        texto === nombre ||
+
+                        texto.includes(nombre) ||
+
+                        nombre.includes(texto)
+
+                    );
+
+                });
+
+        }
+
+
+        // ------------------------------------------------
+        // NO ENCONTRADO
+        // ------------------------------------------------
 
         if (!elegido) {
 
@@ -1602,21 +1966,21 @@ function seleccionarTema(texto) {
 
                 <br><br>
 
-                Puedes elegir:
+                Puedes escribir:
 
                 <br><br>
 
-                <strong>1</strong> 🇵🇪
+                <strong>1</strong> →
                 Historia del Perú
 
-                <br><br>
+                <br>
 
-                <strong>2</strong> 🌎
+                <strong>2</strong> →
                 Historia Universal
 
-                <br><br>
+                <br>
 
-                <strong>3</strong> 💰
+                <strong>3</strong> →
                 Economía
 
             `);
@@ -1650,46 +2014,44 @@ function seleccionarTema(texto) {
             obtenerListaTemas(datos);
 
 
-        let indice = null;
+        let elegido = null;
 
 
-        // Número
+        // ------------------------------------------------
+        // POR NÚMERO
+        // ------------------------------------------------
 
         if (/^\d+$/.test(texto)) {
 
-            indice =
+            const indice =
                 Number(texto) - 1;
+
+
+            if (lista[indice]) {
+
+                elegido =
+                    lista[indice];
+
+            }
 
         }
 
 
-        let elegido =
-
-            indice !== null &&
-            lista[indice]
-
-                ? lista[indice]
-
-                : null;
-
-
-        // Nombre
+        // ------------------------------------------------
+        // POR NOMBRE
+        // ------------------------------------------------
 
         if (!elegido) {
 
             elegido =
-                lista.find((tema) => {
+                lista.find(function (tema) {
 
                     const clave =
-                        normalizar(
-                            tema.clave
-                        );
+                        normalizar(tema.clave);
 
 
                     const titulo =
-                        normalizar(
-                            tema.titulo
-                        );
+                        normalizar(tema.titulo);
 
 
                     return (
@@ -1711,6 +2073,10 @@ function seleccionarTema(texto) {
         }
 
 
+        // ------------------------------------------------
+        // NO ENCONTRADO
+        // ------------------------------------------------
+
         if (!elegido) {
 
             responderBot(`
@@ -1722,8 +2088,7 @@ function seleccionarTema(texto) {
                 <br><br>
 
                 Escribe el número o nombre
-                del tema exactamente como
-                aparece en la lista.
+                del tema que aparece en la lista.
 
             `);
 
@@ -1757,15 +2122,9 @@ function seleccionarTema(texto) {
 
             <br><br>
 
-            El nombre fue reconocido,
-            pero el archivo de contenido
-            no está disponible.
-
-            <br><br>
-
-            Verifica que el archivo JS
-            correspondiente esté cargado
-            antes de <strong>app.js</strong>.
+            Esto normalmente significa que
+            el archivo JS del tema no está
+            cargado correctamente.
 
         `);
 
@@ -1794,8 +2153,8 @@ function seleccionarTema(texto) {
             </h2>
 
             <p>
-                Ya puedes hacerme
-                preguntas sobre este tema.
+                Ya puedes hacerme preguntas
+                sobre este tema.
             </p>
 
         </div>
@@ -1882,7 +2241,8 @@ function buscarPreguntaEnTema(texto) {
 
 function buscarRecursivo(objeto, texto) {
 
-    if (!objeto) return null;
+    if (!objeto)
+        return null;
 
 
     // ==================================================
@@ -1934,11 +2294,8 @@ function buscarRecursivo(objeto, texto) {
                 );
 
 
-            if (resultado) {
-
+            if (resultado)
                 return resultado;
-
-            }
 
         }
 
@@ -1956,7 +2313,8 @@ function buscarRecursivo(objeto, texto) {
 
         for (const clave in objeto) {
 
-            if (clave === "nombre") continue;
+            if (clave === "nombre")
+                continue;
 
 
             const claveNormalizada =
@@ -1965,7 +2323,9 @@ function buscarRecursivo(objeto, texto) {
                 );
 
 
-            // BUSCAR POR NOMBRE
+            // ------------------------------------------------
+            // BUSCAR POR NOMBRE DE CLAVE
+            // ------------------------------------------------
 
             if (
 
@@ -1990,7 +2350,9 @@ function buscarRecursivo(objeto, texto) {
             }
 
 
+            // ------------------------------------------------
             // BUSCAR DENTRO
+            // ------------------------------------------------
 
             const resultado =
                 buscarRecursivo(
@@ -1999,11 +2361,8 @@ function buscarRecursivo(objeto, texto) {
                 );
 
 
-            if (resultado) {
-
+            if (resultado)
                 return resultado;
-
-            }
 
         }
 
@@ -2021,6 +2380,10 @@ function buscarRecursivo(objeto, texto) {
 
 function formatearContenido(contenido) {
 
+    // ==================================================
+    // STRING
+    // ==================================================
+
     if (typeof contenido === "string") {
 
         return contenido;
@@ -2028,11 +2391,15 @@ function formatearContenido(contenido) {
     }
 
 
+    // ==================================================
+    // ARRAY
+    // ==================================================
+
     if (Array.isArray(contenido)) {
 
         return contenido
 
-            .map((item) => {
+            .map(function (item) {
 
                 if (typeof item === "string") {
 
@@ -2051,6 +2418,10 @@ function formatearContenido(contenido) {
 
     }
 
+
+    // ==================================================
+    // OBJETO
+    // ==================================================
 
     if (
 
@@ -2104,6 +2475,10 @@ function formatearContenido(contenido) {
 
 function normalizar(texto) {
 
+    if (texto === undefined || texto === null)
+        return "";
+
+
     return String(texto)
 
         .toLowerCase()
@@ -2115,7 +2490,10 @@ function normalizar(texto) {
             ""
         )
 
-        .replace(/\s+/g, " ")
+        .replace(
+            /\s+/g,
+            " "
+        )
 
         .trim();
 
@@ -2128,7 +2506,8 @@ function normalizar(texto) {
 
 function convertirNombre(texto) {
 
-    if (!texto) return "";
+    if (!texto)
+        return "";
 
 
     return String(texto)
@@ -2144,14 +2523,20 @@ function convertirNombre(texto) {
         )
 
         .replace(
+            /-/g,
+            " "
+        )
+
+        .replace(
             /\s+/g,
             " "
         )
 
         .replace(
             /\b\w/g,
-            letra =>
-                letra.toUpperCase()
+            function (letra) {
+                return letra.toUpperCase();
+            }
         )
 
         .trim();
@@ -2216,9 +2601,7 @@ function iconoCursoActual() {
     };
 
 
-    return iconos[
-        cursoSeleccionado
-    ] || "📚";
+    return iconos[cursoSeleccionado] || "📚";
 
 }
 
@@ -2252,8 +2635,7 @@ function nombreGrado(grado) {
     };
 
 
-    return nombres[grado]
-        || "Grado desconocido";
+    return nombres[grado] || "Grado desconocido";
 
 }
 
@@ -2264,10 +2646,15 @@ function nombreGrado(grado) {
 
 function capitalizar(texto) {
 
-    if (!texto) return "";
+    if (!texto)
+        return "";
 
 
-    return texto.charAt(0).toUpperCase()
+    return texto
+
+        .charAt(0)
+        .toUpperCase()
+
         +
         texto.slice(1);
 
@@ -2280,11 +2667,12 @@ function capitalizar(texto) {
 
 function mostrarUsuario(texto) {
 
-    const chat =
+    const chatActual =
         document.getElementById("chat");
 
 
-    if (!chat) return;
+    if (!chatActual)
+        return;
 
 
     const mensaje =
@@ -2306,11 +2694,11 @@ function mostrarUsuario(texto) {
     `;
 
 
-    chat.appendChild(mensaje);
+    chatActual.appendChild(mensaje);
 
 
-    chat.scrollTop =
-        chat.scrollHeight;
+    chatActual.scrollTop =
+        chatActual.scrollHeight;
 
 }
 
@@ -2321,11 +2709,12 @@ function mostrarUsuario(texto) {
 
 function responderBot(texto) {
 
-    const chat =
+    const chatActual =
         document.getElementById("chat");
 
 
-    if (!chat) return;
+    if (!chatActual)
+        return;
 
 
     const mensaje =
@@ -2340,11 +2729,11 @@ function responderBot(texto) {
         texto;
 
 
-    chat.appendChild(mensaje);
+    chatActual.appendChild(mensaje);
 
 
-    chat.scrollTop =
-        chat.scrollHeight;
+    chatActual.scrollTop =
+        chatActual.scrollHeight;
 
 }
 
@@ -2354,6 +2743,10 @@ function responderBot(texto) {
 // ======================================================
 
 function escapeHTML(texto) {
+
+    if (texto === undefined || texto === null)
+        return "";
+
 
     const div =
         document.createElement("div");
@@ -2389,13 +2782,13 @@ function reiniciarEduBot() {
     window.socialesTemas = [];
 
 
-    const chat =
+    const chatActual =
         document.getElementById("chat");
 
 
-    if (chat) {
+    if (chatActual) {
 
-        chat.innerHTML = `
+        chatActual.innerHTML = `
 
             <div class="bot">
 
@@ -2413,15 +2806,12 @@ function reiniciarEduBot() {
 
                 <br><br>
 
-                ¿Qué quieres aprender hoy?
+                Estoy preparado para ayudarte
+                a aprender.
 
                 <br><br>
 
-                🧮 Matemática<br>
-                📖 Comunicación<br>
-                🧪 Ciencia y Tecnología<br>
-                🌎 Ciencias Sociales<br>
-                🇬🇧 Inglés
+                Selecciona un curso para comenzar.
 
             </div>
 
@@ -2445,57 +2835,96 @@ function reiniciarEduBot() {
 // BOTONES VISUALES DE CURSOS
 // ======================================================
 
-window.addEventListener("load", function () {
+window.addEventListener(
+    "load",
+    function () {
 
 
-    // ==================================================
-    // BOTONES DATA-CURSO
-    // ==================================================
+        // ==================================================
+        // BOTONES DATA-CURSO
+        // ==================================================
 
-    document
-        .querySelectorAll("[data-curso]")
-        .forEach((boton) => {
+        document
 
-            boton.addEventListener(
+            .querySelectorAll("[data-curso]")
+
+            .forEach(function (boton) {
+
+
+                boton.addEventListener(
+                    "click",
+                    function () {
+
+
+                        const curso =
+                            normalizar(
+                                this.dataset.curso
+                            );
+
+
+                        // Reiniciamos solamente
+                        // la selección anterior.
+
+                        gradoSeleccionado = "";
+
+                        nivelInglesSeleccionado = "";
+
+                        temaSeleccionado = "";
+
+                        datosTemaSeleccionado = null;
+
+
+                        seleccionarCurso(curso);
+
+                    }
+                );
+
+            });
+
+
+        // ==================================================
+        // NUEVO CHAT
+        // ==================================================
+
+        const nuevoChat =
+            document.getElementById("nuevoChat");
+
+
+        if (nuevoChat) {
+
+            nuevoChat.addEventListener(
                 "click",
                 function () {
 
-                    const curso =
-                        normalizar(
-                            this.dataset.curso
-                        );
-
-
-                    seleccionarCurso(curso);
+                    reiniciarEduBot();
 
                 }
             );
 
-        });
-
-
-    // ==================================================
-    // BOTÓN NUEVO CHAT
-    // ==================================================
-
-    const nuevoChat =
-        document.getElementById("nuevoChat");
-
-
-    if (nuevoChat) {
-
-        nuevoChat.addEventListener(
-            "click",
-            function () {
-
-                reiniciarEduBot();
-
-            }
-        );
+        }
 
     }
+);
 
-});
+
+// ======================================================
+// EXPONER FUNCIONES IMPORTANTES
+// ======================================================
+// Esto permite que otros elementos del HTML puedan
+// llamar estas funciones si las necesitan.
+// ======================================================
+
+window.reiniciarEduBot =
+    reiniciarEduBot;
+
+window.seleccionarCurso =
+    seleccionarCurso;
+
+window.seleccionarTema =
+    seleccionarTema;
+
+window.responder =
+    responder;
 
 
 // ======================================================
@@ -2507,21 +2936,25 @@ console.log(
 );
 
 console.log(
-    "📚 Sistema: Curso → Grado/Nivel → Temas → Preguntas"
+    "📚 Cursos activos:"
 );
 
 console.log(
-    "🌎 Sociales: acceso directo a temas."
+    "🧮 Matemática → Grado → Temas"
 );
 
 console.log(
-    "🇬🇧 Inglés: acceso directo a niveles."
+    "📖 Comunicación → Grado → Temas"
 );
 
 console.log(
-    "🧮 Matemática: grados y temas activados."
+    "🧪 Ciencia y Tecnología → Grado → Temas"
 );
 
 console.log(
-    "🧪 Ciencia y Tecnología: grados y temas activados."
+    "🌎 Ciencias Sociales → Temas"
+);
+
+console.log(
+    "🇬🇧 Inglés → Nivel → Temas"
 );
