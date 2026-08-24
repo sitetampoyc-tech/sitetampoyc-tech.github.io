@@ -1,339 +1,374 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+/* =====================================================
+   🤖 EDU BOT — DISEÑO FUTURISTA
+===================================================== */
 
-:root{
-    --bg:#f8f9ff;
-    --surface:#ffffff;
-    --surface-2:#f7f7ff;
-    --text:#17213d;
-    --muted:#66708d;
-    --primary:#315cff;
-    --primary-2:#7b2cff;
-    --purple:#7138f6;
-    --line:#e8e9f3;
-    --shadow:0 18px 50px rgba(65,54,130,.10);
-    --shadow-soft:0 8px 24px rgba(47,57,110,.08);
-}
+.selector-futurista {
+    position: relative;
+    margin: 12px 0;
+    padding: 24px;
+    border-radius: 24px;
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-    margin:0;
-    font-family:Inter,Arial,sans-serif;
-    color:var(--text);
     background:
-        radial-gradient(circle at 75% 20%,rgba(137,108,255,.08),transparent 30%),
-        radial-gradient(circle at 95% 90%,rgba(255,120,192,.08),transparent 25%),
-        var(--bg);
-    transition:.3s ease;
-}
-button,input{font:inherit}
-button{border:0;cursor:pointer}
-.app{display:flex;min-height:100vh}
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,.20),
+            rgba(37,99,235,.15),
+            rgba(6,182,212,.12)
+        );
 
-.sidebar{
-    width:295px;
-    min-width:295px;
-    min-height:100vh;
-    padding:25px 20px 18px;
-    background:rgba(255,255,255,.90);
-    border-right:1px solid #ececf5;
-    box-shadow:8px 0 30px rgba(46,39,100,.04);
-    display:flex;
-    flex-direction:column;
-    position:sticky;
-    top:0;
-    height:100vh;
-    z-index:50;
-    backdrop-filter:blur(20px);
+    border: 1px solid rgba(139,92,246,.35);
+
+    box-shadow:
+        0 0 30px rgba(99,102,241,.12),
+        inset 0 0 25px rgba(255,255,255,.025);
+
+    overflow: hidden;
 }
 
-.logo{display:flex;align-items:center;gap:13px;margin-bottom:27px}
-.logo-icon{
-    width:48px;height:48px;border-radius:15px;
-    display:grid;place-items:center;font-size:26px;
-    background:linear-gradient(145deg,#eef0ff,#fff);
-    box-shadow:inset 0 0 0 1px #e5e5ff,0 8px 18px rgba(93,66,220,.12);
-}
-.logo h2{margin:0;font-family:'Plus Jakarta Sans';font-size:25px;letter-spacing:-1.2px}
-.logo h2 span{color:#7138f6}
-.logo p{margin:3px 0 0;color:#68718a;font-size:12px}
 
-.nuevo-chat{
-    width:100%;height:50px;border-radius:14px;color:#fff;
-    background:linear-gradient(100deg,#2f68ff,#7134ee);
-    box-shadow:0 12px 25px rgba(91,68,245,.24);
-    font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;
-    transition:.2s;
-}
-.nuevo-chat span:first-child{font-size:25px;font-weight:400}
-.nuevo-chat:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(91,68,245,.30)}
+.selector-futurista::before {
+    content: "";
 
-.menu-titulo{
-    margin:23px 0 9px 2px;
-    color:#68718b;font-size:11px;font-weight:800;letter-spacing:.5px;
-}
-.menu,.cursos-menu{display:grid;gap:3px}
-.menu-btn,.curso-menu{
-    min-height:38px;padding:8px 11px;border-radius:11px;
-    background:transparent;color:#1d2948;text-align:left;
-    display:flex;align-items:center;gap:12px;font-weight:600;
-    transition:.2s;
-}
-.menu-btn span,.curso-menu span{flex:1}
-.menu-btn:hover,.curso-menu:hover{background:#f2efff;transform:translateX(2px)}
-.menu-btn.activo{
-    color:#315cff;
-    background:linear-gradient(100deg,#f0edff,#e9e7ff);
-    box-shadow:inset 0 0 0 1px #e8e0ff;
-}
-.cursos-menu .curso-menu{font-size:14px;min-height:36px}
+    position: absolute;
 
-.sidebar-bottom{margin-top:auto}
-.estado-online{
-    min-height:37px;padding:9px 13px;border-radius:11px;
-    display:flex;align-items:center;gap:10px;
-    background:#e9f9ee;color:#159447;font-size:13px;font-weight:700;
-}
-.estado-online span,.online-pill span{width:10px;height:10px;border-radius:50%;background:#12a454;box-shadow:0 0 0 4px rgba(18,164,84,.08)}
+    width: 180px;
+    height: 180px;
 
-.config-btn{
-    width:100%;margin-top:9px;height:40px;border-radius:11px;
-    background:#fff;border:1px solid #e5e6ef;color:#46516d;font-weight:600;
-    box-shadow:0 4px 12px rgba(50,50,90,.05);
-}
-.config-btn:hover{background:#f8f7ff}
+    right: -80px;
+    top: -80px;
 
-.modo{
-    margin-top:9px;min-height:40px;padding:8px 12px;border-radius:11px;
-    background:#f5f6fa;display:flex;align-items:center;justify-content:space-between;
-    color:#43506e;font-size:13px;font-weight:600;
-}
-.switch{position:relative;width:38px;height:21px}
-.switch input{display:none}
-.slider{position:absolute;inset:0;background:#cbd0dc;border-radius:99px;transition:.2s}
-.slider:before{content:"";position:absolute;width:17px;height:17px;left:2px;top:2px;border-radius:50%;background:white;box-shadow:0 1px 4px #999;transition:.2s}
-.switch input:checked+.slider{background:linear-gradient(90deg,#315cff,#7b2cff)}
-.switch input:checked+.slider:before{transform:translateX(17px)}
+    border-radius: 50%;
 
-.perfil{
-    margin-top:14px;padding:11px 7px;display:flex;align-items:center;gap:9px;
-}
-.perfil-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#f1efff;font-size:20px}
-.perfil-texto{min-width:0;display:flex;flex-direction:column}
-.perfil-texto strong{font-size:13px}
-.perfil-texto span{font-size:10px;color:#7a839b;margin-top:2px}
-.corazon{margin-left:auto;width:35px;height:35px;border-radius:50%;background:#f2edff;color:#7036ee;font-size:20px}
+    background: rgba(6,182,212,.18);
 
-.main{
-    position:relative;flex:1;min-width:0;overflow:hidden;
-    padding:22px 38px 40px;
-}
-.topbar{height:45px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:5}
-.breadcrumbs{display:flex;align-items:center;gap:8px;color:#66708a;font-size:12px;font-weight:600}
-.topbar-dot{width:8px;height:8px;background:#7138f6;border-radius:50%}
-.slash{opacity:.4}
-.topbar-actions{display:flex;align-items:center;gap:12px}
-.online-pill{
-    padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.88);
-    border:1px solid #ebebf2;box-shadow:var(--shadow-soft);
-    display:flex;align-items:center;gap:9px;color:#159447;font-size:13px;font-weight:800;
-}
-.top-icon{
-    width:44px;height:44px;border-radius:50%;color:#fff;
-    background:linear-gradient(145deg,#7b2cff,#5520d8);
-    box-shadow:0 10px 22px rgba(94,40,220,.28);font-size:26px;line-height:1;
-}
-.menu-movil{display:none}
+    filter: blur(35px);
 
-.inicio-seccion{position:relative;z-index:2;max-width:1260px;margin:auto;padding:34px 0 10px}
-.hero-copy{text-align:center;position:relative;z-index:2}
-.eyebrow{
-    display:inline-flex;gap:7px;align-items:center;padding:7px 12px;border-radius:99px;
-    background:#f0edff;color:#7138f6;font-size:10px;font-weight:800;letter-spacing:1px;
+    pointer-events: none;
 }
-.hero-copy h1{
-    margin:15px 0 8px;font-family:'Plus Jakarta Sans';font-size:43px;letter-spacing:-2.2px;
-}
-.hero-copy h1 span{
-    background:linear-gradient(100deg,#2467ff,#7138f6);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.hero-copy>p{max-width:650px;margin:0 auto;color:#53607c;font-size:16px;line-height:1.6}
-.hero-question h2{margin:25px 0 10px;font-size:25px;letter-spacing:-.7px}
-.linea-color{width:76px;height:4px;border-radius:99px;background:linear-gradient(90deg,#7d37ff,#286dff);margin:auto}
 
-.hero-decor{position:absolute;pointer-events:none}
-.decor-blob{width:270px;height:270px;left:-90px;top:-110px;border-radius:50%;background:linear-gradient(145deg,#eee9ff,#f8f4ff)}
-.dots{
-    width:95px;height:95px;left:65px;top:105px;opacity:.35;
-    background-image:radial-gradient(#9d7dff 2px,transparent 2px);background-size:17px 17px;
-}
-.star{color:#dbb7ff;font-size:28px}
-.star-1{left:28%;top:65px}.star-2{left:59%;top:88px;color:#c9b4ff}
-.ring{right:10%;top:60px;color:#9dbdf8;font-size:75px;transform:rotate(-25deg)}
 
-.robot-decorativo{position:absolute;right:30px;top:122px;width:190px;height:240px;z-index:1;pointer-events:none;filter:drop-shadow(0 20px 20px rgba(53,40,120,.14))}
-.robot-shadow{position:absolute;bottom:0;left:20px;width:150px;height:22px;border-radius:50%;background:rgba(68,54,130,.10)}
-.robot-antena{position:absolute;left:92px;top:-20px;width:5px;height:35px;background:#3344a0;border-radius:4px}
-.robot-antena:before{content:"";position:absolute;left:-7px;top:-11px;width:18px;height:18px;border-radius:50%;background:#7835ef;box-shadow:0 0 0 6px rgba(120,53,239,.10)}
-.robot-cabeza{
-    position:absolute;top:14px;left:10px;width:175px;height:137px;border-radius:48px;
-    background:linear-gradient(145deg,#fff,#e8ebf8);border:1px solid #dfe3f2;
-    box-shadow:inset -10px -10px 20px rgba(97,104,153,.08),0 16px 28px rgba(53,47,119,.15);
-}
-.robot-oreja{position:absolute;top:45px;width:25px;height:48px;border-radius:15px;background:#e5e8f4;border:1px solid #d6dbea}
-.robot-oreja.izquierda{left:-13px}.robot-oreja.derecha{right:-13px}
-.robot-pantalla{
-    position:absolute;left:25px;top:32px;width:125px;height:74px;border-radius:27px;
-    background:#101438;display:flex;align-items:flex-start;justify-content:center;gap:38px;padding-top:17px;
-    box-shadow:inset 0 0 15px rgba(32,86,255,.30)
-}
-.robot-pantalla .ojo{color:#2bd2ff;font-size:24px;line-height:1}
-.robot-sonrisa{position:absolute;bottom:10px;color:#f27dff;font-size:24px}
-.robot-cuerpo{
-    position:absolute;left:43px;top:139px;width:105px;height:86px;border-radius:32px 32px 38px 38px;
-    background:linear-gradient(145deg,#fff,#e4e7f4);border:1px solid #dce0ed;
-}
-.robot-badge{position:absolute;left:38px;top:25px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#edf0ff;color:#6431ee}
+.selector-badge {
+    display: inline-block;
 
-.tarjetas-cursos{
-    margin-top:43px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;
-}
-.tarjeta{
-    min-height:274px;padding:20px 14px 16px;border-radius:21px;background:rgba(255,255,255,.90);
-    border:1px solid #e5e5f0;box-shadow:var(--shadow-soft);
-    text-align:center;position:relative;overflow:hidden;transition:.25s;
-}
-.tarjeta:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--card-color)}
-.tarjeta:hover{transform:translateY(-8px);box-shadow:0 22px 40px rgba(60,54,120,.13)}
-.card-top{display:flex;align-items:center;justify-content:center;position:relative}
-.card-number{position:absolute;right:2px;top:0;color:#a3a8bb;font-size:9px;font-weight:800}
-.icono-curso{
-    width:83px;height:83px;border-radius:50%;display:grid;place-items:center;font-size:43px;
-    background:var(--icon-bg);box-shadow:inset 0 0 0 1px rgba(255,255,255,.8);
-}
-.tarjeta h3{margin:17px 0 9px;font-size:18px;color:var(--card-color);letter-spacing:-.4px}
-.tarjeta p{margin:0 auto;color:#55607a;font-size:12.5px;line-height:1.55;max-width:170px}
-.entrar-curso{
-    position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
-    width:36px;height:36px;border-radius:50%;background:var(--card-color);color:#fff;
-    font-size:23px;box-shadow:0 8px 16px color-mix(in srgb,var(--card-color) 25%,transparent);
-    transition:.2s;
-}
-.entrar-curso:hover{transform:translateX(-50%) scale(1.1)}
-.curso-matematica{--card-color:#7038ee;--icon-bg:#eee8ff}
-.curso-comunicacion{--card-color:#1765e8;--icon-bg:#e6efff}
-.curso-ciencia{--card-color:#0c9c54;--icon-bg:#e1f8ea}
-.curso-sociales{--card-color:#ef690e;--icon-bg:#fff0dd}
-.curso-ingles{--card-color:#ec2f76;--icon-bg:#ffe7f1}
-.curso-computacion{--card-color:#1d6af1;--icon-bg:#e6f0ff}
+    padding: 6px 12px;
 
-.sugerencias{margin:32px auto 0;max-width:950px}
-.suggestion-heading{display:flex;justify-content:center;text-align:center}
-.small-label{font-size:9px;font-weight:800;letter-spacing:1.1px;color:#8a90a5}
-.suggestion-heading p{margin:5px 0 12px;color:#52607c;font-size:13px}
-.botones-sugerencia{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
-.botones-sugerencia button{
-    padding:12px 16px;border-radius:999px;background:#fff;border:1px solid #e8e7f0;
-    box-shadow:0 6px 18px rgba(56,49,110,.06);color:#34405f;font-weight:700;font-size:12px;
-    display:flex;align-items:center;gap:8px;transition:.2s;
-}
-.botones-sugerencia button:hover{transform:translateY(-2px);border-color:#d6ceff;box-shadow:0 12px 25px rgba(87,59,175,.10)}
-.botones-sugerencia b{font-size:19px;color:#9b9fb2}
+    border-radius: 999px;
 
-.zona-chat{
-    display:none;position:relative;z-index:3;max-width:1000px;margin:55px auto 0;
-    min-height:620px;background:rgba(255,255,255,.84);border:1px solid #e8e6f2;
-    border-radius:27px;box-shadow:var(--shadow);overflow:hidden;backdrop-filter:blur(16px);
-}
-.zona-chat.visible{display:flex;flex-direction:column}
-.chat-header{
-    padding:16px 20px;border-bottom:1px solid #ecebf4;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.8)
-}
-.chat-bot-avatar{width:43px;height:43px;border-radius:14px;background:#f0edff;display:grid;place-items:center;font-size:23px}
-.chat-header strong{display:block;font-size:14px}.chat-header span{display:block;color:#7c8499;font-size:11px;margin-top:3px}.chat-header i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#12a454;margin-right:4px}
-.chat-header-course{margin-left:auto;padding:8px 12px;border-radius:99px;background:#f4f2ff;color:#7038ee;font-size:11px;font-weight:800}
-.mensajes{flex:1;padding:24px;overflow:auto;min-height:450px}
-.bot{
-    width:fit-content;max-width:80%;padding:17px 19px;border-radius:6px 18px 18px 18px;
-    background:#f2f0ff;border:1px solid #e5defe;color:#34405d;line-height:1.6;font-size:14px;
-    box-shadow:0 7px 18px rgba(76,53,156,.05);
-}
-.curso-grande-icono{font-size:45px;margin-bottom:10px}
-.entrada{
-    margin:15px 18px 18px;padding:7px 8px 7px 12px;border:1.5px solid #9d7aff;
-    border-radius:999px;background:#fff;box-shadow:0 10px 30px rgba(91,55,200,.10);
-    display:flex;align-items:center;gap:8px;
-}
-.boton-extra,.mic-btn{
-    width:40px;height:40px;border-radius:50%;background:#f2efff;color:#6335e7;font-size:18px;flex:none
-}
-.entrada input{flex:1;border:0;outline:0;background:transparent;color:#273352;font-size:14px;min-width:0}
-.entrada input::placeholder{color:#8b91a6}
-.boton-enviar{
-    width:48px;height:48px;border-radius:50%;background:linear-gradient(145deg,#7138f6,#5525db);
-    color:#fff;font-size:23px;box-shadow:0 9px 18px rgba(96,43,222,.25);transition:.2s
-}
-.boton-enviar:hover{transform:scale(1.06)}
+    font-size: 11px;
 
-.seccion-extra{display:none;min-height:70vh;place-items:center;padding:70px 0;position:relative;z-index:3}
-.seccion-extra.mostrar{display:grid}
-.extra-card{
-    width:min(650px,100%);padding:50px;text-align:center;border-radius:28px;background:rgba(255,255,255,.9);
-    border:1px solid #e9e7f2;box-shadow:var(--shadow)
-}
-.extra-icon{width:75px;height:75px;border-radius:24px;background:#f0edff;display:grid;place-items:center;font-size:36px;margin:0 auto 18px}
-.extra-card h2{font-family:'Plus Jakarta Sans';font-size:30px;margin:8px 0}
-.extra-card p{color:#66708d;line-height:1.6}
-.extra-action{margin-top:15px;padding:13px 20px;border-radius:12px;color:#fff;background:linear-gradient(100deg,#315cff,#7138f6);font-weight:700}
+    font-weight: 800;
 
-.oscuro{
-    --bg:#0d1020;--surface:#161a2c;--surface-2:#121628;--text:#eef1ff;--muted:#aab1ca;--line:#292e45;
-    background:#0d1020;color:var(--text);
-}
-.oscuro .sidebar,.oscuro .zona-chat,.oscuro .extra-card,.oscuro .tarjeta,.oscuro .entrada,.oscuro .online-pill,.oscuro .config-btn,.oscuro .botones-sugerencia button{
-    background:#15192b;border-color:#292e45;color:#eef1ff
-}
-.oscuro .menu-btn,.oscuro .curso-menu{color:#e7eaff}.oscuro .menu-btn.activo{background:#252044}
-.oscuro .hero-copy>p,.oscuro .tarjeta p,.oscuro .suggestion-heading p,.oscuro .breadcrumbs,.oscuro .logo p{color:#aab1ca}
-.oscuro .modo{background:#20243a}.oscuro .bot{background:#201d3d;border-color:#3a3261;color:#e8e9f5}
-.oscuro .chat-header{background:#15192b;border-color:#292e45}.oscuro .chat-header-course{background:#26203e}
-.oscuro .entrada input{color:#eef1ff}.oscuro .botones-sugerencia button{box-shadow:none}
-.oscuro .robot-cabeza,.oscuro .robot-cuerpo{background:linear-gradient(145deg,#33384e,#22263a);border-color:#444b66}
-.oscuro .robot-oreja{background:#2b3044;border-color:#424861}
+    letter-spacing: 1.5px;
 
-@media(max-width:1250px){
-    .tarjetas-cursos{grid-template-columns:repeat(3,1fr)}
-    .robot-decorativo{opacity:.35;right:-10px}
+    color: #67e8f9;
+
+    background: rgba(6,182,212,.10);
+
+    border: 1px solid rgba(6,182,212,.25);
 }
-@media(max-width:900px){
-    .sidebar{position:fixed;left:-305px;transition:.3s;box-shadow:20px 0 50px rgba(0,0,0,.15)}
-    .sidebar.abierta{left:0}
-    .main{padding:15px 18px 30px}
-    .menu-movil{display:grid;place-items:center;position:relative;z-index:60;width:43px;height:43px;border-radius:12px;background:#fff;color:#3b4160;box-shadow:var(--shadow-soft)}
-    .topbar{margin-top:-43px;padding-left:55px}
-    .topbar .breadcrumbs{display:none}
-    .hero-copy h1{font-size:34px}
-    .robot-decorativo{display:none}
-    .decor-blob{left:-150px}
+
+
+.selector-icon {
+    font-size: 48px;
+
+    margin: 14px 0 8px;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(99,102,241,.55)
+        );
 }
-@media(max-width:650px){
-    .tarjetas-cursos{grid-template-columns:repeat(2,1fr);gap:10px}
-    .tarjeta{min-height:245px;padding:16px 10px}
-    .icono-curso{width:65px;height:65px;font-size:34px}
-    .tarjeta h3{font-size:15px}.tarjeta p{font-size:11px}
-    .hero-copy{padding-top:30px}.hero-copy h1{font-size:29px;letter-spacing:-1.5px}
-    .hero-copy>p{font-size:13px}.hero-question h2{font-size:21px}
-    .botones-sugerencia{display:grid;grid-template-columns:1fr 1fr}
-    .botones-sugerencia button{justify-content:center;padding:11px 9px;font-size:10px}
-    .topbar-actions .online-pill{display:none}
-    .top-icon{width:40px;height:40px}
-    .entrada{margin:10px;padding:6px}
-    .mic-btn{display:none}
+
+
+.selector-futurista h2 {
+    margin: 0;
+
+    font-size: 28px;
+
+    font-weight: 900;
+
+    background:
+        linear-gradient(
+            90deg,
+            #c4b5fd,
+            #60a5fa,
+            #67e8f9
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
-@media(max-width:430px){
-    .tarjetas-cursos{grid-template-columns:1fr 1fr}
-    .card-number{display:none}
-    .sugerencias{margin-top:22px}
-    .botones-sugerencia{grid-template-columns:1fr}
+
+
+.selector-futurista p {
+    opacity: .78;
+
+    line-height: 1.6;
+}
+
+
+.selector-linea {
+    width: 90px;
+    height: 2px;
+
+    margin: 15px 0;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8b5cf6,
+            #06b6d4
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(6,182,212,.55);
+}
+
+
+/* =====================================================
+   🎓 GRADOS Y TEMAS
+===================================================== */
+
+.tema-futurista {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin: 10px 0;
+
+    padding: 16px 18px;
+
+    border-radius: 18px;
+
+    color: inherit;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.07),
+            rgba(99,102,241,.08)
+        );
+
+    border:
+        1px solid
+        rgba(139,92,246,.22);
+
+    cursor: pointer;
+
+    transition:
+        .25s ease;
+
+    text-align: left;
+}
+
+
+.tema-futurista:hover {
+    transform:
+        translateX(7px)
+        scale(1.015);
+
+    border-color:
+        rgba(103,232,249,.65);
+
+    box-shadow:
+        0 0 25px
+        rgba(99,102,241,.20);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,.20),
+            rgba(6,182,212,.13)
+        );
+}
+
+
+.tema-numero {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 44px;
+    height: 44px;
+
+    border-radius: 14px;
+
+    color: white;
+
+    font-weight: 900;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
+
+    box-shadow:
+        0 0 16px
+        rgba(124,58,237,.35);
+}
+
+
+.tema-icono {
+    font-size: 25px;
+}
+
+
+.tema-futurista strong {
+    flex: 1;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   📖 EXPLICACIÓN
+===================================================== */
+
+.tema-seleccionado-futurista,
+.explicacion-futurista,
+.preguntas-futuristas,
+.respuesta-futurista {
+
+    margin: 14px 0;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,.15),
+            rgba(37,99,235,.10)
+        );
+
+    border:
+        1px solid
+        rgba(139,92,246,.25);
+
+    box-shadow:
+        0 0 25px
+        rgba(99,102,241,.08);
+}
+
+
+.tema-seleccionado-futurista h2 {
+    margin: 8px 0;
+
+    font-size: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #c4b5fd,
+            #93c5fd,
+            #67e8f9
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.contenido-explicacion {
+    margin-top: 15px;
+
+    line-height: 1.75;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   🧠 PREGUNTAS
+===================================================== */
+
+.pregunta-sugerida {
+    display: block;
+
+    width: 100%;
+
+    margin: 9px 0;
+
+    padding: 13px 16px;
+
+    border-radius: 14px;
+
+    border:
+        1px solid
+        rgba(103,232,249,.20);
+
+    background:
+        rgba(6,182,212,.07);
+
+    color: inherit;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+
+.pregunta-sugerida:hover {
+    transform: translateX(5px);
+
+    border-color:
+        rgba(103,232,249,.55);
+
+    box-shadow:
+        0 0 15px
+        rgba(6,182,212,.12);
+}
+
+
+/* =====================================================
+   ✨ ANIMACIONES
+===================================================== */
+
+.selector-futurista,
+.tema-futurista,
+.explicacion-futurista,
+.preguntas-futuristas {
+
+    animation:
+        aparecerEduBot
+        .45s
+        ease
+        both;
+}
+
+
+@keyframes aparecerEduBot {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
 }
