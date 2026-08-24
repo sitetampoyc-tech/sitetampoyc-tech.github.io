@@ -1,44 +1,5 @@
 /* =========================================================
-   EDU BOT IA — STYLE.CSS
-   INTERFAZ FUTURISTA / MODERNA
-   ========================================================= */
-
-/* =========================================================
-   VARIABLES
-   ========================================================= */
-
-:root {
-    --primary: #6842ff;
-    --primary-2: #8b35ff;
-    --primary-light: #eeeaff;
-
-    --blue: #3b82f6;
-    --green: #10b981;
-    --orange: #f97316;
-    --pink: #ec4899;
-    --red: #ef4444;
-
-    --bg: #f6f5ff;
-    --bg-2: #ffffff;
-
-    --card: rgba(255,255,255,0.92);
-    --text: #17203a;
-    --text-soft: #69728b;
-
-    --border: rgba(105, 66, 255, 0.12);
-
-    --shadow:
-        0 20px 60px rgba(80, 55, 180, 0.12);
-
-    --shadow-small:
-        0 8px 25px rgba(80, 55, 180, 0.10);
-
-    --radius: 20px;
-}
-
-
-/* =========================================================
-   RESET
+   EDU BOT IA — INTERFAZ FUTURISTA
    ========================================================= */
 
 * {
@@ -47,43 +8,20 @@
     padding: 0;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
+html,
 body {
-    font-family:
-        Inter,
-        Poppins,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
+    width: 100%;
+    min-height: 100%;
+    font-family: Inter, Arial, Helvetica, sans-serif;
     background:
-        radial-gradient(
-            circle at 80% 10%,
-            rgba(116, 78, 255, 0.12),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 20% 80%,
-            rgba(73, 124, 255, 0.08),
-            transparent 25%
-        ),
-        var(--bg);
-
-    color: var(--text);
-
-    min-height: 100vh;
-
-    overflow-x: hidden;
+        radial-gradient(circle at 15% 20%, rgba(104, 74, 255, .10), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(0, 180, 255, .08), transparent 28%),
+        linear-gradient(135deg, #f8f8ff, #eef0ff);
+    color: #18213d;
 }
-
 
 /* =========================================================
-   SCROLLBAR
+   SCROLL
    ========================================================= */
 
 ::-webkit-scrollbar {
@@ -96,68 +34,480 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(
-        180deg,
-        var(--primary),
-        var(--primary-2)
-    );
-
+    background: linear-gradient(#7040ff, #4c6fff);
     border-radius: 20px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    opacity: 0.8;
-}
-
-
 /* =========================================================
-   SELECCIÓN
+   CHAT — IMPORTANTE
    ========================================================= */
 
-::selection {
-    background: rgba(104, 66, 255, 0.20);
-    color: var(--primary);
+#chat,
+.chat {
+    width: 100%;
+    display: block !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 22px;
 }
 
+/*
+   MUY IMPORTANTE:
+   Cada mensaje ocupa su propia línea.
+   Esto corrige el problema de Inglés,
+   Sociales y los demás cursos.
+*/
+
+#chat > div,
+.chat > div {
+    display: block !important;
+    width: 100%;
+    max-width: 100%;
+    clear: both;
+}
 
 /* =========================================================
-   LINKS
+   MENSAJES DEL BOT
    ========================================================= */
 
-a {
-    color: inherit;
-    text-decoration: none;
+.bot {
+    display: block !important;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 18px 0;
+    padding: 16px 18px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,.96),
+        rgba(245,247,255,.96)
+    );
+
+    border: 1px solid rgba(99, 77, 255, .10);
+    border-radius: 18px;
+
+    color: #202945;
+    font-size: 15px;
+    line-height: 1.65;
+
+    box-shadow:
+        0 8px 25px rgba(67, 55, 150, .07);
+
+    text-align: left;
+
+    animation: aparecerBot .25s ease;
 }
 
+/* =========================================================
+   MENSAJE DEL USUARIO
+   ========================================================= */
+
+.usuario {
+    display: block !important;
+    width: fit-content !important;
+    max-width: 75% !important;
+
+    margin: 10px 0 18px auto !important;
+    padding: 12px 17px;
+
+    background: linear-gradient(
+        135deg,
+        #6840f5,
+        #4d68ed
+    );
+
+    color: white;
+
+    border-radius: 18px 18px 5px 18px;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    box-shadow:
+        0 8px 20px rgba(91, 70, 230, .20);
+
+    animation: aparecerUsuario .25s ease;
+}
+
+/* =========================================================
+   SELECTOR FUTURISTA
+   ========================================================= */
+
+.selector-futurista {
+    display: block;
+    width: 100%;
+    padding: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(104, 70, 255, .08),
+            rgba(75, 118, 255, .04)
+        );
+
+    border: 1px solid rgba(100, 75, 255, .12);
+    border-radius: 20px;
+
+    margin-bottom: 15px;
+}
+
+.selector-badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 12px;
+
+    border-radius: 30px;
+
+    background: rgba(100, 75, 255, .10);
+    color: #6040e8;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    margin-bottom: 12px;
+}
+
+.selector-icon {
+    font-size: 38px;
+    margin-bottom: 8px;
+}
+
+.selector-futurista h2 {
+    font-size: 25px;
+    font-weight: 800;
+    color: #1d2745;
+    margin-bottom: 8px;
+}
+
+.selector-futurista h3 {
+    font-size: 17px;
+    margin: 12px 0 5px;
+}
+
+.selector-futurista p {
+    color: #68718c;
+    line-height: 1.6;
+}
+
+.selector-linea {
+    width: 100%;
+    height: 2px;
+    margin: 14px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7040ff,
+            #4d76ff,
+            transparent
+        );
+
+    border-radius: 10px;
+}
+
+/* =========================================================
+   GRADOS
+   ========================================================= */
+
+.grados-futuristas {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+
+    width: 100%;
+    margin-top: 15px;
+}
+
+.grado-item {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+
+    padding: 13px 15px;
+
+    background: white;
+
+    border: 1px solid #e7e8f5;
+    border-radius: 14px;
+
+    font-weight: 650;
+    color: #26304c;
+
+    transition: .2s ease;
+}
+
+.grado-item:hover {
+    transform: translateY(-2px);
+
+    border-color: #7040ff;
+
+    box-shadow:
+        0 8px 20px rgba(94, 65, 220, .12);
+}
+
+.grado-item span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 28px;
+    height: 28px;
+
+    border-radius: 9px;
+
+    background: #f0edff;
+    color: #6742ed;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+/* =========================================================
+   TEMAS
+   ========================================================= */
+
+.tema-futurista {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+
+    margin: 8px 0;
+    padding: 14px 16px;
+
+    background: white;
+
+    border: 1px solid #e7e8f3;
+    border-radius: 14px;
+
+    color: #202943;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease;
+}
+
+.tema-futurista:hover {
+    transform: translateX(4px);
+
+    border-color: #7040ff;
+
+    box-shadow:
+        0 8px 20px rgba(78, 63, 190, .10);
+}
+
+.tema-numero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 35px;
+    height: 35px;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #7040ff,
+        #4d76ff
+    );
+
+    color: white;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.tema-icono {
+    font-size: 22px;
+}
+
+.tema-futurista strong {
+    font-size: 15px;
+}
+
+/* =========================================================
+   TEMA SELECCIONADO
+   ========================================================= */
+
+.tema-seleccionado-futurista {
+    display: block !important;
+
+    width: 100%;
+
+    padding: 20px;
+
+    margin: 10px 0 18px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1edff,
+            #eef3ff
+        );
+
+    border: 1px solid rgba(102, 70, 240, .15);
+}
+
+.tema-seleccionado-futurista span {
+    font-size: 11px;
+    font-weight: 800;
+    color: #6a42ee;
+    letter-spacing: .8px;
+}
+
+.tema-seleccionado-futurista h2 {
+    margin-top: 7px;
+
+    font-size: 22px;
+    color: #202946;
+}
+
+.tema-seleccionado-futurista p {
+    margin-top: 5px;
+    color: #69718a;
+}
+
+/* =========================================================
+   CHAT PRINCIPAL
+   ========================================================= */
+
+.chat-container,
+.chat-box,
+.contenedor-chat {
+    background: rgba(255,255,255,.85);
+
+    border: 1px solid rgba(100,90,180,.10);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 60px rgba(57, 48, 130, .10);
+
+    backdrop-filter: blur(16px);
+}
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+#pregunta {
+    flex: 1;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #1e2741;
+
+    font-size: 15px;
+}
+
+#pregunta::placeholder {
+    color: #9aa1b7;
+}
+
+/* =========================================================
+   BOTÓN ENVIAR
+   ========================================================= */
+
+#enviar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #7040ff,
+        #426cf5
+    );
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    box-shadow:
+        0 8px 18px rgba(89, 64, 220, .25);
+
+    transition: .2s ease;
+}
+
+#enviar:hover {
+    transform: scale(1.06);
+}
+
+#enviar:active {
+    transform: scale(.96);
+}
+
+/* =========================================================
+   BOTONES RÁPIDOS
+   ========================================================= */
+
+button {
+    font-family: inherit;
+}
+
+.quick-action,
+.accion-rapida {
+    border: 1px solid #e4e5f1;
+
+    background: rgba(255,255,255,.90);
+
+    color: #47516d;
+
+    border-radius: 30px;
+
+    padding: 10px 16px;
+
+    font-size: 13px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.quick-action:hover,
+.accion-rapida:hover {
+    border-color: #7040ff;
+
+    color: #603ee8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(82, 65, 180, .10);
+}
 
 /* =========================================================
    SIDEBAR
    ========================================================= */
 
 .sidebar {
-    position: fixed;
+    background: rgba(255,255,255,.95);
 
-    left: 0;
-    top: 0;
+    border-right: 1px solid #e7e8f2;
 
-    width: 245px;
-    height: 100vh;
-
-    background:
-        rgba(255,255,255,0.92);
-
-    backdrop-filter: blur(20px);
-
-    border-right:
-        1px solid rgba(100,80,200,0.10);
-
-    padding: 25px 15px;
-
-    z-index: 1000;
-
-    overflow-y: auto;
+    box-shadow:
+        8px 0 30px rgba(66, 54, 130, .04);
 }
-
 
 /* =========================================================
    LOGO
@@ -165,1823 +515,128 @@ a {
 
 .logo,
 .logo-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    padding: 0 5px 25px;
+    color: #202943;
 }
 
-.logo-icon {
-    width: 50px;
-    height: 50px;
-
-    border-radius: 15px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background:
-        linear-gradient(
-            135deg,
-            #4d5cff,
-            #8d25ef
-        );
-
-    color: white;
-
-    font-size: 25px;
-
-    box-shadow:
-        0 10px 25px
-        rgba(91, 54, 255, 0.30);
+.logo strong,
+.logo-container strong {
+    color: #7040ff;
 }
-
-.logo-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.logo-text strong {
-    font-size: 20px;
-    font-weight: 800;
-}
-
-.logo-text strong span {
-    color: var(--primary);
-}
-
-.logo-text small {
-    color: #8b91a6;
-    font-size: 11px;
-}
-
 
 /* =========================================================
-   NUEVO CHAT
+   BOTÓN NUEVO CHAT
    ========================================================= */
 
-#nuevoChat,
-.nuevo-chat,
-.btn-nuevo-chat {
-
-    width: 100%;
-
+#nuevoChat {
     border: none;
 
-    padding: 15px 18px;
-
-    border-radius: 15px;
-
     background:
         linear-gradient(
             135deg,
-            #4055ed,
-            #8b2be9
+            #475ff2,
+            #8b2ff5
         );
 
     color: white;
 
-    font-size: 14px;
+    border-radius: 15px;
+
     font-weight: 800;
 
     cursor: pointer;
 
     box-shadow:
-        0 12px 25px
-        rgba(91, 55, 240, 0.25);
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease;
-}
-
-#nuevoChat:hover,
-.nuevo-chat:hover,
-.btn-nuevo-chat:hover {
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 18px 35px
-        rgba(91, 55, 240, 0.35);
-}
-
-#nuevoChat:active,
-.nuevo-chat:active {
-    transform: scale(.98);
-}
-
-
-/* =========================================================
-   TITULOS DEL SIDEBAR
-   ========================================================= */
-
-.sidebar-title,
-.menu-title {
-
-    margin:
-
-        25px 5px 10px;
-
-    color: #8a91a8;
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-
-    text-transform: uppercase;
-}
-
-
-/* =========================================================
-   ITEMS DEL MENU
-   ========================================================= */
-
-.sidebar a,
-.menu-item,
-.nav-item {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    width: 100%;
-
-    padding: 12px 12px;
-
-    margin: 3px 0;
-
-    border-radius: 12px;
-
-    color: #34405d;
-
-    font-size: 13px;
-
-    font-weight: 650;
-
-    transition:
-        background .2s ease,
-        color .2s ease,
-        transform .2s ease;
-}
-
-.sidebar a:hover,
-.menu-item:hover,
-.nav-item:hover {
-
-    background:
-        #f1efff;
-
-    color:
-        var(--primary);
-
-    transform:
-        translateX(3px);
-}
-
-.sidebar a.active,
-.menu-item.active,
-.nav-item.active {
-
-    background:
-        linear-gradient(
-            90deg,
-            #f0edff,
-            #f7f5ff
-        );
-
-    color:
-        var(--primary);
-
-    border-left:
-        3px solid var(--primary);
-}
-
-
-/* =========================================================
-   CURSOS DEL SIDEBAR
-   ========================================================= */
-
-.course-item {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    padding: 11px 10px;
-
-    border-radius: 12px;
-
-    cursor: pointer;
+        0 10px 25px rgba(92, 57, 220, .20);
 
     transition: .2s ease;
 }
 
-.course-item:hover {
+#nuevoChat:hover {
+    transform: translateY(-2px);
 
-    background: #f1efff;
-
-    transform:
-        translateX(3px);
+    box-shadow:
+        0 14px 30px rgba(92, 57, 220, .25);
 }
-
-.course-icon {
-
-    width: 30px;
-    height: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 9px;
-
-    background:
-        #f0efff;
-
-    font-size: 15px;
-}
-
 
 /* =========================================================
-   ESTADO EN LINEA
+   ESTADOS
    ========================================================= */
 
 .online,
 .estado-online {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    padding: 11px 13px;
-
-    margin-top: 10px;
-
-    border-radius: 12px;
-
-    background:
-        #e8fff3;
-
-    color:
-        #11965a;
-
-    font-size: 12px;
-
-    font-weight: 750;
+    color: #159447;
+    font-weight: 700;
 }
-
-.online::before,
-.estado-online::before {
-
-    content: "";
-
-    width: 8px;
-    height: 8px;
-
-    border-radius: 50%;
-
-    background: #14b866;
-
-    box-shadow:
-        0 0 0 4px
-        rgba(20,184,102,.12);
-}
-
-
-/* =========================================================
-   CONTENIDO PRINCIPAL
-   ========================================================= */
-
-.main,
-.main-content,
-.contenido {
-
-    margin-left: 245px;
-
-    min-height: 100vh;
-
-    padding: 30px 35px;
-}
-
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
-.header,
-.topbar {
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 50;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 15px 0 25px;
-
-    background:
-        rgba(246,245,255,.75);
-
-    backdrop-filter:
-        blur(15px);
-}
-
-.header-title {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    font-size: 16px;
-
-    font-weight: 800;
-}
-
-.header-title::before {
-
-    content: "✦";
-
-    color:
-        var(--primary);
-
-    font-size: 20px;
-}
-
-
-/* =========================================================
-   CHAT CONTENEDOR
-   ========================================================= */
-
-.chat-container,
-.chat-box {
-
-    width: min(
-        900px,
-        100%
-    );
-
-    margin:
-        40px auto 0;
-
-    background:
-        rgba(255,255,255,.95);
-
-    border:
-        1px solid
-        rgba(100,80,220,.10);
-
-    border-radius:
-        25px;
-
-    box-shadow:
-        0 25px 70px
-        rgba(70,55,160,.13);
-
-    overflow: hidden;
-
-    position: relative;
-}
-
-
-/* =========================================================
-   CABECERA DEL CHAT
-   ========================================================= */
-
-.chat-header {
-
-    height: 70px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 0 20px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f8f7ff,
-            #eef3ff
-        );
-
-    border-bottom:
-        1px solid
-        rgba(90,80,180,.08);
-}
-
-.chat-header-left {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-}
-
-.bot-avatar {
-
-    width: 42px;
-    height: 42px;
-
-    border-radius: 13px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background:
-        linear-gradient(
-            135deg,
-            #4c5cff,
-            #8730ee
-        );
-
-    color: white;
-
-    font-size: 21px;
-
-    box-shadow:
-        0 7px 18px
-        rgba(90,60,240,.25);
-}
-
-.bot-name {
-
-    font-size: 14px;
-    font-weight: 800;
-}
-
-.bot-status {
-
-    color: #7d8499;
-
-    font-size: 10px;
-
-    margin-top: 2px;
-}
-
-
-/* =========================================================
-   CHAT
-   ========================================================= */
-
-#chat {
-
-    height: 520px;
-
-    padding: 25px 20px;
-
-    overflow-y: auto;
-
-    scroll-behavior: smooth;
-
-    background:
-        linear-gradient(
-            180deg,
-            #ffffff,
-            #fcfbff
-        );
-}
-
-
-/* =========================================================
-   MENSAJE BOT
-   ========================================================= */
-
-.bot {
-
-    max-width: 92%;
-
-    margin:
-        10px 0 18px;
-
-    padding:
-        15px 17px;
-
-    border-radius:
-        16px 16px 16px 5px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f1f4ff,
-            #f8f6ff
-        );
-
-    border:
-        1px solid
-        rgba(91,76,200,.08);
-
-    color:
-        #27324e;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-
-    box-shadow:
-        0 5px 18px
-        rgba(70,60,150,.05);
-
-    animation:
-        aparecerBot .25s ease;
-}
-
-
-/* =========================================================
-   MENSAJE USUARIO
-   ========================================================= */
-
-.usuario {
-
-    max-width: 75%;
-
-    margin:
-        10px 0 18px auto;
-
-    padding:
-        13px 16px;
-
-    border-radius:
-        16px 16px 5px 16px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6244ed,
-            #8633e8
-        );
-
-    color:
-        white;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-
-    box-shadow:
-        0 8px 20px
-        rgba(100,55,220,.18);
-
-    animation:
-        aparecerUsuario .25s ease;
-}
-
 
 /* =========================================================
    ANIMACIONES
    ========================================================= */
 
 @keyframes aparecerBot {
-
     from {
         opacity: 0;
-        transform:
-            translateY(8px);
+        transform: translateY(8px);
     }
 
     to {
         opacity: 1;
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
 }
 
 @keyframes aparecerUsuario {
-
     from {
         opacity: 0;
-        transform:
-            translateY(8px)
-            translateX(10px);
+        transform: translateX(10px);
     }
 
     to {
         opacity: 1;
-        transform:
-            translateY(0)
-            translateX(0);
+        transform: translateX(0);
     }
 }
 
-
 /* =========================================================
-   SELECTOR FUTURISTA
+   RESPONSIVE
    ========================================================= */
 
-.selector-futurista {
-
-    position: relative;
-
-    padding: 22px;
-
-    margin-bottom: 15px;
-
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(247,245,255,.95),
-            rgba(239,245,255,.95)
-        );
-
-    border:
-        1px solid
-        rgba(104,66,255,.10);
-
-    overflow: hidden;
-}
-
-.selector-futurista::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 150px;
-    height: 150px;
-
-    right: -60px;
-    top: -70px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(112,70,255,.10);
-
-    filter:
-        blur(5px);
-}
-
-.selector-badge {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    padding: 6px 10px;
-
-    border-radius: 20px;
-
-    background:
-        #ede9ff;
-
-    color:
-        var(--primary);
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    letter-spacing: .5px;
-}
-
-.selector-icon {
-
-    font-size: 34px;
-
-    margin:
-        12px 0 5px;
-}
-
-.selector-futurista h2 {
-
-    font-size: 25px;
-
-    margin-bottom: 5px;
-
-    font-weight: 850;
-}
-
-.selector-futurista h3 {
-
-    font-size: 16px;
-
-    margin-top: 15px;
-}
-
-.selector-futurista p {
-
-    color:
-        var(--text-soft);
-
-    font-size: 13px;
-
-    line-height: 1.6;
-}
-
-.selector-linea {
-
-    width: 55px;
-
-    height: 4px;
-
-    border-radius: 10px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--primary),
-            var(--primary-2)
-        );
-
-    margin:
-        12px 0;
-}
-
-
-/* =========================================================
-   GRADOS
-   ========================================================= */
-
-.grados-futuristas {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            2,
-            minmax(0,1fr)
-        );
-
-    gap: 10px;
-
-    margin-top: 15px;
-}
-
-.grado-item {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 14px;
-
-    border-radius: 15px;
-
-    background:
-        white;
-
-    border:
-        1px solid
-        rgba(104,66,255,.10);
-
-    color:
-        #2a3450;
-
-    font-size: 13px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        .2s ease;
-
-    box-shadow:
-        0 5px 15px
-        rgba(80,60,160,.05);
-}
-
-.grado-item:hover {
-
-    transform:
-        translateY(-3px);
-
-    border-color:
-        rgba(104,66,255,.30);
-
-    box-shadow:
-        0 10px 25px
-        rgba(80,60,160,.12);
-
-    color:
-        var(--primary);
-}
-
-.grado-item span {
-
-    min-width: 27px;
-
-    height: 27px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 8px;
-
-    background:
-        #f0edff;
-
-    color:
-        var(--primary);
-
-    font-size: 10px;
-
-    font-weight: 850;
-}
-
-
-/* =========================================================
-   TEMAS
-   ========================================================= */
-
-.tema-futurista {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    padding: 13px 15px;
-
-    margin:
-        8px 0;
-
-    border-radius: 14px;
-
-    background:
-        white;
-
-    border:
-        1px solid
-        rgba(90,70,190,.09);
-
-    box-shadow:
-        0 5px 14px
-        rgba(70,55,150,.04);
-
-    transition:
-        .2s ease;
-}
-
-.tema-futurista:hover {
-
-    transform:
-        translateX(5px);
-
-    border-color:
-        rgba(104,66,255,.25);
-
-    box-shadow:
-        0 8px 20px
-        rgba(80,60,180,.10);
-}
-
-.tema-numero {
-
-    width: 30px;
-    height: 30px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 9px;
-
-    background:
-        #f0edff;
-
-    color:
-        var(--primary);
-
-    font-size: 11px;
-
-    font-weight: 850;
-}
-
-.tema-icono {
-
-    font-size: 18px;
-}
-
-.tema-futurista strong {
-
-    font-size: 13px;
-
-    color:
-        #27314b;
-}
-
-
-/* =========================================================
-   TEMA SELECCIONADO
-   ========================================================= */
-
-.tema-seleccionado-futurista {
-
-    position: relative;
-
-    padding: 20px;
-
-    margin: 10px 0 15px;
-
-    border-radius: 18px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f0edff,
-            #eef5ff
-        );
-
-    border:
-        1px solid
-        rgba(104,66,255,.15);
-}
-
-.tema-seleccionado-futurista span {
-
-    color:
-        var(--primary);
-
-    font-size: 10px;
-
-    font-weight: 850;
-
-    letter-spacing: 1px;
-}
-
-.tema-seleccionado-futurista h2 {
-
-    margin-top: 7px;
-
-    font-size: 20px;
-}
-
-.tema-seleccionado-futurista p {
-
-    color:
-        var(--text-soft);
-
-    font-size: 13px;
-
-    margin-top: 5px;
-}
-
-
-/* =========================================================
-   INPUT
-   ========================================================= */
-
-.chat-input,
-.input-container {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 12px;
-
-    margin:
-        0 18px 15px;
-
-    border-radius: 18px;
-
-    background:
-        white;
-
-    border:
-        2px solid
-        rgba(104,66,255,.18);
-
-    box-shadow:
-        0 8px 25px
-        rgba(90,60,180,.08);
-
-    transition:
-        .2s ease;
-}
-
-.chat-input:focus-within,
-.input-container:focus-within {
-
-    border-color:
-        var(--primary);
-
-    box-shadow:
-        0 0 0 5px
-        rgba(104,66,255,.08);
-}
-
-.chat-input input,
-.input-container input,
-#pregunta {
-
-    flex: 1;
-
-    min-width: 0;
-
-    border: none;
-
-    outline: none;
-
-    background: transparent;
-
-    color:
-        var(--text);
-
-    font-size: 14px;
-
-    padding:
-        8px 5px;
-}
-
-.chat-input input::placeholder,
-#pregunta::placeholder {
-
-    color:
-        #a0a6b8;
-}
-
-
-/* =========================================================
-   BOTÓN ENVIAR
-   ========================================================= */
-
-#enviar,
-.btn-enviar {
-
-    width: 45px;
-    height: 45px;
-
-    flex-shrink: 0;
-
-    border: none;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-        linear-gradient(
-            135deg,
-            #4c5af4,
-            #7038e9
-        );
-
-    color: white;
-
-    font-size: 19px;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 18px
-        rgba(84,55,230,.25);
-
-    transition:
-        .2s ease;
-}
-
-#enviar:hover,
-.btn-enviar:hover {
-
-    transform:
-        scale(1.08)
-        rotate(-3deg);
-
-    box-shadow:
-        0 12px 25px
-        rgba(84,55,230,.35);
-}
-
-#enviar:active,
-.btn-enviar:active {
-
-    transform:
-        scale(.94);
-}
-
-
-/* =========================================================
-   BOTONES DE SUGERENCIAS
-   ========================================================= */
-
-.sugerencias {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 9px;
-
-    width: min(
-        900px,
-        100%
-    );
-
-    margin:
-        20px auto;
-}
-
-.sugerencia,
-.suggestion {
-
-    border:
-        1px solid
-        rgba(100,80,190,.12);
-
-    background:
-        rgba(255,255,255,.85);
-
-    color:
-        #4a5470;
-
-    padding:
-        10px 14px;
-
-    border-radius:
-        30px;
-
-    font-size:
-        12px;
-
-    font-weight:
-        650;
-
-    cursor:
-        pointer;
-
-    transition:
-        .2s ease;
-}
-
-.sugerencia:hover,
-.suggestion:hover {
-
-    color:
-        var(--primary);
-
-    border-color:
-        rgba(104,66,255,.30);
-
-    background:
-        #f5f2ff;
-
-    transform:
-        translateY(-2px);
-}
-
-
-/* =========================================================
-   TARJETAS DE CURSOS
-   ========================================================= */
-
-.curso-card {
-
-    position: relative;
-
-    padding: 25px;
-
-    border-radius: 22px;
-
-    background:
-        rgba(255,255,255,.90);
-
-    border:
-        1px solid
-        rgba(100,80,190,.09);
-
-    box-shadow:
-        0 15px 40px
-        rgba(80,60,160,.08);
-
-    overflow: hidden;
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease;
-}
-
-.curso-card:hover {
-
-    transform:
-        translateY(-7px);
-
-    box-shadow:
-        0 25px 55px
-        rgba(80,60,160,.15);
-}
-
-.curso-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 100px;
-    height: 100px;
-
-    right: -40px;
-    top: -40px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(104,66,255,.10);
-}
-
-.curso-card h2 {
-
-    font-size: 19px;
-
-    margin-bottom: 7px;
-}
-
-.curso-card p {
-
-    color:
-        var(--text-soft);
-
-    font-size: 13px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================================================
-   BOTÓN REDONDO DE CURSOS
-   ========================================================= */
-
-.curso-arrow {
-
-    width: 40px;
-    height: 40px;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-        var(--primary);
-
-    color: white;
-
-    margin-top: 15px;
-
-    transition:
-        .2s ease;
-}
-
-.curso-card:hover .curso-arrow {
-
-    transform:
-        translateX(5px);
-}
-
-
-/* =========================================================
-   MENSAJES DE ERROR
-   ========================================================= */
-
-.error-message {
-
-    padding: 14px 16px;
-
-    border-radius: 15px;
-
-    background:
-        #fff1f2;
-
-    border:
-        1px solid
-        #fecdd3;
-
-    color:
-        #be123c;
-
-    font-size: 13px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================================================
-   MENSAJES DE ÉXITO
-   ========================================================= */
-
-.success-message {
-
-    padding: 14px 16px;
-
-    border-radius: 15px;
-
-    background:
-        #ecfdf5;
-
-    border:
-        1px solid
-        #a7f3d0;
-
-    color:
-        #047857;
-
-    font-size: 13px;
-}
-
-
-/* =========================================================
-   FOOTER DEL CHAT
-   ========================================================= */
-
-.chat-footer {
-
-    text-align: center;
-
-    padding:
-        0 15px 15px;
-
-    color:
-        #9aa1b5;
-
-    font-size: 10px;
-}
-
-
-/* =========================================================
-   BOTÓN MENU
-   ========================================================= */
-
-.menu-button {
-
-    width: 42px;
-    height: 42px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #623bf1,
-            #7937e8
-        );
-
-    color: white;
-
-    font-size: 18px;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 20px
-        rgba(90,50,220,.25);
-
-    transition:
-        .2s ease;
-}
-
-.menu-button:hover {
-
-    transform:
-        rotate(8deg)
-        scale(1.06);
-}
-
-
-/* =========================================================
-   BADGE
-   ========================================================= */
-
-.badge {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 6px;
-
-    padding:
-        6px 10px;
-
-    border-radius:
-        20px;
-
-    background:
-        #eefbf5;
-
-    color:
-        #15965a;
-
-    font-size:
-        10px;
-
-    font-weight:
-        800;
-}
-
-
-/* =========================================================
-   LOADING
-   ========================================================= */
-
-.loading {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 5px;
-
-    padding: 10px;
-}
-
-.loading span {
-
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background:
-        var(--primary);
-
-    animation:
-        saltar .8s infinite;
-}
-
-.loading span:nth-child(2) {
-    animation-delay: .15s;
-}
-
-.loading span:nth-child(3) {
-    animation-delay: .3s;
-}
-
-@keyframes saltar {
-
-    0%,
-    60%,
-    100% {
-        transform:
-            translateY(0);
-        opacity: .5;
-    }
-
-    30% {
-        transform:
-            translateY(-6px);
-        opacity: 1;
-    }
-}
-
-
-/* =========================================================
-   RESPONSIVE — TABLET
-   ========================================================= */
-
-@media (max-width: 1000px) {
-
-    .sidebar {
-
-        width: 210px;
-    }
-
-    .main,
-    .main-content,
-    .contenido {
-
-        margin-left: 210px;
-
-        padding:
-            25px 20px;
-    }
-
-    .chat-container,
-    .chat-box {
-
-        margin-top:
-            25px;
-    }
-}
-
-
-/* =========================================================
-   RESPONSIVE — CELULAR
-   ========================================================= */
-
-@media (max-width: 700px) {
-
-    .sidebar {
-
-        position: relative;
-
-        width: 100%;
-
-        height: auto;
-
-        border-right: none;
-
-        border-bottom:
-            1px solid
-            rgba(100,80,190,.10);
-
-        padding:
-            15px;
-    }
-
-    .main,
-    .main-content,
-    .contenido {
-
-        margin-left: 0;
-
-        padding:
-            15px;
-    }
-
-    .header,
-    .topbar {
-
-        padding:
-            10px 0 15px;
-    }
-
-    .chat-container,
-    .chat-box {
-
-        margin-top:
-            15px;
-
-        border-radius:
-            18px;
-    }
-
-    #chat {
-
-        height:
-            55vh;
-
-        padding:
-            15px;
-    }
+@media (max-width: 900px) {
 
     .grados-futuristas {
-
-        grid-template-columns:
-            1fr;
-    }
-
-    .bot {
-
-        max-width:
-            95%;
+        grid-template-columns: 1fr;
     }
 
     .usuario {
-
-        max-width:
-            85%;
+        max-width: 88% !important;
     }
 
-    .selector-futurista {
-
-        padding:
-            17px;
+    #chat,
+    .chat {
+        padding: 15px;
     }
+
+    .bot {
+        padding: 14px;
+    }
+
+}
+
+@media (max-width: 600px) {
 
     .selector-futurista h2 {
-
-        font-size:
-            21px;
+        font-size: 21px;
     }
+
+    .tema-futurista {
+        padding: 12px;
+    }
+
+    .tema-futurista strong {
+        font-size: 14px;
+    }
+
+    .usuario {
+        max-width: 92% !important;
+    }
+
 }
-
-
-/* =========================================================
-   MODO OSCURO
-   ========================================================= */
-
-body.dark-mode {
-
-    --bg:
-        #0d1020;
-
-    --bg-2:
-        #14182b;
-
-    --card:
-        rgba(20,24,43,.95);
-
-    --text:
-        #f3f4ff;
-
-    --text-soft:
-        #a5acc5;
-
-    --border:
-        rgba(140,120,255,.15);
-
-    background:
-        radial-gradient(
-            circle at 80% 10%,
-            rgba(106,70,255,.18),
-            transparent 30%
-        ),
-        #0d1020;
-
-    color:
-        var(--text);
-}
-
-body.dark-mode .sidebar {
-
-    background:
-        rgba(15,18,35,.95);
-
-    border-color:
-        rgba(150,130,255,.12);
-}
-
-body.dark-mode .chat-container,
-body.dark-mode .chat-box {
-
-    background:
-        rgba(20,24,43,.95);
-
-    border-color:
-        rgba(140,120,255,.15);
-}
-
-body.dark-mode #chat {
-
-    background:
-        #111528;
-}
-
-body.dark-mode .chat-header {
-
-    background:
-        linear-gradient(
-            135deg,
-            #171b32,
-            #1a2040
-        );
-}
-
-body.dark-mode .bot {
-
-    background:
-        linear-gradient(
-            135deg,
-            #1b2038,
-            #202541
-        );
-
-    color:
-        #e8ebff;
-}
-
-body.dark-mode .tema-futurista,
-body.dark-mode .grado-item,
-body.dark-mode .curso-card,
-body.dark-mode .chat-input,
-body.dark-mode .input-container {
-
-    background:
-        #171b30;
-
-    border-color:
-        rgba(140,120,255,.13);
-
-    color:
-        #eef0ff;
-}
-
-body.dark-mode .tema-futurista strong,
-body.dark-mode .grado-item {
-
-    color:
-        #edf0ff;
-}
-
-body.dark-mode .selector-futurista {
-
-    background:
-        linear-gradient(
-            135deg,
-            #171a34,
-            #19223b
-        );
-}
-
-body.dark-mode .sugerencia,
-body.dark-mode .suggestion {
-
-    background:
-        #171b30;
-
-    color:
-        #c4c9dd;
-}
-
-body.dark-mode #pregunta,
-body.dark-mode .chat-input input {
-
-    color:
-        #ffffff;
-}
-
-
-/* =========================================================
-   EFECTO FUTURISTA DEL FONDO
-   ========================================================= */
-
-body::before {
-
-    content: "";
-
-    position: fixed;
-
-    width: 280px;
-    height: 280px;
-
-    top: 80px;
-    right: 80px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(108,76,255,.08);
-
-    filter:
-        blur(70px);
-
-    pointer-events:
-        none;
-
-    z-index:
-        -1;
-}
-
-body::after {
-
-    content: "";
-
-    position: fixed;
-
-    width: 220px;
-    height: 220px;
-
-    bottom: 40px;
-    left: 300px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(55,120,255,.06);
-
-    filter:
-        blur(65px);
-
-    pointer-events:
-        none;
-
-    z-index:
-        -1;
-}
-
-
-/* =========================================================
-   FIN EDU BOT IA
-   ========================================================= */
