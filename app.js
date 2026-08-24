@@ -1,165 +1,246 @@
-// ======================================================
-// 🤖 EDU BOT IA — SISTEMA DE APRENDIZAJE
-// Curso → Grado → Tema → Explicación → Preguntas
-// ======================================================
+/* =========================================================
+   EDU BOT IA — MOTOR PRINCIPAL
+   FLUJO:
+   CURSO → GRADO → TEMA → EXPLICACIÓN → PREGUNTAS
+========================================================= */
 
 let estado = "curso";
 let cursoSeleccionado = "";
 let gradoSeleccionado = "";
-let nivelInglesSeleccionado = "";
 let temaSeleccionado = "";
 let datosTemaSeleccionado = null;
+let nivelInglesSeleccionado = "";
 
 const pregunta = document.getElementById("pregunta");
 const enviar = document.getElementById("enviar");
 const chat = document.getElementById("chat");
 
 
-// ======================================================
-// 🚀 INICIO
-// ======================================================
+/* =========================================================
+   INICIO
+========================================================= */
 
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    console.log("🤖 Edu BOT iniciado");
+    prepararInterfaz();
 
 });
 
 
-// ======================================================
-// 🖱️ BOTONES DENTRO DEL CHAT
-// ======================================================
+/* =========================================================
+   PREPARAR INTERFAZ
+========================================================= */
 
-if (chat) {
+function prepararInterfaz() {
 
-    chat.addEventListener("click", function(e) {
+    /* CURSOS */
 
-        const gradoBtn =
-            e.target.closest("[data-edubot-grado]");
+    document.querySelectorAll("[data-curso]").forEach(boton => {
 
-        const temaBtn =
-            e.target.closest("[data-edubot-tema]");
+        boton.addEventListener("click", () => {
 
-        const preguntaBtn =
-            e.target.closest("[data-pregunta-sugerida]");
+            const curso = boton.dataset.curso || "";
 
+            abrirZonaChat();
 
-        // -----------------------------
-        // GRADO
-        // -----------------------------
+            seleccionarCurso(normalizar(curso));
 
-        if (gradoBtn) {
-
-            const grado =
-                gradoBtn.dataset.edubotGrado;
-
-            gradoSeleccionado = grado;
-
-            cargarCurso();
-
-            return;
-
-        }
-
-
-        // -----------------------------
-        // TEMA
-        // -----------------------------
-
-        if (temaBtn) {
-
-            seleccionarTema(
-                temaBtn.dataset.edubotTema
-            );
-
-            return;
-
-        }
-
-
-        // -----------------------------
-        // PREGUNTA SUGERIDA
-        // -----------------------------
-
-        if (preguntaBtn) {
-
-            const input =
-                document.getElementById("pregunta");
-
-            if (!input) return;
-
-            input.value =
-                preguntaBtn.dataset.preguntaSugerida;
-
-            input.focus();
-
-        }
+        });
 
     });
+
+
+    /* BOTONES DEL CHAT */
+
+    if (chat) {
+
+        chat.addEventListener("click", evento => {
+
+            const gradoBtn =
+                evento.target.closest("[data-edubot-grado]");
+
+            const temaBtn =
+                evento.target.closest("[data-edubot-tema]");
+
+            const preguntaBtn =
+                evento.target.closest("[data-pregunta-sugerida]");
+
+
+            /* GRADO */
+
+            if (gradoBtn) {
+
+                seleccionarGrado(
+                    gradoBtn.dataset.edubotGrado
+                );
+
+                return;
+
+            }
+
+
+            /* TEMA */
+
+            if (temaBtn) {
+
+                seleccionarTema(
+                    temaBtn.dataset.edubotTema
+                );
+
+                return;
+
+            }
+
+
+            /* PREGUNTA SUGERIDA */
+
+            if (preguntaBtn) {
+
+                if (!pregunta) return;
+
+                pregunta.value =
+                    preguntaBtn.dataset.preguntaSugerida || "";
+
+                pregunta.focus();
+
+            }
+
+        });
+
+    }
+
+
+    /* BOTÓN ENVIAR */
+
+    if (enviar) {
+
+        enviar.addEventListener("click", responder);
+
+    }
+
+
+    /* ENTER */
+
+    if (pregunta) {
+
+        pregunta.addEventListener("keydown", evento => {
+
+            if (evento.key === "Enter") {
+
+                evento.preventDefault();
+
+                responder();
+
+            }
+
+        });
+
+    }
+
+
+    /* NUEVO CHAT */
+
+    const nuevoChat =
+        document.getElementById("nuevoChat");
+
+    if (nuevoChat) {
+
+        nuevoChat.addEventListener("click", nuevoChatFuncion);
+
+    }
+
+
+    /* MODO OSCURO */
+
+    prepararModoOscuro();
+
+
+    /* MENÚ MÓVIL */
+
+    const abrirMenu =
+        document.getElementById("abrirMenu");
+
+    if (abrirMenu) {
+
+        abrirMenu.addEventListener("click", () => {
+
+            document
+                .querySelector(".sidebar")
+                ?.classList.toggle("abierta");
+
+        });
+
+    }
+
+
+    /* MENÚ */
+
+    prepararMenu();
 
 }
 
 
-// ======================================================
-// 📤 BOTÓN ENVIAR
-// ======================================================
+/* =========================================================
+   ABRIR CHAT
+========================================================= */
 
-if (enviar) {
+function abrirZonaChat() {
 
-    enviar.addEventListener("click", () => {
+    const inicio =
+        document.getElementById("inicio");
 
-        responder();
+    const zonaChat =
+        document.getElementById("zonaChat");
 
-    });
+    if (inicio) {
+
+        inicio.style.display = "none";
+
+    }
+
+    if (zonaChat) {
+
+        zonaChat.classList.add("visible");
+
+    }
+
+    document
+        .querySelectorAll(".seccion-extra")
+        .forEach(seccion => {
+
+            seccion.classList.remove("mostrar");
+
+        });
 
 }
 
 
-// ======================================================
-// ⌨️ ENTER
-// ======================================================
-
-if (pregunta) {
-
-    pregunta.addEventListener("keydown", (e) => {
-
-        if (e.key === "Enter") {
-
-            e.preventDefault();
-
-            responder();
-
-        }
-
-    });
-
-}
-
-
-// ======================================================
-// 🧠 FUNCIÓN PRINCIPAL
-// ======================================================
+/* =========================================================
+   RESPONDER
+========================================================= */
 
 function responder() {
 
     if (!pregunta) return;
 
+
     const textoOriginal =
         pregunta.value.trim();
 
+
     if (!textoOriginal) return;
+
 
     const texto =
         normalizar(textoOriginal);
+
 
     mostrarUsuario(textoOriginal);
 
     pregunta.value = "";
 
 
-    // -----------------------------
-    // CURSO
-    // -----------------------------
+    /* CURSO */
 
     if (estado === "curso") {
 
@@ -170,49 +251,47 @@ function responder() {
     }
 
 
-    // -----------------------------
-    // GRADO
-    // -----------------------------
+    /* GRADO */
 
     if (estado === "grado") {
 
         const grado =
             detectarGrado(texto);
 
+
         if (!grado) {
 
             responderBot(`
-                <div class="selector-futurista">
-                    <div class="selector-badge">
-                        ⚠️ GRADO
-                    </div>
+                <div class="error-card">
+                    <div class="error-icon">⚠️</div>
 
-                    <h2>No reconocí ese grado</h2>
+                    <h3>No reconocí ese grado</h3>
 
                     <p>
-                        Selecciona uno de los grados disponibles.
+                        Selecciona uno de los grados
+                        disponibles.
                     </p>
+
+                    <div class="ayuda-texto">
+                        Puedes escribir:
+                        <strong>1, 2, 3, 4, 5 o 6</strong>
+                    </div>
                 </div>
             `);
-
-            mostrarGrados();
 
             return;
 
         }
 
-        gradoSeleccionado = grado;
 
-        cargarCurso();
+        seleccionarGrado(grado);
 
         return;
 
     }
 
 
-    // -----------------------------
-    // TEMA
-    // -----------------------------
+    /* TEMA */
 
     if (estado === "tema") {
 
@@ -223,9 +302,7 @@ function responder() {
     }
 
 
-    // -----------------------------
-    // PREGUNTA
-    // -----------------------------
+    /* PREGUNTA */
 
     if (estado === "pregunta") {
 
@@ -238,124 +315,101 @@ function responder() {
 }
 
 
-// ======================================================
-// 📚 SELECCIONAR CURSO
-// ======================================================
+/* =========================================================
+   SELECCIONAR CURSO
+========================================================= */
 
 function seleccionarCurso(texto) {
 
-    texto = normalizar(texto);
+    const entrada =
+        normalizar(texto);
 
 
-    // MATEMÁTICA
+    /* MATEMÁTICA */
 
     if (
-        texto === "mat" ||
-        texto === "mate" ||
-        texto === "matematica" ||
-        texto === "matematicas"
+        entrada === "mat" ||
+        entrada === "mate" ||
+        entrada === "matematica" ||
+        entrada === "matematicas"
     ) {
 
-        iniciarCurso(
-            "matematica",
-            "🧮",
-            "MATEMÁTICA"
-        );
+        establecerCurso("matematica");
 
         return;
 
     }
 
 
-    // COMUNICACIÓN
+    /* COMUNICACIÓN */
 
     if (
-        texto === "com" ||
-        texto === "comunicacion"
+        entrada === "com" ||
+        entrada === "comunicacion" ||
+        entrada.includes("comunicacion")
     ) {
 
-        iniciarCurso(
-            "comunicacion",
-            "📖",
-            "COMUNICACIÓN"
-        );
+        establecerCurso("comunicacion");
 
         return;
 
     }
 
 
-    // CIENCIA
+    /* CIENCIA */
 
     if (
-        texto === "cyt" ||
-        texto === "ciencia" ||
-        texto.includes("ciencia y tecnologia") ||
-        texto.includes("ciencia tecnologia")
+        entrada === "cyt" ||
+        entrada === "ciencia" ||
+        entrada.includes("ciencia y tecnologia") ||
+        entrada.includes("ciencia tecnologia")
     ) {
 
-        iniciarCurso(
-            "cyt",
-            "🧪",
-            "CIENCIA Y TECNOLOGÍA"
-        );
+        establecerCurso("cyt");
 
         return;
 
     }
 
 
-    // SOCIALES
+    /* SOCIALES */
 
     if (
-        texto === "sociales" ||
-        texto === "ciencias sociales" ||
-        texto.includes("ciencias sociales")
+        entrada === "sociales" ||
+        entrada === "ciencias sociales" ||
+        entrada.includes("ciencias sociales")
     ) {
 
-        iniciarCurso(
-            "sociales",
-            "🌎",
-            "CIENCIAS SOCIALES"
-        );
+        establecerCurso("sociales");
 
         return;
 
     }
 
 
-    // INGLÉS
+    /* INGLÉS */
 
     if (
-        texto === "ingles" ||
-        texto === "inglés" ||
-        texto.includes("idioma ingles")
+        entrada === "ingles" ||
+        entrada.includes("idioma ingles")
     ) {
 
-        iniciarCurso(
-            "ingles",
-            "🇬🇧",
-            "INGLÉS"
-        );
+        establecerCurso("ingles");
 
         return;
 
     }
 
 
-    // COMPUTACIÓN
+    /* COMPUTACIÓN */
 
     if (
-        texto === "computacion" ||
-        texto === "computadora" ||
-        texto === "informatica"
+        entrada === "computacion" ||
+        entrada === "computadora" ||
+        entrada === "informatica"
     ) {
 
-        iniciarCurso(
-            "computacion",
-            "💻",
-            "COMPUTACIÓN"
-        );
+        establecerCurso("computacion");
 
         return;
 
@@ -363,22 +417,24 @@ function seleccionarCurso(texto) {
 
 
     responderBot(`
-        <div class="selector-futurista">
+        <div class="error-card">
 
-            <div class="selector-badge">
-                ❌ CURSO NO ENCONTRADO
+            <div class="error-icon">🔎</div>
+
+            <h3>No reconocí ese curso</h3>
+
+            <p>Selecciona uno de estos cursos:</p>
+
+            <div class="lista-cursos-mini">
+
+                <span>🧮 Matemática</span>
+                <span>📖 Comunicación</span>
+                <span>🧪 Ciencia y Tecnología</span>
+                <span>🌎 Ciencias Sociales</span>
+                <span>🇬🇧 Inglés</span>
+                <span>💻 Computación</span>
+
             </div>
-
-            <h2>Elige un curso</h2>
-
-            <p>
-                📗 Matemática<br>
-                📘 Comunicación<br>
-                🧪 Ciencia y Tecnología<br>
-                🌎 Ciencias Sociales<br>
-                🇬🇧 Inglés<br>
-                💻 Computación
-            </p>
 
         </div>
     `);
@@ -386,47 +442,47 @@ function seleccionarCurso(texto) {
 }
 
 
-// ======================================================
-// 🎓 INICIAR CURSO
-// ======================================================
+/* =========================================================
+   ESTABLECER CURSO
+========================================================= */
 
-function iniciarCurso(curso, icono, nombre) {
+function establecerCurso(curso) {
 
     cursoSeleccionado = curso;
 
     gradoSeleccionado = "";
-
-    nivelInglesSeleccionado = "";
-
     temaSeleccionado = "";
-
     datosTemaSeleccionado = null;
+    nivelInglesSeleccionado = "";
 
     estado = "grado";
 
 
+    abrirZonaChat();
+
+
     responderBot(`
-        <div class="selector-futurista">
+        <div class="curso-header">
 
-            <div class="selector-badge">
-                ● EDU BOT IA
+            <div class="curso-header-icon">
+                ${iconoCursoActual()}
             </div>
 
-            <div class="selector-icon">
-                ${icono}
+            <div>
+
+                <span class="mini-etiqueta">
+                    CURSO SELECCIONADO
+                </span>
+
+                <h2>
+                    ${nombreCurso(curso)}
+                </h2>
+
+                <p>
+                    Ahora selecciona tu grado.
+                </p>
+
             </div>
-
-            <h2>${nombre}</h2>
-
-            <p>
-                Curso seleccionado correctamente.
-            </p>
-
-            <div class="selector-linea"></div>
-
-            <h3>
-                🎓 Ahora selecciona tu grado
-            </h3>
 
         </div>
     `);
@@ -437,9 +493,9 @@ function iniciarCurso(curso, icono, nombre) {
 }
 
 
-// ======================================================
-// 🎓 MOSTRAR GRADOS
-// ======================================================
+/* =========================================================
+   GRADOS
+========================================================= */
 
 function mostrarGrados() {
 
@@ -460,65 +516,97 @@ function mostrarGrados() {
     ];
 
 
-    grados.forEach(
-        ([valor, numero, icono, nombre]) => {
+    responderBot(`
+        <div class="selector-futurista">
 
-            responderBot(`
+            <div class="selector-badge">
+                ● EDU BOT IA
+            </div>
 
-                <button
-                    type="button"
-                    class="tema-futurista"
-                    data-edubot-grado="${valor}"
-                >
+            <div class="selector-icon">
+                🎓
+            </div>
 
-                    <span class="tema-numero">
-                        ${numero}
-                    </span>
+            <h2>
+                Selecciona tu grado
+            </h2>
 
-                    <span class="tema-icono">
-                        ${icono}
-                    </span>
+            <p>
+                Elige un grado para mostrar
+                únicamente sus temas.
+            </p>
+
+            <div class="selector-linea"></div>
+
+        </div>
+    `);
+
+
+    grados.forEach(grado => {
+
+        responderBot(`
+            <button
+                type="button"
+                class="tema-futurista tema-boton"
+                data-edubot-grado="${grado[0]}"
+            >
+
+                <span class="tema-numero">
+                    ${grado[1]}
+                </span>
+
+                <span class="tema-icono">
+                    ${grado[2]}
+                </span>
+
+                <span class="tema-info">
 
                     <strong>
-                        ${nombre}
+                        ${grado[3]}
                     </strong>
 
-                    <span>
-                        →
-                    </span>
+                    <small>
+                        Ver temas disponibles
+                    </small>
 
-                </button>
+                </span>
 
-            `);
+                <span class="tema-flecha">
+                    →
+                </span>
 
-        }
-    );
+            </button>
+        `);
+
+    });
 
 
     responderBot(`
-        <br>
-
-        ✏️ También puedes escribir:
-        <strong>1, 2, 3, 4, 5 o 6</strong>.
+        <div class="ayuda-selector">
+            ✏️ También puedes escribir
+            <strong>1, 2, 3, 4, 5 o 6</strong>.
+        </div>
     `);
 
 }
 
 
-// ======================================================
-// 🔎 DETECTAR GRADO
-// ======================================================
+/* =========================================================
+   DETECTAR GRADO
+========================================================= */
 
 function detectarGrado(texto) {
 
-    texto = normalizar(texto);
+    texto =
+        normalizar(texto);
 
 
     if (
         texto === "6" ||
         texto.includes("6 primaria") ||
+        texto.includes("6to primaria") ||
         texto.includes("sexto primaria") ||
-        texto.includes("sexto de primaria")
+        texto.includes("sexto grado")
     ) {
 
         return "6";
@@ -529,8 +617,8 @@ function detectarGrado(texto) {
     if (
         texto === "5" ||
         texto.includes("5 secundaria") ||
-        texto.includes("quinto secundaria") ||
-        texto.includes("quinto de secundaria")
+        texto.includes("5to secundaria") ||
+        texto.includes("quinto secundaria")
     ) {
 
         return "5";
@@ -541,8 +629,8 @@ function detectarGrado(texto) {
     if (
         texto === "4" ||
         texto.includes("4 secundaria") ||
-        texto.includes("cuarto secundaria") ||
-        texto.includes("cuarto de secundaria")
+        texto.includes("4to secundaria") ||
+        texto.includes("cuarto secundaria")
     ) {
 
         return "4";
@@ -553,8 +641,8 @@ function detectarGrado(texto) {
     if (
         texto === "3" ||
         texto.includes("3 secundaria") ||
-        texto.includes("tercero secundaria") ||
-        texto.includes("tercero de secundaria")
+        texto.includes("3ro secundaria") ||
+        texto.includes("tercero secundaria")
     ) {
 
         return "3";
@@ -565,8 +653,8 @@ function detectarGrado(texto) {
     if (
         texto === "2" ||
         texto.includes("2 secundaria") ||
-        texto.includes("segundo secundaria") ||
-        texto.includes("segundo de secundaria")
+        texto.includes("2do secundaria") ||
+        texto.includes("segundo secundaria")
     ) {
 
         return "2";
@@ -577,8 +665,8 @@ function detectarGrado(texto) {
     if (
         texto === "1" ||
         texto.includes("1 secundaria") ||
-        texto.includes("primero secundaria") ||
-        texto.includes("primero de secundaria")
+        texto.includes("1ro secundaria") ||
+        texto.includes("primero secundaria")
     ) {
 
         return "1";
@@ -591,45 +679,47 @@ function detectarGrado(texto) {
 }
 
 
-// ======================================================
-// 📚 CARGAR CURSO DESPUÉS DEL GRADO
-// ======================================================
+/* =========================================================
+   SELECCIONAR GRADO
+========================================================= */
+
+function seleccionarGrado(grado) {
+
+    gradoSeleccionado =
+        String(grado);
+
+
+    temaSeleccionado = "";
+
+    datosTemaSeleccionado = null;
+
+
+    cargarCurso();
+
+}
+
+
+/* =========================================================
+   CARGAR CURSO
+========================================================= */
 
 function cargarCurso() {
 
-    // -----------------------------
-    // CIENCIA
-    // -----------------------------
+    abrirZonaChat();
+
+
+    /* CIENCIA */
 
     if (cursoSeleccionado === "cyt") {
 
-        if (
-            typeof cyt !== "undefined" &&
-            cyt[gradoSeleccionado]
-        ) {
-
-            estado = "tema";
-
-            mostrarTemasCurso(
-                cyt[gradoSeleccionado],
-                "🧪",
-                "CIENCIA Y TECNOLOGÍA"
-            );
-
-        } else {
-
-            errorContenido();
-
-        }
+        cargarCiencia();
 
         return;
 
     }
 
 
-    // -----------------------------
-    // SOCIALES
-    // -----------------------------
+    /* SOCIALES */
 
     if (cursoSeleccionado === "sociales") {
 
@@ -640,9 +730,7 @@ function cargarCurso() {
     }
 
 
-    // -----------------------------
-    // INGLÉS
-    // -----------------------------
+    /* INGLÉS */
 
     if (cursoSeleccionado === "ingles") {
 
@@ -653,266 +741,112 @@ function cargarCurso() {
     }
 
 
-    // -----------------------------
-    // MATEMÁTICA
-    // -----------------------------
-
-    if (cursoSeleccionado === "matematica") {
-
-        const datos =
-            obtenerDatosMatematica();
-
-        if (!datos) {
-
-            errorContenido();
-
-            return;
-
-        }
-
-        mostrarTemasCurso(
-            datos,
-            "🧮",
-            "MATEMÁTICA"
-        );
-
-        return;
-
-    }
+    const datos =
+        obtenerDatosCurso();
 
 
-    // -----------------------------
-    // COMUNICACIÓN
-    // -----------------------------
+    if (!datos) {
 
-    if (cursoSeleccionado === "comunicacion") {
+        responderBot(`
+            <div class="error-card">
 
-        const datos =
-            obtenerDatosGenerales(
-                "comunicacion"
-            );
+                <div class="error-icon">
+                    📚
+                </div>
 
-        if (!datos) {
+                <h3>
+                    No encontré los contenidos
+                </h3>
 
-            errorContenido();
+                <p>
+                    El grado
+                    <strong>
+                        ${nombreGrado(gradoSeleccionado)}
+                    </strong>
+                    fue reconocido.
+                </p>
 
-            return;
+                <small>
+                    Verifica que el archivo de
+                    conocimientos de este curso
+                    esté cargado.
+                </small>
 
-        }
-
-        mostrarTemasCurso(
-            datos,
-            "📖",
-            "COMUNICACIÓN"
-        );
+            </div>
+        `);
 
         return;
 
     }
 
-
-    // -----------------------------
-    // COMPUTACIÓN
-    // -----------------------------
-
-    if (cursoSeleccionado === "computacion") {
-
-        const datos =
-            obtenerDatosGenerales(
-                "computacion"
-            );
-
-        if (!datos) {
-
-            errorContenido();
-
-            return;
-
-        }
-
-        mostrarTemasCurso(
-            datos,
-            "💻",
-            "COMPUTACIÓN"
-        );
-
-        return;
-
-    }
-
-}
-
-
-// ======================================================
-// 🧮 DATOS MATEMÁTICA
-// ======================================================
-
-function obtenerDatosMatematica() {
-
-    const temas = {};
-
-
-    if (gradoSeleccionado === "1") {
-
-        if (typeof aritmetica1 !== "undefined")
-            temas.aritmetica = aritmetica1;
-
-        if (typeof algebra1 !== "undefined")
-            temas.algebra = algebra1;
-
-        if (typeof geometria1 !== "undefined")
-            temas.geometria = geometria1;
-
-        if (typeof estadistica1 !== "undefined")
-            temas.estadistica = estadistica1;
-
-    }
-
-
-    if (gradoSeleccionado === "2") {
-
-        if (typeof aritmetica2 !== "undefined")
-            temas.aritmetica = aritmetica2;
-
-        if (typeof algebra2 !== "undefined")
-            temas.algebra = algebra2;
-
-        if (typeof geometria2 !== "undefined")
-            temas.geometria = geometria2;
-
-        if (typeof estadistica2 !== "undefined")
-            temas.estadistica = estadistica2;
-
-    }
-
-
-    if (gradoSeleccionado === "3") {
-
-        if (typeof aritmetica3 !== "undefined")
-            temas.aritmetica = aritmetica3;
-
-        if (typeof algebra3 !== "undefined")
-            temas.algebra = algebra3;
-
-        if (typeof geometria3 !== "undefined")
-            temas.geometria = geometria3;
-
-        if (typeof estadistica3 !== "undefined")
-            temas.estadistica = estadistica3;
-
-    }
-
-
-    if (gradoSeleccionado === "4") {
-
-        if (typeof aritmetica4 !== "undefined")
-            temas.aritmetica = aritmetica4;
-
-        if (typeof algebra4 !== "undefined")
-            temas.algebra = algebra4;
-
-        if (typeof geometria4 !== "undefined")
-            temas.geometria = geometria4;
-
-        if (typeof estadistica4 !== "undefined")
-            temas.estadistica = estadistica4;
-
-    }
-
-
-    if (gradoSeleccionado === "5") {
-
-        if (typeof aritmetica5 !== "undefined")
-            temas.aritmetica = aritmetica5;
-
-        if (typeof algebra5 !== "undefined")
-            temas.algebra = algebra5;
-
-        if (typeof geometria5 !== "undefined")
-            temas.geometria = geometria5;
-
-        if (typeof estadistica5 !== "undefined")
-            temas.estadistica = estadistica5;
-
-    }
-
-
-    if (gradoSeleccionado === "6") {
-
-        if (typeof aritmetica6 !== "undefined")
-            temas.aritmetica = aritmetica6;
-
-        if (typeof geometria6 !== "undefined")
-            temas.geometria = geometria6;
-
-        if (typeof estadistica6 !== "undefined")
-            temas.estadistica = estadistica6;
-
-    }
-
-
-    return Object.keys(temas).length
-        ? temas
-        : null;
-
-}
-
-
-// ======================================================
-// 📖 DATOS GENERALES
-// ======================================================
-
-function obtenerDatosGenerales(nombre) {
-
-    if (
-        typeof window[nombre] !== "undefined"
-    ) {
-
-        const datos =
-            window[nombre];
-
-        return datos[gradoSeleccionado]
-            || datos;
-
-    }
-
-
-    return null;
-
-}
-
-
-// ======================================================
-// 📋 MOSTRAR TEMAS
-// ======================================================
-
-function mostrarTemasCurso(
-    datos,
-    icono,
-    nombre
-) {
 
     estado = "tema";
 
-    temaSeleccionado = "";
+    mostrarEncabezadoTemas(datos);
 
-    datosTemaSeleccionado = null;
+}
 
+
+/* =========================================================
+   CIENCIA
+========================================================= */
+
+function cargarCiencia() {
+
+    if (typeof cyt === "undefined") {
+
+        responderBot(`
+            ❌ No se encontró
+            <strong>cyt.js</strong>.
+        `);
+
+        return;
+
+    }
+
+
+    const datos =
+        cyt[gradoSeleccionado];
+
+
+    if (!datos) {
+
+        responderBot(`
+            ❌ No encontré contenidos para
+            ${nombreGrado(gradoSeleccionado)}.
+        `);
+
+        return;
+
+    }
+
+
+    estado = "tema";
+
+    mostrarEncabezadoTemas(datos);
+
+}
+
+
+/* =========================================================
+   ENCABEZADO DE TEMAS
+========================================================= */
+
+function mostrarEncabezadoTemas(datos) {
 
     responderBot(`
-
         <div class="selector-futurista">
 
             <div class="selector-badge">
-                ● ${nombre}
+                ● EDU BOT IA
             </div>
 
             <div class="selector-icon">
-                ${icono}
+                ${iconoCursoActual()}
             </div>
 
             <h2>
-                ${nombre}
+                ${nombreCurso(cursoSeleccionado)}
             </h2>
 
             <p>
@@ -922,104 +856,37 @@ function mostrarTemasCurso(
             <div class="selector-linea"></div>
 
             <h3>
-                📚 Selecciona un tema
+                🧠 Selecciona un tema
             </h3>
 
+            <small>
+                Solo verás los temas disponibles
+                para este grado.
+            </small>
+
         </div>
-
     `);
 
 
-    const lista =
-        obtenerListaTemas(datos);
-
-
-    if (!lista.length) {
-
-        errorContenido();
-
-        return;
-
-    }
-
-
-    lista.forEach(
-        (tema, indice) => {
-
-            const numero =
-                String(indice + 1)
-                    .padStart(2, "0");
-
-
-            const iconos = [
-                "🧮",
-                "🔢",
-                "📐",
-                "📊",
-                "🧪",
-                "🌎",
-                "💡"
-            ];
-
-
-            responderBot(`
-
-                <button
-                    type="button"
-                    class="tema-futurista"
-                    data-edubot-tema="${numero}"
-                >
-
-                    <span class="tema-numero">
-                        ${numero}
-                    </span>
-
-                    <span class="tema-icono">
-                        ${iconos[indice % iconos.length]}
-                    </span>
-
-                    <strong>
-                        ${escapeHTML(tema.titulo)}
-                    </strong>
-
-                    <span>
-                        →
-                    </span>
-
-                </button>
-
-            `);
-
-        }
-    );
-
-
-    responderBot(`
-
-        <br>
-
-        ✏️ Selecciona un tema
-        o escribe su número.
-
-    `);
+    mostrarTemas(datos);
 
 }
 
 
-// ======================================================
-// 🌎 SOCIALES
-// ======================================================
+/* =========================================================
+   TEMAS SOCIALES
+========================================================= */
 
 function mostrarTemasSociales() {
 
     estado = "tema";
 
-    responderBot(`
 
+    responderBot(`
         <div class="selector-futurista">
 
             <div class="selector-badge">
-                ● CIENCIAS SOCIALES
+                ● EDU BOT IA
             </div>
 
             <div class="selector-icon">
@@ -1027,7 +894,7 @@ function mostrarTemasSociales() {
             </div>
 
             <h2>
-                CIENCIAS SOCIALES
+                Ciencias Sociales
             </h2>
 
             <p>
@@ -1037,65 +904,75 @@ function mostrarTemasSociales() {
             <div class="selector-linea"></div>
 
             <h3>
-                📚 Selecciona un tema
+                🧠 Selecciona un tema
             </h3>
 
         </div>
-
     `);
 
 
     const temas = [
 
-        ["1", "🇵🇪", "Historia del Perú"],
+        ["01", "🇵🇪", "Historia del Perú"],
 
-        ["2", "🌎", "Historia Universal"],
+        ["02", "🌎", "Historia Universal"],
 
-        ["3", "💰", "Economía"]
+        ["03", "💰", "Economía"]
 
     ];
 
 
-    temas.forEach(
-        ([numero, icono, nombre]) => {
+    temas.forEach(tema => {
 
-            responderBot(`
+        responderBot(`
+            <button
+                type="button"
+                class="tema-futurista tema-boton"
+                data-edubot-tema="${tema[0]}"
+            >
 
-                <button
-                    type="button"
-                    class="tema-futurista"
-                    data-edubot-tema="${numero}"
-                >
+                <span class="tema-numero">
+                    ${tema[0]}
+                </span>
 
-                    <span class="tema-numero">
-                        0${numero}
-                    </span>
+                <span class="tema-icono">
+                    ${tema[1]}
+                </span>
 
-                    <span class="tema-icono">
-                        ${icono}
-                    </span>
+                <span class="tema-info">
 
                     <strong>
-                        ${nombre}
+                        ${tema[2]}
                     </strong>
 
-                    <span>
-                        →
-                    </span>
+                    <small>
+                        Seleccionar tema
+                    </small>
 
-                </button>
+                </span>
 
-            `);
+                <span class="tema-flecha">
+                    →
+                </span>
 
-        }
-    );
+            </button>
+        `);
+
+    });
+
+
+    responderBot(`
+        <div class="ayuda-selector">
+            ✏️ Escribe el número o el nombre del tema.
+        </div>
+    `);
 
 }
 
 
-// ======================================================
-// 🇬🇧 INGLÉS
-// ======================================================
+/* =========================================================
+   INGLÉS
+========================================================= */
 
 function mostrarTemasIngles() {
 
@@ -1103,11 +980,10 @@ function mostrarTemasIngles() {
 
 
     responderBot(`
-
         <div class="selector-futurista">
 
             <div class="selector-badge">
-                ● INGLÉS
+                ● EDU BOT IA
             </div>
 
             <div class="selector-icon">
@@ -1115,7 +991,7 @@ function mostrarTemasIngles() {
             </div>
 
             <h2>
-                INGLÉS
+                Inglés
             </h2>
 
             <p>
@@ -1125,65 +1001,167 @@ function mostrarTemasIngles() {
             <div class="selector-linea"></div>
 
             <h3>
-                📚 Selecciona tu nivel
+                🧠 Selecciona tu nivel
             </h3>
 
         </div>
-
     `);
 
 
     const niveles = [
 
-        ["1", "🟢", "Básico"],
+        ["01", "🟢", "Básico", "basico"],
 
-        ["2", "🔵", "Intermedio"],
+        ["02", "🔵", "Intermedio", "intermedio"],
 
-        ["3", "🟣", "Avanzado"]
+        ["03", "🟣", "Avanzado", "avanzado"]
 
     ];
 
 
-    niveles.forEach(
-        ([numero, icono, nombre]) => {
+    niveles.forEach(nivel => {
 
-            responderBot(`
+        responderBot(`
+            <button
+                type="button"
+                class="tema-futurista tema-boton"
+                data-edubot-tema="${nivel[0]}"
+            >
 
-                <button
-                    type="button"
-                    class="tema-futurista"
-                    data-edubot-tema="${numero}"
-                >
+                <span class="tema-numero">
+                    ${nivel[0]}
+                </span>
 
-                    <span class="tema-numero">
-                        0${numero}
-                    </span>
+                <span class="tema-icono">
+                    ${nivel[1]}
+                </span>
 
-                    <span class="tema-icono">
-                        ${icono}
-                    </span>
+                <span class="tema-info">
 
                     <strong>
-                        ${nombre}
+                        ${nivel[2]}
                     </strong>
 
-                    <span>
-                        →
-                    </span>
+                    <small>
+                        Seleccionar nivel
+                    </small>
 
-                </button>
+                </span>
 
-            `);
+                <span class="tema-flecha">
+                    →
+                </span>
 
-        }
-    );
+            </button>
+        `);
+
+    });
+
+
+    responderBot(`
+        <div class="ayuda-selector">
+            ✏️ Puedes escribir
+            <strong>básico</strong>,
+            <strong>intermedio</strong>
+            o
+            <strong>avanzado</strong>.
+        </div>
+    `);
 
 }
 
 
-// ======================================================
-// 🔎 LISTA DE TEMAS
-// ======================================================
+/* =========================================================
+   MOSTRAR TEMAS
+========================================================= */
+
+function mostrarTemas(datos) {
+
+    const lista =
+        obtenerListaTemas(datos);
+
+
+    if (!lista.length) {
+
+        responderBot(`
+            <div class="error-card">
+                ❌ No encontré temas disponibles
+                para este grado.
+            </div>
+        `);
+
+        return;
+
+    }
+
+
+    lista.forEach((tema, indice) => {
+
+        const numero =
+            String(indice + 1).padStart(2, "0");
+
+
+        const iconos = [
+            "📘",
+            "🔢",
+            "📐",
+            "📊",
+            "🧪",
+            "🌎",
+            "💡",
+            "🧠"
+        ];
+
+
+        responderBot(`
+            <button
+                type="button"
+                class="tema-futurista tema-boton"
+                data-edubot-tema="${numero}"
+            >
+
+                <span class="tema-numero">
+                    ${numero}
+                </span>
+
+                <span class="tema-icono">
+                    ${iconos[indice % iconos.length]}
+                </span>
+
+                <span class="tema-info">
+
+                    <strong>
+                        ${escapeHTML(tema.titulo)}
+                    </strong>
+
+                    <small>
+                        Abrir tema
+                    </small>
+
+                </span>
+
+                <span class="tema-flecha">
+                    →
+                </span>
+
+            </button>
+        `);
+
+    });
+
+
+    responderBot(`
+        <div class="ayuda-selector">
+            ✏️ Escribe el número o nombre del tema.
+        </div>
+    `);
+
+}
+
+
+/* =========================================================
+   OBTENER LISTA DE TEMAS
+========================================================= */
 
 function obtenerListaTemas(objeto) {
 
@@ -1202,8 +1180,27 @@ function obtenerListaTemas(objeto) {
 
     for (const clave in principal) {
 
-        if (clave === "nombre")
+        if (clave === "nombre") continue;
+
+
+        const contenido =
+            principal[clave];
+
+
+        /*
+           Evitamos mostrar propiedades
+           técnicas que no son temas.
+        */
+
+        if (
+            typeof contenido === "function" ||
+            contenido === null ||
+            contenido === undefined
+        ) {
+
             continue;
+
+        }
 
 
         lista.push({
@@ -1213,8 +1210,7 @@ function obtenerListaTemas(objeto) {
             titulo:
                 convertirNombre(clave),
 
-            contenido:
-                principal[clave]
+            contenido
 
         });
 
@@ -1226,18 +1222,17 @@ function obtenerListaTemas(objeto) {
 }
 
 
-// ======================================================
-// 👆 SELECCIONAR TEMA
-// ======================================================
+/* =========================================================
+   SELECCIONAR TEMA
+========================================================= */
 
-function seleccionarTema(texto) {
+function seleccionarTema(entrada) {
 
-    texto = normalizar(texto);
+    const texto =
+        normalizar(entrada);
 
 
-    // -----------------------------
-    // SOCIALES
-    // -----------------------------
+    /* SOCIALES */
 
     if (cursoSeleccionado === "sociales") {
 
@@ -1287,23 +1282,18 @@ function seleccionarTema(texto) {
 
 
         const elegido =
-            temas.find(t =>
-                texto === t.numero ||
-                t.nombres.some(
-                    n =>
-                        texto === normalizar(n) ||
-                        texto.includes(normalizar(n))
+            temas.find(tema =>
+                texto === tema.numero ||
+                tema.nombres.some(nombre =>
+                    texto === normalizar(nombre) ||
+                    texto.includes(normalizar(nombre))
                 )
             );
 
 
         if (!elegido) {
 
-            responderBot(`
-                ❌ No reconocí ese tema.
-                <br><br>
-                Elige 1, 2 o 3.
-            `);
+            mostrarErrorTema();
 
             return;
 
@@ -1316,20 +1306,24 @@ function seleccionarTema(texto) {
         datosTemaSeleccionado =
             elegido.datos;
 
+
+        finalizarTema();
+
+        return;
+
     }
 
 
-    // -----------------------------
-    // INGLÉS
-    // -----------------------------
+    /* INGLÉS */
 
-    else if (cursoSeleccionado === "ingles") {
+    if (cursoSeleccionado === "ingles") {
 
         const niveles = [
 
             {
                 numero: "1",
-                nombre: "Inglés Básico",
+                nombres: ["basico"],
+                titulo: "Inglés Básico",
                 nivel: "basico",
                 datos:
                     typeof inglesBasico !== "undefined"
@@ -1339,7 +1333,8 @@ function seleccionarTema(texto) {
 
             {
                 numero: "2",
-                nombre: "Inglés Intermedio",
+                nombres: ["intermedio"],
+                titulo: "Inglés Intermedio",
                 nivel: "intermedio",
                 datos:
                     typeof inglesIntermedio !== "undefined"
@@ -1349,7 +1344,8 @@ function seleccionarTema(texto) {
 
             {
                 numero: "3",
-                nombre: "Inglés Avanzado",
+                nombres: ["avanzado"],
+                titulo: "Inglés Avanzado",
                 nivel: "avanzado",
                 datos:
                     typeof inglesAvanzado !== "undefined"
@@ -1361,23 +1357,23 @@ function seleccionarTema(texto) {
 
 
         const elegido =
-            niveles.find(
-                n =>
-                    texto === n.numero ||
-                    texto.includes(
-                        normalizar(n.nivel)
-                    )
+            niveles.find(nivel =>
+                texto === nivel.numero ||
+                nivel.nombres.some(nombre =>
+                    texto === normalizar(nombre) ||
+                    texto.includes(normalizar(nombre))
+                )
             );
 
 
         if (!elegido) {
 
             responderBot(`
-                ❌ No reconocí ese nivel.
-                <br><br>
-                1️⃣ Básico<br>
-                2️⃣ Intermedio<br>
-                3️⃣ Avanzado
+                ❌ Selecciona:
+                <strong>1 Básico</strong>,
+                <strong>2 Intermedio</strong>
+                o
+                <strong>3 Avanzado</strong>.
             `);
 
             return;
@@ -1389,114 +1385,115 @@ function seleccionarTema(texto) {
             elegido.nivel;
 
         temaSeleccionado =
-            elegido.nombre;
+            elegido.titulo;
 
         datosTemaSeleccionado =
             elegido.datos;
 
-    }
 
-
-    // -----------------------------
-    // RESTO
-    // -----------------------------
-
-    else {
-
-        const datos =
-            cursoSeleccionado === "matematica"
-                ? obtenerDatosMatematica()
-                : obtenerDatosGenerales(
-                    cursoSeleccionado
-                );
-
-
-        const lista =
-            obtenerListaTemas(datos);
-
-
-        let indice = null;
-
-
-        if (/^\d+$/.test(texto)) {
-
-            indice =
-                Number(texto) - 1;
-
-        }
-
-
-        let elegido =
-            indice !== null &&
-            lista[indice]
-                ? lista[indice]
-                : null;
-
-
-        if (!elegido) {
-
-            elegido =
-                lista.find(t => {
-
-                    const clave =
-                        normalizar(t.clave);
-
-                    const titulo =
-                        normalizar(t.titulo);
-
-                    return (
-                        texto === clave ||
-                        texto === titulo ||
-                        texto.includes(clave) ||
-                        clave.includes(texto)
-                    );
-
-                });
-
-        }
-
-
-        if (!elegido) {
-
-            responderBot(`
-                ❌ No reconocí ese tema.
-                <br><br>
-                Selecciona uno de los temas mostrados.
-            `);
-
-            return;
-
-        }
-
-
-        temaSeleccionado =
-            elegido.titulo;
-
-        datosTemaSeleccionado =
-            elegido.contenido;
-
-    }
-
-
-    // -----------------------------
-    // COMPROBAR CONTENIDO
-    // -----------------------------
-
-    if (!datosTemaSeleccionado) {
-
-        responderBot(`
-            ❌ El tema fue seleccionado,
-            pero no encontré su contenido.
-        `);
+        finalizarTema();
 
         return;
 
     }
 
 
-    // ==================================================
-    // 📖 AQUÍ COMIENZA LA EXPLICACIÓN
-    // ==================================================
+    /* RESTO DE CURSOS */
+
+    const datos =
+        obtenerDatosCurso();
+
+
+    const lista =
+        obtenerListaTemas(datos);
+
+
+    let indice = null;
+
+
+    if (/^\d+$/.test(texto)) {
+
+        indice =
+            Number(texto) - 1;
+
+    }
+
+
+    let elegido =
+        indice !== null &&
+        lista[indice]
+            ? lista[indice]
+            : null;
+
+
+    if (!elegido) {
+
+        elegido =
+            lista.find(tema => {
+
+                const clave =
+                    normalizar(tema.clave);
+
+                const titulo =
+                    normalizar(tema.titulo);
+
+
+                return (
+                    texto === clave ||
+                    texto === titulo ||
+                    texto.includes(clave) ||
+                    clave.includes(texto) ||
+                    titulo.includes(texto)
+                );
+
+            });
+
+    }
+
+
+    if (!elegido) {
+
+        mostrarErrorTema();
+
+        return;
+
+    }
+
+
+    temaSeleccionado =
+        elegido.titulo;
+
+    datosTemaSeleccionado =
+        elegido.contenido;
+
+
+    finalizarTema();
+
+}
+
+
+/* =========================================================
+   FINALIZAR TEMA
+========================================================= */
+
+function finalizarTema() {
+
+    if (!datosTemaSeleccionado) {
+
+        responderBot(`
+            <div class="error-card">
+
+                ❌ El tema fue encontrado,
+                pero su archivo de conocimientos
+                no está disponible.
+
+            </div>
+        `);
+
+        return;
+
+    }
+
 
     estado = "pregunta";
 
@@ -1516,19 +1513,13 @@ function seleccionarTema(texto) {
             </span>
 
             <h2>
-                ${escapeHTML(
-                    temaSeleccionado
-                )}
+                ${escapeHTML(temaSeleccionado)}
             </h2>
 
             <p>
-                ${nombreCurso(
-                    cursoSeleccionado
-                )}
+                ${nombreCurso(cursoSeleccionado)}
                 ·
-                ${nombreGrado(
-                    gradoSeleccionado
-                )}
+                ${nombreGrado(gradoSeleccionado)}
             </p>
 
         </div>
@@ -1542,9 +1533,7 @@ function seleccionarTema(texto) {
 
             <h3>
                 Aprendamos sobre
-                ${escapeHTML(
-                    temaSeleccionado
-                )}
+                ${escapeHTML(temaSeleccionado)}
             </h3>
 
             <div class="contenido-explicacion">
@@ -1563,57 +1552,98 @@ function seleccionarTema(texto) {
             </div>
 
             <p>
-                Ahora puedes practicar:
+                Ahora puedes preguntarme sobre
+                <strong>
+                    ${escapeHTML(temaSeleccionado)}
+                </strong>.
             </p>
 
+            <div class="preguntas-grid">
 
-            <button
-                type="button"
-                class="pregunta-sugerida"
-                data-pregunta-sugerida="Explícame ${escapeHTML(temaSeleccionado)} con un ejemplo"
-            >
-                💡 Explícame con un ejemplo
-            </button>
+                <button
+                    type="button"
+                    class="pregunta-sugerida"
+                    data-pregunta-sugerida="¿Qué es ${escapeHTML(temaSeleccionado)}?"
+                >
+                    ❓ ¿Qué es?
+                </button>
 
+                <button
+                    type="button"
+                    class="pregunta-sugerida"
+                    data-pregunta-sugerida="Explícame ${escapeHTML(temaSeleccionado)} con un ejemplo"
+                >
+                    💡 Dame un ejemplo
+                </button>
 
-            <button
-                type="button"
-                class="pregunta-sugerida"
-                data-pregunta-sugerida="Hazme una pregunta sobre ${escapeHTML(temaSeleccionado)}"
-            >
-                🎯 Hazme una pregunta
-            </button>
+                <button
+                    type="button"
+                    class="pregunta-sugerida"
+                    data-pregunta-sugerida="Hazme una pregunta sobre ${escapeHTML(temaSeleccionado)}"
+                >
+                    🎯 Hazme una pregunta
+                </button>
 
-
-            <button
-                type="button"
-                class="pregunta-sugerida"
-                data-pregunta-sugerida="Hazme un resumen de ${escapeHTML(temaSeleccionado)}"
-            >
-                📚 Hazme un resumen
-            </button>
+            </div>
 
         </div>
 
+        <div class="mensaje-final-chat">
 
-        <br>
+            💬 También puedes escribir
+            tu propia pregunta abajo.
 
-        💬 <strong>
-            También puedes escribir tu propia pregunta abajo.
-        </strong>
+        </div>
 
     `);
 
 }
 
 
-// ======================================================
-// 🤖 BUSCAR PREGUNTA EN EL TEMA
-// ======================================================
+/* =========================================================
+   ERROR TEMA
+========================================================= */
+
+function mostrarErrorTema() {
+
+    responderBot(`
+
+        <div class="error-card">
+
+            <div class="error-icon">
+                🔎
+            </div>
+
+            <h3>
+                No reconocí ese tema
+            </h3>
+
+            <p>
+                Selecciona uno de los temas
+                mostrados arriba.
+            </p>
+
+            <small>
+                Puedes escribir su número
+                o su nombre.
+            </small>
+
+        </div>
+
+    `);
+
+}
+
+
+/* =========================================================
+   BUSCAR PREGUNTA DENTRO DEL TEMA
+========================================================= */
 
 function buscarPreguntaEnTema(texto) {
 
     if (!datosTemaSeleccionado) {
+
+        estado = "tema";
 
         responderBot(`
             ❌ Primero selecciona un tema.
@@ -1642,13 +1672,13 @@ function buscarPreguntaEnTema(texto) {
                 </div>
 
                 <h3>
-                    📚 ${escapeHTML(
-                        resultado.titulo
-                    )}
+                    📚 ${escapeHTML(resultado.titulo)}
                 </h3>
 
-                <div>
+                <div class="respuesta-contenido">
+
                     ${resultado.contenido}
+
                 </div>
 
             </div>
@@ -1662,25 +1692,27 @@ function buscarPreguntaEnTema(texto) {
 
     responderBot(`
 
-        <div class="respuesta-futurista">
+        <div class="error-card">
 
-            <div class="selector-badge">
-                🔎 EDU BOT
+            <div class="error-icon">
+                🔍
             </div>
 
             <h3>
-                No encontré una respuesta exacta.
+                No encontré una respuesta exacta
             </h3>
 
             <p>
-                Intenta formular la pregunta
-                de otra manera o pide un ejemplo
-                sobre <strong>
-                ${escapeHTML(
-                    temaSeleccionado
-                )}
+                No encontré esa pregunta dentro
+                de <strong>
+                    ${escapeHTML(temaSeleccionado)}
                 </strong>.
             </p>
+
+            <small>
+                Prueba con otra pregunta
+                relacionada con el tema.
+            </small>
 
         </div>
 
@@ -1689,14 +1721,162 @@ function buscarPreguntaEnTema(texto) {
 }
 
 
-// ======================================================
-// 🔍 BUSCADOR
-// ======================================================
+/* =========================================================
+   OBTENER DATOS
+========================================================= */
+
+function obtenerDatosCurso() {
+
+    let datos = null;
+
+
+    /* MATEMÁTICA */
+
+    if (cursoSeleccionado === "matematica") {
+
+        const temas = {};
+
+
+        const numero =
+            gradoSeleccionado;
+
+
+        const fuentes = {
+
+            "1": [
+                ["aritmetica", "aritmetica1"],
+                ["algebra", "algebra1"],
+                ["geometria", "geometria1"],
+                ["estadistica", "estadistica1"]
+            ],
+
+            "2": [
+                ["aritmetica", "aritmetica2"],
+                ["algebra", "algebra2"],
+                ["geometria", "geometria2"],
+                ["estadistica", "estadistica2"]
+            ],
+
+            "3": [
+                ["aritmetica", "aritmetica3"],
+                ["algebra", "algebra3"],
+                ["geometria", "geometria3"],
+                ["estadistica", "estadistica3"]
+            ],
+
+            "4": [
+                ["aritmetica", "aritmetica4"],
+                ["algebra", "algebra4"],
+                ["geometria", "geometria4"],
+                ["estadistica", "estadistica4"]
+            ],
+
+            "5": [
+                ["aritmetica", "aritmetica5"],
+                ["algebra", "algebra5"],
+                ["geometria", "geometria5"],
+                ["estadistica", "estadistica5"]
+            ],
+
+            "6": [
+                ["aritmetica", "aritmetica6"],
+                ["algebra", "algebra5"],
+                ["geometria", "geometria6"],
+                ["estadistica", "estadistica6"]
+            ]
+
+        };
+
+
+        const lista =
+            fuentes[numero] || [];
+
+
+        lista.forEach(([nombre, variable]) => {
+
+            try {
+
+                const datosVariable =
+                    eval(variable);
+
+                if (datosVariable) {
+
+                    temas[nombre] =
+                        datosVariable;
+
+                }
+
+            }
+            catch (error) {
+
+                console.warn(
+                    "No disponible:",
+                    variable
+                );
+
+            }
+
+        });
+
+
+        if (Object.keys(temas).length) {
+
+            datos = temas;
+
+        }
+
+    }
+
+
+    /* COMUNICACIÓN */
+
+    if (cursoSeleccionado === "comunicacion") {
+
+        if (
+            typeof comunicacion !== "undefined"
+        ) {
+
+            datos =
+                comunicacion[gradoSeleccionado] ||
+                comunicacion;
+
+        }
+
+    }
+
+
+    /* COMPUTACIÓN */
+
+    if (cursoSeleccionado === "computacion") {
+
+        if (
+            typeof computacion !== "undefined"
+        ) {
+
+            datos =
+                computacion[gradoSeleccionado] ||
+                computacion;
+
+        }
+
+    }
+
+
+    return datos;
+
+}
+
+
+/* =========================================================
+   BUSCADOR RECURSIVO
+========================================================= */
 
 function buscarRecursivo(objeto, texto) {
 
     if (!objeto) return null;
 
+
+    /* STRING */
 
     if (typeof objeto === "string") {
 
@@ -1711,9 +1891,10 @@ function buscarRecursivo(objeto, texto) {
 
             return {
 
-                titulo: objeto,
+                titulo: "Información",
 
-                contenido: escapeHTML(objeto)
+                contenido:
+                    escapeHTML(objeto)
 
             };
 
@@ -1725,11 +1906,11 @@ function buscarRecursivo(objeto, texto) {
     }
 
 
+    /* ARRAY */
+
     if (Array.isArray(objeto)) {
 
-        for (
-            const elemento of objeto
-        ) {
+        for (const elemento of objeto) {
 
             const resultado =
                 buscarRecursivo(
@@ -1738,8 +1919,11 @@ function buscarRecursivo(objeto, texto) {
                 );
 
 
-            if (resultado)
+            if (resultado) {
+
                 return resultado;
+
+            }
 
         }
 
@@ -1749,14 +1933,17 @@ function buscarRecursivo(objeto, texto) {
     }
 
 
+    /* OBJETO */
+
     if (typeof objeto === "object") {
 
-        for (
-            const clave in objeto
-        ) {
+        for (const clave in objeto) {
 
-            if (clave === "nombre")
+            if (clave === "nombre") {
+
                 continue;
+
+            }
 
 
             const claveNormalizada =
@@ -1767,9 +1954,7 @@ function buscarRecursivo(objeto, texto) {
 
             if (
                 claveNormalizada.includes(texto) ||
-                texto.includes(
-                    claveNormalizada
-                )
+                texto.includes(claveNormalizada)
             ) {
 
                 return {
@@ -1794,8 +1979,11 @@ function buscarRecursivo(objeto, texto) {
                 );
 
 
-            if (resultado)
+            if (resultado) {
+
                 return resultado;
+
+            }
 
         }
 
@@ -1807,15 +1995,13 @@ function buscarRecursivo(objeto, texto) {
 }
 
 
-// ======================================================
-// 📝 FORMATEAR CONTENIDO
-// ======================================================
+/* =========================================================
+   FORMATEAR CONTENIDO
+========================================================= */
 
 function formatearContenido(contenido) {
 
-    if (
-        typeof contenido === "string"
-    ) {
+    if (typeof contenido === "string") {
 
         return contenido;
 
@@ -1827,20 +2013,20 @@ function formatearContenido(contenido) {
         return contenido
             .map(item => {
 
-                if (
-                    typeof item === "string"
-                ) {
+                if (typeof item === "string") {
 
-                    return `📌 ${item}`;
+                    return `
+                        <div class="contenido-item">
+                            📌 ${item}
+                        </div>
+                    `;
 
                 }
 
-                return formatearContenido(
-                    item
-                );
+                return formatearContenido(item);
 
             })
-            .join("<br>");
+            .join("");
 
     }
 
@@ -1853,27 +2039,23 @@ function formatearContenido(contenido) {
         let resultado = "";
 
 
-        for (
-            const clave in contenido
-        ) {
+        for (const clave in contenido) {
 
             resultado += `
 
-                <br>
+                <div class="contenido-bloque">
 
-                <strong>
-                    📌 ${convertirNombre(
-                        clave
-                    )}
-                </strong>
+                    <strong>
+                        📌 ${convertirNombre(clave)}
+                    </strong>
 
-                <br>
+                    <div>
+                        ${formatearContenido(
+                            contenido[clave]
+                        )}
+                    </div>
 
-                ${formatearContenido(
-                    contenido[clave]
-                )}
-
-                <br>
+                </div>
 
             `;
 
@@ -1890,86 +2072,52 @@ function formatearContenido(contenido) {
 }
 
 
-// ======================================================
-// 🧹 NORMALIZAR
-// ======================================================
+/* =========================================================
+   UTILIDADES
+========================================================= */
 
 function normalizar(texto) {
 
-    return texto
-
+    return String(texto || "")
         .toLowerCase()
-
         .normalize("NFD")
-
-        .replace(
-            /[\u0300-\u036f]/g,
-            ""
-        )
-
+        .replace(/[\u0300-\u036f]/g, "")
         .trim();
 
 }
 
-
-// ======================================================
-// ✨ CONVERTIR NOMBRE
-// ======================================================
 
 function convertirNombre(texto) {
 
-    if (!texto)
-        return "";
+    if (!texto) return "";
 
 
-    return texto
-
-        .replace(
-            /([A-Z])/g,
-            " $1"
+    return String(texto)
+        .replace(/([A-Z])/g, " $1")
+        .replace(/_/g, " ")
+        .replace(/\b\w/g, letra =>
+            letra.toUpperCase()
         )
-
-        .replace(
-            /_/g,
-            " "
-        )
-
-        .replace(
-            /\b\w/g,
-            letra =>
-                letra.toUpperCase()
-        )
-
         .trim();
 
 }
 
-
-// ======================================================
-// 📚 NOMBRE CURSO
-// ======================================================
 
 function nombreCurso(curso) {
 
     const nombres = {
 
-        cyt:
-            "Ciencia y Tecnología",
+        matematica: "Matemática",
 
-        matematica:
-            "Matemática",
+        comunicacion: "Comunicación",
 
-        comunicacion:
-            "Comunicación",
+        cyt: "Ciencia y Tecnología",
 
-        sociales:
-            "Ciencias Sociales",
+        sociales: "Ciencias Sociales",
 
-        ingles:
-            "Inglés",
+        ingles: "Inglés",
 
-        computacion:
-            "Computación"
+        computacion: "Computación"
 
     };
 
@@ -1979,44 +2127,75 @@ function nombreCurso(curso) {
 }
 
 
-// ======================================================
-// 🎓 NOMBRE GRADO
-// ======================================================
-
 function nombreGrado(grado) {
 
     const nombres = {
 
-        "6":
-            "6.º de Primaria",
+        "6": "6.º de Primaria",
 
-        "1":
-            "1.º de Secundaria",
+        "1": "1.º de Secundaria",
 
-        "2":
-            "2.º de Secundaria",
+        "2": "2.º de Secundaria",
 
-        "3":
-            "3.º de Secundaria",
+        "3": "3.º de Secundaria",
 
-        "4":
-            "4.º de Secundaria",
+        "4": "4.º de Secundaria",
 
-        "5":
-            "5.º de Secundaria"
+        "5": "5.º de Secundaria"
 
     };
 
 
-    return nombres[grado]
-        || "Grado desconocido";
+    return nombres[grado] || "Grado";
 
 }
 
 
-// ======================================================
-// 👤 MOSTRAR USUARIO
-// ======================================================
+function iconoCursoActual() {
+
+    const iconos = {
+
+        matematica: "🧮",
+
+        comunicacion: "📖",
+
+        cyt: "🧪",
+
+        sociales: "🌎",
+
+        ingles: "🇬🇧",
+
+        computacion: "💻"
+
+    };
+
+
+    return (
+        iconos[cursoSeleccionado] ||
+        "📚"
+    );
+
+}
+
+
+function escapeHTML(texto) {
+
+    const div =
+        document.createElement("div");
+
+
+    div.textContent =
+        String(texto ?? "");
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
+   MENSAJES
+========================================================= */
 
 function mostrarUsuario(texto) {
 
@@ -2024,21 +2203,29 @@ function mostrarUsuario(texto) {
 
 
     const mensaje =
-        document.createElement("p");
+        document.createElement("div");
+
+
+    mensaje.className =
+        "mensaje-usuario";
 
 
     mensaje.innerHTML = `
+        <span class="mensaje-avatar">
+            👤
+        </span>
 
-        <strong>
-            Tú:
-        </strong>
-
-        ${escapeHTML(texto)}
-
+        <div>
+            <small>Tú</small>
+            <p>
+                ${escapeHTML(texto)}
+            </p>
+        </div>
     `;
 
 
     chat.appendChild(mensaje);
+
 
     chat.scrollTop =
         chat.scrollHeight;
@@ -2046,22 +2233,9 @@ function mostrarUsuario(texto) {
 }
 
 
-// ======================================================
-// 🤖 MOSTRAR BOT
-// ======================================================
-
 function responderBot(texto) {
 
-    if (!chat) {
-
-        console.log(
-            "BOT:",
-            texto
-        );
-
-        return;
-
-    }
+    if (!chat) return;
 
 
     const mensaje =
@@ -2069,11 +2243,22 @@ function responderBot(texto) {
 
 
     mensaje.className =
-        "bot";
+        "mensaje-bot";
 
 
-    mensaje.innerHTML =
-        texto;
+    mensaje.innerHTML = `
+
+        <span class="mensaje-avatar">
+            🤖
+        </span>
+
+        <div class="mensaje-bot-contenido">
+
+            ${texto}
+
+        </div>
+
+    `;
 
 
     chat.appendChild(mensaje);
@@ -2085,59 +2270,11 @@ function responderBot(texto) {
 }
 
 
-// ======================================================
-// ❌ ERROR
-// ======================================================
+/* =========================================================
+   NUEVO CHAT
+========================================================= */
 
-function errorContenido() {
-
-    responderBot(`
-
-        <div class="selector-futurista">
-
-            <div class="selector-badge">
-                ⚠️ CONTENIDO
-            </div>
-
-            <h2>
-                No encontré los contenidos
-            </h2>
-
-            <p>
-                El grado fue seleccionado,
-                pero no encontré el archivo
-                correspondiente.
-            </p>
-
-        </div>
-
-    `);
-
-}
-
-
-// ======================================================
-// 🛡️ SEGURIDAD
-// ======================================================
-
-function escapeHTML(texto) {
-
-    const div =
-        document.createElement("div");
-
-    div.textContent =
-        texto;
-
-    return div.innerHTML;
-
-}
-
-
-// ======================================================
-// 🔄 NUEVO CHAT
-// ======================================================
-
-function reiniciarEduBot() {
+function nuevoChatFuncion() {
 
     estado = "curso";
 
@@ -2145,15 +2282,202 @@ function reiniciarEduBot() {
 
     gradoSeleccionado = "";
 
-    nivelInglesSeleccionado = "";
-
     temaSeleccionado = "";
 
     datosTemaSeleccionado = null;
 
+    nivelInglesSeleccionado = "";
 
-    console.log(
-        "🔄 Edu BOT reiniciado"
-    );
+
+    if (pregunta) {
+
+        pregunta.value = "";
+
+    }
+
+
+    if (chat) {
+
+        chat.innerHTML = "";
+
+    }
+
+
+    const inicio =
+        document.getElementById("inicio");
+
+    const zonaChat =
+        document.getElementById("zonaChat");
+
+
+    if (inicio) {
+
+        inicio.style.display = "block";
+
+    }
+
+
+    if (zonaChat) {
+
+        zonaChat.classList.remove("visible");
+
+    }
+
+
+    responderBot(`
+        <strong>¡Nuevo chat! 👋</strong>
+
+        <br><br>
+
+        Soy <b>Edu BOT</b> 🤖.
+
+        <br><br>
+
+        Selecciona un curso para comenzar.
+    `);
+
+}
+
+
+/* =========================================================
+   MODO OSCURO
+========================================================= */
+
+function prepararModoOscuro() {
+
+    const modo =
+        document.getElementById("modoOscuro");
+
+
+    if (!modo) return;
+
+
+    if (
+        localStorage.getItem("eduBotModo") ===
+        "oscuro"
+    ) {
+
+        document.body.classList.add("oscuro");
+
+        modo.checked = true;
+
+    }
+
+
+    modo.addEventListener("change", () => {
+
+        document.body.classList.toggle(
+            "oscuro",
+            modo.checked
+        );
+
+
+        localStorage.setItem(
+            "eduBotModo",
+            modo.checked
+                ? "oscuro"
+                : "claro"
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   MENÚ
+========================================================= */
+
+function prepararMenu() {
+
+    document
+        .querySelectorAll(".menu-btn")
+        .forEach(btn => {
+
+            btn.addEventListener("click", () => {
+
+                const seccion =
+                    btn.dataset.seccion;
+
+
+                document
+                    .querySelectorAll(".menu-btn")
+                    .forEach(b =>
+                        b.classList.remove("activo")
+                    );
+
+
+                btn.classList.add("activo");
+
+
+                const inicio =
+                    document.getElementById("inicio");
+
+                const zonaChat =
+                    document.getElementById("zonaChat");
+
+
+                if (seccion === "inicio") {
+
+                    inicio.style.display =
+                        "block";
+
+                    zonaChat.classList.remove(
+                        "visible"
+                    );
+
+                    document
+                        .querySelectorAll(".seccion-extra")
+                        .forEach(s =>
+                            s.classList.remove("mostrar")
+                        );
+
+                }
+
+
+                else if (seccion === "cursos") {
+
+                    inicio.style.display =
+                        "block";
+
+                    zonaChat.classList.remove(
+                        "visible"
+                    );
+
+                    document
+                        .getElementById("cursos")
+                        ?.scrollIntoView({
+                            behavior: "smooth"
+                        });
+
+                }
+
+
+                else {
+
+                    inicio.style.display =
+                        "none";
+
+                    zonaChat.classList.remove(
+                        "visible"
+                    );
+
+
+                    document
+                        .querySelectorAll(".seccion-extra")
+                        .forEach(s =>
+                            s.classList.remove("mostrar")
+                        );
+
+
+                    document
+                        .getElementById(seccion)
+                        ?.classList.add("mostrar");
+
+                }
+
+            });
+
+        });
 
 }
